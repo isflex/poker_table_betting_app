@@ -1,0 +1,16 @@
+projects:
+  pokerapp:
+    schemaPath: apps/poker/api/src/graphql/schema.json
+    includes:
+      - apps/poker/api/src/graphql/includes/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: apps/poker/api/src/graphql/API.ts
+        docsFilePath: apps/poker/api/src/graphql
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

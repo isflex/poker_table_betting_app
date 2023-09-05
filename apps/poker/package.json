@@ -1,0 +1,22 @@
+{
+	"name": "pointingpoker-parent",
+	"version": "0.1.0",
+	"description": "Parent package for pointing poker",
+	"scripts": {
+		"dev": "yarn concurrently -k -n BACK,FRONT -s first \"yarn dev:server\" \"yarn start:client\"",
+		"dev:client": "cd client && yarn start",
+		"dev:server": "cd server && yarn nodemon dist/index",
+		"start": "yarn concurrently -k -n BACK,FRONT -s first \"yarn start:server\" \"yarn start:client\"",
+		"start:client": "cd client && yarn start",
+		"start:server": "cd server && yarn node dist/index",
+		"build": "yarn build:common && yarn build:client",
+		"build:common": "cd common && yarn build",
+		"build:client": "cd client && yarn build"
+	},
+	"devDependencies": {
+		"concurrently": "^7.2.2"
+	},
+	"author": "Jason Winnebeck <gillius@gillius.org>",
+	"license": "GPL-3.0-or-later",
+	"packageManager": "yarn@3.6.3"
+}

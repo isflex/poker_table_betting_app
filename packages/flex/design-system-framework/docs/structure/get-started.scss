@@ -1,0 +1,312 @@
+.horizontal-snippet {
+  > .column {
+    position: relative;
+
+    > .switch {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      height: 0;
+      z-index: 2;
+
+      label {
+        font-size: 1.1rem;
+      }
+    }
+
+    > * {
+      position: relative;
+      background-color: #f3f3f3;
+      height: 100%;
+      border-radius: size(0.4rem);
+    }
+  }
+
+  .code-preview {
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+
+    > .columns {
+      margin: 0;
+    }
+  }
+
+  .CodeMirror::before,
+  .code-preview::before {
+    font-family: "Bouygues Read";
+    font-size: 1.1rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .CodeMirror::before {
+    content: "Code";
+  }
+
+  .code-preview::before {
+    content: "Prévisualisation";
+  }
+
+  .main-content {
+    flex-grow: 1;
+  }
+
+  .section,
+  .box,
+  .column,
+  .columns,
+  .container {
+    min-height: 15rem;
+  }
+
+  .container {
+    width: 200px;
+  }
+
+  header,
+  footer {
+    min-height: 4rem;
+  }
+}
+
+.naming-table {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 1fr 0.3fr;
+  grid-template-rows: 0.3fr 0.5fr 1fr 1.5fr 0.3fr;
+  grid-template-areas: ". top top ." "left inline-style too-specitic right" "left inline-style components right" "left atoms facets right" ". bottom bottom .";
+  height: 500px;
+
+  > div {
+    position: relative;
+
+    .zone-label {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 11px;
+
+      .tag {
+        font-size: 11px;
+      }
+    }
+  }
+
+  .left {
+    grid-area: left;
+    align-self: center;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+  }
+
+  .top {
+    grid-area: top;
+    text-align: center;
+    font-weight: bold;
+    align-self: flex-end;
+    padding-bottom: 10px;
+  }
+
+  .right {
+    grid-area: right;
+    align-self: center;
+    text-align: left;
+    padding-left: 10px;
+    font-weight: bold;
+  }
+
+  .bottom {
+    grid-area: bottom;
+    text-align: center;
+    font-weight: bold;
+    align-self: flex-start;
+    padding-top: 10px;
+  }
+
+  .atoms {
+    grid-area: atoms;
+    border-top: 2px solid #777;
+    border-right: 2px solid #777;
+  }
+
+  .components {
+    grid-area: components;
+    border-top: 1px dotted #777;
+  }
+
+  .facets {
+    grid-area: facets;
+    border-top: 2px solid #777;
+  }
+
+  .too-specific {
+    grid-area: too-specitic;
+  }
+
+  .inline-style {
+    grid-area: inline-style;
+    border-right: 2px solid #777;
+  }
+}
+
+ul.list,
+ul.list ul {
+  list-style: disc;
+  margin-left: 30px;
+
+  ul {
+    list-style: circle;
+  }
+}
+
+ul.list > li {
+  margin-bottom: 5px;
+}
+
+b {
+  font-weight: 600;
+}
+
+.atom {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 90px;
+  margin: 10px;
+  text-align: center;
+  font-size: 9px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &.is-derived {
+    border-style: dashed;
+  }
+
+  &.has-role {
+    margin-top: 30px;
+    position: relative;
+
+    .atom-role {
+      position: absolute;
+      top: -15px;
+      height: 15px;
+      text-align: center;
+      left: -1px;
+      right: -1px;
+      font-weight: bold;
+    }
+  }
+}
+
+.component {
+  border: 1px solid black;
+  min-width: 200px;
+  min-height: 150px;
+  margin: 30px 10px 10px;
+  position: relative;
+  display: inline-flex;
+
+  .component-spec {
+    width: 100%;
+  }
+
+  .component-responsive {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "component-responsive-common component-responsive-common" "component-responsive-desktop component-responsive-mobile";
+
+    .component-responsive-common {
+      grid-area: component-responsive-common;
+      border-bottom: 1px dashed #777;
+    }
+
+    .component-responsive-desktop {
+      grid-area: component-responsive-desktop;
+      border-right: 1px dashed #777;
+      position: relative;
+
+      &::after {
+        content: "D";
+        position: absolute;
+        border-bottom: 1px dashed #777;
+        border-left: 1px dashed #777;
+        right: 0;
+        font-size: 11px;
+        padding: 2px;
+      }
+    }
+
+    .component-responsive-mobile {
+      grid-area: component-responsive-mobile;
+
+      &::after {
+        content: "M";
+        position: absolute;
+        border-bottom: 1px dashed #777;
+        border-left: 1px dashed #777;
+        right: 0;
+        font-size: 11px;
+        padding: 2px;
+      }
+    }
+  }
+
+  .component-name,
+  .component-facet {
+    position: absolute;
+    top: -20px;
+    height: 20px;
+    border: 1px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 11px;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+  }
+
+  .component-name {
+    left: -1px;
+  }
+
+  .component-facet {
+    right: -1px;
+  }
+}
+
+.components-extension {
+  display: flex;
+
+  .component.is-extension {
+    margin-left: 50px;
+
+    &::before {
+      content: " ";
+      height: 1px;
+      background: black;
+      position: absolute;
+      left: -61px;
+      top: 50%;
+      right: 100%;
+    }
+
+    &::after {
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid black;
+      content: " ";
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      top: calc(50% - 10px);
+      left: -72px;
+    }
+  }
+}
+
+span.is-small {
+  font-size: size(1.1rem);
+}

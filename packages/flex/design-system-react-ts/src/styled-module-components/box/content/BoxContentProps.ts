@@ -1,0 +1,10 @@
+import { GenericChildren } from 'flex-design-system-react-ts/generics'
+
+/**
+ * Box Content Interface
+ */
+export interface BoxContentProps {
+  children?: GenericChildren | string
+  className?: string
+  classList?: string[]
+}

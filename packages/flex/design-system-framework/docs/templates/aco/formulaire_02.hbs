@@ -1,0 +1,84 @@
+{{#extend "templates/aco-layout"}}
+{{#content "page"}}
+
+<main class="main-content">
+    <section class="hero has-background-white">
+        <div class="hero-body">
+            <div class="container is-medium">
+                <h1 class="title">Lorem ipsum</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="section has-overlap">
+        <div class="container is-medium">
+            <div class="box has-text-centered">
+                <div class="box-content">
+                    <h1 class="title is-4">Lorem ipsum</h1>
+                    <p>Ipsum dolor sit amet consectetur adipisicing elit. <br>Vitae corporis veritatis, quis harum et excepturi eveniet.</p>
+
+                    <div class="columns">
+                        <div class="column is-half is-offset-one-quarter">
+                            <form action="">
+                                <div class="field">
+                                    <div class="control has-dynamic-placeholder">
+                                        <input class="input" type="text" placeholder="Nom">
+                                        <label>Nom</label>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <div class="control has-dynamic-placeholder">
+                                        <input class="input" type="text" placeholder="Prénom">
+                                        <label>Prénom</label>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <div class="select is-fullwidth">
+                                        <select>
+                                            <option>Choisir votre numéro de contact</option>
+                                            <option>06 XX XX XX XX</option>
+                                            <option>06 XX XX XX XX</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <div class="control has-dynamic-placeholder has-icons-right">
+                                        <input class="input is-success" type="text" placeholder="Email">
+                                        <label>Email</label>
+                                        <span class="icon is-small">
+                                            <i class="flexi-ui-check-r"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <div class="control has-dynamic-placeholder has-icons-right">
+                                        <input class="input is-danger" type="password" placeholder="Mot de passe">
+                                        <label>Mot de passe</label>
+                                        <span class="icon is-small has-password-discover">
+                                            <i class="flexi-ui-eye-s"></i>
+                                        </span>
+                                        <span class="icon is-small">
+                                            <i class="flexi-ui-times-r"></i>
+                                        </span>
+                                    </div>
+                                    <p class="help is-danger has-text-left">This username is available</p>
+                                </div>
+
+                                <div class="buttons">
+                                    <a class="button is-primary">Valider</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{{/content}}
+{{/extend}}

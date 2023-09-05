@@ -1,0 +1,97 @@
+<nav class="navbar is-new" role="navigation" aria-label="main navigation" style="z-index: 1000">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{{ root }}index.hbs">
+            <img src="{{ root }}static/logo-trilogy.svg" alt="">
+        </a>
+    </div>
+
+    <div class="navbar-extras is-hidden-touch">
+        <div id="ds-notice">
+            <div class="ds-edge">
+                <span class="icon-and-text">
+                    <span class="icon is-medium"><i class="flexi-tools"></i></span>
+                    <span>Version « Bleeding Edge »</span>
+                </span>
+            </div>
+            <div class="ds-prod">
+                <span class="icon-and-text">
+                    <span class="icon is-medium"><i class="flexi-cloud-check-s"></i></span>
+                    <span>Version stable en production</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar-menu is-hidden-touch">
+        <div class="navbar-start navbar-links">
+            <div class="navbar-item is-hoverable is-megadropdown-parent">
+                <a href="#" class="navbar-link">Démarrer avec Flexiness Framework</a>
+                <div class="navbar-dropdown">
+                    <div class="columns is-centered">
+                        {{> menu-get-started}}
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-item is-hoverable is-megadropdown-parent">
+                <a href="#" class="navbar-link">Structure d'une page</a>
+                <div class="navbar-dropdown">
+                    <div class="columns is-centered">
+                        {{> menu-structure}}
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-item is-hoverable is-megadropdown-parent">
+                <a href="#" class="navbar-link">Guide des styles</a>
+                <div class="navbar-dropdown">
+                    <div class="columns is-centered">
+                        {{> menu-style}}
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-item is-hoverable is-megadropdown-parent">
+                <a href="#" class="navbar-link">Composants</a>
+                <div class="navbar-dropdown">
+                    <div class="columns is-centered">
+                        {{> menu-components}}
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-item is-hoverable is-megadropdown-parent">
+                <a href="#" class="navbar-link has-text-primary">Eléments dépréciés</a>
+                <div class="navbar-dropdown">
+                    <div class="columns is-centered">
+                        {{> menu-components-deprecated}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-end navbar-icons">
+            <a class="navbar-item" href="{{ root }}changelog/design-system.hbs">
+                <span class="icon is-large">
+                    <i aria-hidden="true" class="flexi-file-list"></i>
+                </span>
+                <span class="is-hidden-mobile">Changelog</span>
+            </a>
+            <a class="navbar-item" href="{{ root }}templates.hbs">
+                <span class="icon is-large">
+                    <i aria-hidden="true" class="flexi-laptop-tablet-mobile"></i>
+                </span>
+                <span class="is-hidden-mobile">Templates</span>
+            </a>
+            {{!-- <a class="navbar-item" href="{{ root }}sandbox.hbs">
+                <span class="icon is-medium">
+                    <i aria-hidden="true" class="flexi-ui-pencil-s"></i>
+                </span>
+                <span class="is-hidden-mobile">Bac à sable</span>
+            </a> --}}
+            <a class="navbar-item is-hidden" href="{{ root }}releases.hbs">
+                <span class="icon is-large">
+                    <i aria-hidden="true" class="flexi-home-tools"></i>
+                </span>
+                <span class="is-hidden-mobile">Releases</span>
+            </a>
+        </div>
+    </div>
+</nav>

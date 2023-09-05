@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "@flexiness",
+  "sourceRoot": "packages/flex/config/jest/puppeteer",
+  "projectType": "library",
+  "targets": {
+    "test-nx": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "{projectRoot}/package.json",
+        "{projectRoot}/tsconfig.json",
+        "{projectRoot}/jest.config.js",
+        "{workspaceRoot}/__tests__/end_to_end/**/*"
+      ],
+      "options": {
+        "commands": [
+          "yarn nx run-many --target=launch-nx --all --output-style=static",
+          "yarn jest:e2e"
+        ],
+        "parallel": false
+      }
+    }
+  },
+  "implicitDependencies": [],
+  "tags": ["scope:flexiness-staging"]
+}

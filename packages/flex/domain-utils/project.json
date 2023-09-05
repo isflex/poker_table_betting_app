@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "@flexiness",
+  "sourceRoot": "packages/flex/domain-utils/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "{projectRoot}/package.json",
+        "{projectRoot}/tsconfig.build.json"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "command": "yarn workspace @flexiness/domain-utils build"
+      }
+    }
+  },
+  "implicitDependencies": [],
+  "tags": ["scope:flexiness-staging"]
+}

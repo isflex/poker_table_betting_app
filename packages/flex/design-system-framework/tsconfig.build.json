@@ -1,0 +1,29 @@
+{
+  "extends": "../../../tsconfig.build.settings.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": ".",
+    "outDir": "./compile",
+    "rootDir": "./src",
+    "paths": {
+      "flexiness": ["../types"],
+      "flex-design-system-framework/*": ["./src/modules3/default/*"]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "../../../node_modules/@types"
+    ],
+  },
+  "exclude": [
+    "node_modules",
+    "docs",
+    "gulp",
+    "scripts",
+    "tests",
+    "rollup*.config.js"
+  ],
+  "include": [
+    "src/**/*"
+  ]
+}
+

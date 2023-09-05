@@ -1,0 +1,182 @@
+---
+title: Démarrer avec Flexiness Framework
+menu: true
+active: {
+    structure: {
+        basic-page: true
+    }
+}
+root: ../
+---
+
+{{#extend "menu-page"}}
+    {{#content "extra-css"}}
+        <link href="get-started.scss" rel="stylesheet">
+    {{/content}}
+    {{#content "extra-js"}}
+        <script src="get-started.js"></script>
+    {{/content}}
+
+    {{#content "content"}}
+        <section class="hero is-instit">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">{{ title }}</h1>
+                    <h2 class="subtitle">Structure d'un document</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Template de base</h2>
+                <p>Une page utilise les trois éléments HTML suivant : <code>header</code>, <code>main.main-content</code> et <code>footer</code>.</p>
+                <p>Pour faciliter la lecture, ces trois éléments sont par défaut contraints sur les très grands écrans. Pour vous afranchir de cette contrainte, vous pouvez ajouter la classe <code>.is-fullwidth</code> sur chacun de ces trois éléments.</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;!DOCTYPE html&gt;
+                            &lt;html lang=&quot;fr&quot;&gt;
+                            &lt;head&gt;
+                            &lt;meta charset=&quot;utf-8&quot;&gt;
+                            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,minimum-scale=1&quot;&gt;
+                            &lt;link rel=&quot;stylesheet&quot; href=&quot;https://a7.bouyguestelecom.fr/trilogy@latest&quot;&gt;
+
+                            &lt;title&gt;Titre de ma page&lt;/title&gt;
+                            &lt;meta name=&quot;description&quot; content=&quot;La description de ma page en 160 caract&egrave;res maximum&quot;&gt;
+                            &lt;/head&gt;
+                            &lt;body&gt;
+                            &lt;header&gt;&lt;!-- En-tête de votre page--&gt;&lt;/header&gt;
+                            &lt;main class="main-content"&gt; &lt;!-- Contenu de votre page --&gt;&lt;/main&gt;
+                            &lt;footer&gt; &lt;!-- Pied de page --&gt;&lt;/footer&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-1" type="checkbox" name="mode-wireframe-1" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-1">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Les sections</h2>
+                <p>L'élément de base d'une page Flexiness Framework est l'élément HTML <code>section</code>, utilisé ainsi : <code>&lt;section class="section"&gt;</code>.</p>
+                <p>Une section gère les marges principales de la page et prend toute la largeur disponible.</p>
+                <b>Les sections sont les enfants directs de <code>main.main-content</code></b> et hébergent tous vos contenus.</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;header&gt;&lt;!-- En-tête de votre page--&gt;&lt;/header&gt;
+                            &lt;main class="main-content"&gt;
+                            &lt;section class="section"&gt;Une première section&lt;/section&gt;
+                            &lt;section class="section"&gt;Une seconde section&lt;/section&gt;
+                            &lt;section class="section"&gt;Une dernière section&lt;/section&gt;
+                            &lt;/main&gt;
+                            &lt;footer&gt;&lt;!-- Pied de votre page--&gt;&lt;/footer&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-2" type="checkbox" name="mode-wireframe-2" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-2">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Le container</h2>
+                <p>L'élément qui suit directement une section de base est le <i>container</i> (<code>&lt;div class="container"&gt;</code>). Il est chargé de restreindre votre contenu en fonction de la largeur de la page.</p>
+                <p>Pour rendre le container utilisable sur toute la largeur de votre section, utilisez la classe <code>is-fluid</code></p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;header&gt;&lt;!-- En-tête de votre page--&gt;&lt;/header&gt;
+                            &lt;main class="main-content"&gt;
+                            &lt;section class="section"&gt;
+                            &lt;div class="container"&gt;
+                            Contenu inséré ici, restreint automatiquement selon les règles du design system et la taille du viewport
+                            &lt;/div&gt;
+                            &lt;/section&gt;
+
+                            &lt;section class="section"&gt;
+                            &lt;div class="container is-fluid"&gt;
+                            Contenu non contraint, largeur maximale utilisable (moins des marges de sécurité)
+                            &lt;/div&gt;
+                            &lt;/section&gt;
+                            &lt;/main&gt;
+                            &lt;footer&gt;&lt;!-- Pied de votre page--&gt;&lt;/footer&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-2" type="checkbox" name="mode-wireframe-2" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-2">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Les colonnes</h2>
+                <p>A l'intérieur d'un <em>container</em>, vous pouvez utiliser des colonnes afin d'agencer votre contenu <b>horizontalement</b>.</p>
+                <p><a class="link has-text-primary is-text" href="{{ root }}structure/columns.hbs">En savoir plus sur les colonnes</a></p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns"&gt;
+                            &lt;div class="column"&gt;Contenu ici&lt;/div&gt;
+                            &lt;div class="column"&gt;Contenu là&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-3" type="checkbox" name="mode-wireframe-3" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-3">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Les rangées</h2>
+                <p>A l'intérieur d'un <em>container</em>, vous pouvez aussi utiliser des rangées afin d'agencer votre contenu <b>verticalement</b>.</p>
+                <p><a class="link has-text-primary is-text" href="{{ root }}structure/rows.hbs">En savoir plus sur les rangées</a></p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="rows"&gt;
+                            &lt;div class="row"&gt;Contenu ici&lt;/div&gt;
+                            &lt;div class="row"&gt;Contenu là&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-3" type="checkbox" name="mode-wireframe-3" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-3">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/content}}
+{{/extend}}

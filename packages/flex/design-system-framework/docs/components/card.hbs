@@ -1,0 +1,234 @@
+---
+title: Carte
+active: {
+    components: {
+        card: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+    {{#content "content"}}
+
+        {{#> components-title  desc="Les cartes permettent d'afficher une image et un contenu, dans différentes orientations possibles"}}
+        {{/components-title }}
+
+        <section class="section">
+            {{#> snippet id="basic-card" title="Carte" desc="La carte  est ombrée et prend toute la largeur disponible dans son container. Les éléments y sont alignés verticalement par défaut. Le texte y est centré."}}
+                {{#content "light"}}
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title is-3">Title lorem</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="reversed-card" title="Carte inversée" desc="Pour placer l'image en bas de la carte, utilisez la facette <code>is-reversed</code> (ancien code, déprécié : <code>is-inverted</code>, pensez à mettre à jour votre HTML"}}
+                {{#content "light"}}
+                <div class="card is-reversed">
+                    <div class="card-image">
+                        <figure class="image">
+                            <img src="../static/card-sample.png" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <p class="suptitle">Subtitle</p>
+                        <h3 class="title is-3">Title lorem</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate
+                            vera.</p>
+                        <button class="button is-primary">Button Lorem</button>
+                    </div>
+                </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="multiple-cards" title="Cartes côte-à-côte" desc="Pour mettre plusieurs cartes côte-à-côte, utilisez le layout que vous souhaitez et insérez-y le code pour vos cartes. Exemple ici avec deux colonnes." }}
+                {{#content "light"}}
+                    <div class="columns">
+                        <div class="column">
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image">
+                                        <img src="../static/card-sample.png" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <p class="suptitle">Carte classique</p>
+                                    <h3 class="title is-3">.card</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.</p>
+                                    <button class="button is-primary">Button Lorem</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="card is-reversed">
+                                <div class="card-image">
+                                    <figure class="image">
+                                        <img src="../static/card-sample.png" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <p class="suptitle">Carte renversée</p>
+                                    <h3 class="title is-3">.card.is-reversed</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.</p>
+                                    <button class="button is-primary">Button Lorem</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="horizontal-card" title="Carte horizontale" desc="Pour autoriser le changement de sens, utilisez la classe <code>is-horizontal</code>. Notez que le texte ne sera plus centré. La place prise par l'image peut être augmentée grâce à différentes facettes allant de <code>is-1</code> à <code>is-4</code>. Vous pouvez ensuite centrer les contenus en utilisant la classe <code>is-vcentered</code>" }}
+                {{#content "light"}}
+                    <div class="card is-horizontal is-vcentered">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title is-3">Carte horizontale par défaut (illustration à 20%)</h3>
+                            <p>Incididunt fugiat incididunt esse enim eiusmod anim commodo quis aliqua fugiat ad aute fugiat culpa. Exercitation minim irure sunt ad aute. Ea eu veniam non id dolore. Et ad do amet id magna enim elit minim deserunt esse. Deserunt sint irure sunt officia deserunt labore mollit. Sunt nisi qui adipisicing cillum eiusmod ullamco consequat aute aliqua.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="card is-horizontal is-vcentered">
+                        <div class="card-image is-1">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title is-3">Carte horizontale (illustration à 30%)</h3>
+                            <p>Incididunt fugiat incididunt esse enim eiusmod anim commodo quis aliqua fugiat ad aute fugiat culpa. Exercitation minim irure sunt ad aute. Ea eu veniam non id dolore. Et ad do amet id magna enim elit minim deserunt esse. Deserunt sint irure sunt officia deserunt labore mollit. Sunt nisi qui adipisicing cillum eiusmod ullamco consequat aute aliqua.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="card is-horizontal is-vcentered">
+                        <div class="card-image is-2">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title is-3">Carte horizontale (illustration à 40%)</h3>
+                            <p>Incididunt fugiat incididunt esse enim eiusmod anim commodo quis aliqua fugiat ad aute fugiat culpa. Exercitation minim irure sunt ad aute. Ea eu veniam non id dolore. Et ad do amet id magna enim elit minim deserunt esse. Deserunt sint irure sunt officia deserunt labore mollit. Sunt nisi qui adipisicing cillum eiusmod ullamco consequat aute aliqua.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="card is-horizontal is-vcentered">
+                        <div class="card-image is-3">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title is-3">Carte horizontale (illustration à 50%)</h3>
+                            <p>Incididunt fugiat incididunt esse enim eiusmod anim commodo quis aliqua fugiat ad aute fugiat culpa. Exercitation minim irure sunt ad aute. Ea eu veniam non id dolore. Et ad do amet id magna enim elit minim deserunt esse. Deserunt sint irure sunt officia deserunt labore mollit. Sunt nisi qui adipisicing cillum eiusmod ullamco consequat aute aliqua.</p>
+                            <p>Incididunt . Exercitation minim irure sunt ad aute. Ea eu veniam non id dolore. Et ad do amet id magna enim elit minim deserunt esse. Deserunt sint irure sunt officia deserunt labore mollit. Sunt nisi qui adipisicing cillum eiusmod ullamco consequat aute aliqua.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="card is-horizontal is-vcentered">
+                        <div class="card-image is-4">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title is-3">Carte horizontale (illustration à 60%)</h3>
+                            <p>Incididunt fugiat incididunt esse enim eiusmod anim commodo quis aliqua fugiat ad aute fugiat culpa. Exercitation minim irure sunt ad aute. Ea eu veniam non id dolore. Et ad do amet id magna enim elit minim deserunt esse. Deserunt sint irure sunt officia deserunt labore mollit. Sunt nisi qui adipisicing cillum eiusmod ullamco consequat aute aliqua.</p>
+                            <p>Incididunt . Exercitation minim irure sunt ad aute. Ea eu veniam non id dolore. Et ad do amet id magna enim elit minim deserunt esse. Deserunt sint irure sunt officia deserunt labore mollit. Sunt nisi qui adipisicing cillum eiusmod ullamco consequat aute aliqua.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="flat-card" title="Flat card" desc="Utilisez la classe <code>is-flat</code> pour ajouter une bordure sur le contenu de votre carte." }}
+                {{#content "light"}}
+                    <div class="card is-flat">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title is-3">Title lorem</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="float-card" title="Carte flottante" desc="Utilisez la classe <code>is-floating</code> pour rendre votre carte flottante. Ni bordures, ni ombrages. L'illustration possède 4 bords arrondis.<br/>Fonctionne aussi avec <code>is-horizontal</code>." }}
+                {{#content "light"}}
+                    <div class="card is-floating">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title is-3">Title lorem</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="strength-card" title="Carte avec un titre important" desc="La facette <code>is-strong</code> va forcer le comportement du titre (ici 24px en typo Bouygues Speak)" }}
+                {{#content "light"}}
+                    <div class="card is-floating is-strong">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="../static/card-sample.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="suptitle">Subtitle</p>
+                            <h3 class="title">Title lorem</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.</p>
+                            <button class="button is-primary">Button Lorem</button>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+    {{/content}}
+{{/extend}}

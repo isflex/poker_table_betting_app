@@ -1,0 +1,108 @@
+---
+title: Switch
+active: {
+  components: {
+    switch: true
+  }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Description"}}{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="switch" title="Switch sous forme de radio" desc=""}}
+        {{#content "light"}}
+            <div class="field is-flex is-aligned-center is-spaced-between">
+                <div class="control">
+                    <input class="switch is-checkradio is-success" type="checkbox" id="switch-492" checked="checked">
+                    <label for="switch-492"></label>
+                </div>
+                <div class="control">
+                    <input class="switch is-checkradio is-primary" type="checkbox" id="switch-493" checked="checked">
+                    <label for="switch-493"></label>
+                </div>
+                <div class="control">
+                    <input class="switch is-checkradio is-info" type="checkbox" id="switch-494" checked="checked">
+                    <label for="switch-494"></label>
+                </div>
+                <div class="control">
+                    <input class="switch is-checkradio is-success" type="checkbox" id="switch-497">
+                    <label for="switch-497"></label>
+                </div>
+                <div class="control">
+                    <input class="switch is-checkradio is-primary" type="checkbox" id="switch-498">
+                    <label for="switch-498"></label>
+                </div>
+                <div class="control">
+                    <input class="switch is-checkradio is-info" type="checkbox" id="switch-499">
+                    <label for="switch-499"></label>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="switch-2" title="Switch avec des textes cliquable"}}
+        {{#content "light"}}
+            <div class="tile is-child is-3">
+                <div class="field">
+                    <div class="control"><input class="switch is-checkradio switch is-info has-label-right" type="checkbox" id="switch-237">
+                        <label for="switch-237">Label positionned right</label>
+                    </div>
+                </div>
+            </div>
+            <div class="tile is-child is-3">
+                <div class="field">
+                    <div class="control"><input class="switch is-checkradio switch is-info has-label-left" type="checkbox" id="switch-874">
+                        <label for="switch-874">Label positionned left</label>
+                    </div>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="switch-3" title="Switch avec Tranche"}}
+        {{#content "light"}}
+            <div class="slices">
+                <div class="slice">
+                    <div class="slice-content">
+                        <p class="title is-size-6 is-6">A slice containing a switch</p>
+                        Toggling switch is independant from clicking slice.
+                    </div>
+                    <div class="slice-call-to-action">
+                        <div class="field">
+                            <div class="control">
+                                <input class="switch is-checkradio is-info" type="checkbox" id="switch-297">
+                                <label for="switch-297"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field has-slice is-fullwidth">
+                    <div class="control">
+                        <input class="switch is-checkradio switch is-info has-label-left has-slice" type="checkbox" id="switch-235">
+                        <label for="switch-235">
+                            <div class="slices">
+                                <div class="slice">
+                                    <div class="slice-content" id="switch-235">
+                                        <p class="title is-size-6 is-6" id="switch-235">A switch containing a slice</p>
+                                        Toggling switch is linked to click on slice.
+                                    </div>
+                                    <div class="slice-call-to-action"></div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

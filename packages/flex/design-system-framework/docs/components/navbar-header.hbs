@@ -1,0 +1,1199 @@
+---
+title: Barre de navigation
+active: {
+    components: {
+        navbar-header: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title}}{{/components-title }}
+
+<!-- Structure de base-->
+<section class="section">
+    {{#> snippet id="navbar-structure" title="Structure de base" nopreview="true" desc="<ul><li>&bull; La classe <code>is-new</code> est nécessaire pour activer le nouveau header</li><li>&bull; Deux modes d'affichage seulement : mobile et desktop ; utilisez <code>is-hidden-touch</code> pour gérer le responsive</li><li>&bull; La navigation principale, bien qu'en seconde position visuellement, se trouve en premier dans le code ; c'est la classe <code>navbar-menu</code> qui gère le positionnement.</li></ul>"}}
+    {{#content "light"}}
+    <nav class="navbar is-new" aria-label="main navigation" rol="navigation">
+        <!-- LOGO -->
+        <div class="navbar-brand"></div>
+        <!-- DEUXIEME NIVEAU : NAVIGATION PRINCIPALE AVEC SOUS-MENUS -->
+        <div class="navbar-menu is-hidden-touch">
+            <div class="navbar-start">
+                <div class="navbar-links"><!-- liens principaux --></div>
+                <div class="navbar-links"><!-- liens secondaires avec séparation automatique --></div>
+            </div>
+        </div>
+        <!-- PREMIER NIVEAU : RECHERCHE, LIENS DIRECTS, LOGIN -->
+        <div class="navbar-menu">
+            <div class="navbar-extras is-hidden-touch"></div>
+            <div class="navbar-end">
+                <div class="navbar-icons">
+                    <!-- liens directs -->
+                    <!-- lien alternatif dédié au login / espace membre -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<!-- Naigation principale -->
+<section class="section">
+    {{#> snippet id="navbar-primary" title="Navigation principale" desc="</p><p class='text is-size-5'>Menu</p><ul><li>&bull; Chaque lien de premier niveau comporte au moins la classe <code>navbar-item</code></li><li>&bull; Les opérations commerciales se gèrent simplement en ajoutant la classe <code>has-text-primary</code> sur le lien (donc <i>pas</i> sur le <code>navbar-item</code>)</li><li>&bull; La seconde partie de la navigation complètement à droite est une autre <code>div.navbar-links</code>, qui suit directement la première ; la séparation visuelle est automatique</li><li>&bull; Si un lien de navigation principale comporte un sous-menu qui s'active au passage de la souris, ajoutez la classe <code>is-megadropdown-parent</code></li><li>&bull; La classe <code>is-hoverable</code> n'a plus d'utilité.</li></ul><br/><p class='text is-size-5'>Sous-menu</p><ul><li>&bull; Le sous-menu suit directement le lien du menu de navigation dans <code>div.navbar-dropdown</code><li>&bull; Les colonnes ne sont plus nécessaires dans le sous-menu, privilégiez une séparation grâce à <code>div.navbar-dropdown-section</code> (jusqu'à 3 par sous-menu)</li><li>&bull; N'utilisez pas la classe <code>title</code> pour les titres des menus déroulants, ceux-ci <i>doivent</i> utiliser la classe <code>navbar-category-title</code></li><li>&bull; Les liens qui s'y trouvent sont des <code>a</code> classiques ; ceux qui suivent sont des éléments ayant la classe <code>navbar-link</code></li><li>&bull; Les éléments devant être mis en avant auront en plus la classe <code>is-highlighted</code></li></ul>"}}
+    {{#content "light"}}
+    <nav class="navbar is-new" aria-label="main navigation" rol="navigation">
+        <!-- LOGO -->
+        <!-- DEUXIEME NIVEAU : NAVIGATION PRINCIPALE AVEC SOUS-MENUS -->
+        <div class="navbar-menu is-hidden-touch">
+            <div class="navbar-start">
+                <!-- PREMIERE PARTIE DE LA NAVIGATION PRINCIPALE -->
+                <div class="navbar-links">
+                    <div class="navbar-item is-megadropdown-parent">
+                        <a href="#" class="navbar-link">Téléphones / Accessoires</a>
+                        <div class="navbar-dropdown">
+                            <div class="navbar-dropdown-section">
+                                <h4 class="navbar-category-title icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-mobile"></i>
+                                    </span>
+                                    <a href="">Téléphones</a>
+                                </h4>
+                                <a class="navbar-link">Iphone</a>
+                                <a class="navbar-link">Samsung</a>
+                                <a class="navbar-link">Huawei</a>
+                                <a class="navbar-link">Tous les téléphones mobiles</a>
+                                <a class="navbar-link">Téléphones reconditionnés</a>
+                                <a class="navbar-link">Reprise de votre téléphone</a>
+                                <a class="navbar-link">Click and collect</a>
+                                <h4 class="navbar-category-title icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-v-sign"></i>
+                                    </span>
+                                    <a href="">Bons plans</a>
+                                </h4>
+                                <a class="navbar-link is-highlighted">Tous les Bons Plans</a>
+                            </div>
+                            <div class="navbar-dropdown-section">
+                                <h4 class="navbar-category-title icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-headphones"></i>
+                                    </span>
+                                    <a href="">Accessoires pour téléphone</a>
+                                </h4>
+                                <a class="navbar-link">Étuis et protections</a>
+                                <a class="navbar-link">Clé 4G et tablette 4G</a>
+                                <a class="navbar-link is-highlighted">Tous les accessoires pour téléphone</a>
+                                <h4 class="navbar-category-title icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-hotspot"></i>
+                                    </span>
+                                    <a href="">Accessoires pour box</a>
+                                </h4>
+                                <a class="navbar-link">Répéteur wifi</a>
+                                <a class="navbar-link">Clavier</a>
+                                <a class="navbar-link is-highlighted">Tous les accessoires pour box</a>
+                            </div>
+                            <div class="navbar-dropdown-section">
+                                <img src="https://fakeimg.pl/350x200/?text=Contenu+libre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-item">
+                        <a href="#" class="navbar-link">Forfaits mobile</a>
+                    </div>
+                    <div class="navbar-item">
+                        <a href="#" class="navbar-link">Box internet</a>
+                    </div>
+                    <div class="navbar-item">
+                        <a href="#" class="navbar-link">Forfaits mobile + Box</a>
+                    </div>
+                    <div class="navbar-item">
+                        <a href="#" class="navbar-link icon-and-text has-text-primary">
+                            <span>Promos</span>
+                            <span class="icon is-small">
+                                <i class="flexi-v-sign"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <!-- SECONDE PARTIE DE LA NAVIGATION PRINCIPALE -->
+                <div class="navbar-links">
+                    <div class="navbar-item">
+                        <a href="#" class="navbar-link">Professionnel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PREMIER NIVEAU : RECHERCHE, LIENS DIRECTS, LOGIN -->
+        <div class="navbar-menu">
+            <div class="navbar-extras is-hidden-touch"></div>
+            <div class="navbar-end">
+                <div class="navbar-icons">
+                    <!-- liens directs -->
+                    <!-- lien alternatif dédié au login / espace membre -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<!-- Navigation secondaire -->
+<section class="section">
+    {{#> snippet id="navbar-secondary" title="Navigation secondaire" desc="<ul><li>&bull; Chaque élément enfant de <code>navbar-icons</code> est un <code>navbar-item</code></li><li>&bull; Les éléments de cette navigation secondaire pousseront le contenu de <code>div.navbar-extras</code> s'ils manquent de place</li><li>&bull; L'affichage est strictement identique à celui de la classe <code>icon-and-text</code>, celle-ci n'est donc pas nécessaire ici</li><li>&bull; Le nombre d'items au panier est géré par la classe <code>is-stacked</code> sur l'icône et l'utilisation du composant Badge (positionné en-haut via <code>is-up</code>)</li><li>&bull; L'élément « se connecter » est une <code>div.is-alternate</code> et contient le lien en lui-même (<code>a.navbar-link</code>) et le sous-menu propre à cet élément (<code>div.navbar-dropdown</code>)</li><li>&bull; La classe <code>is-right-aligned</code> n'est plus nécessaire</li><li>&bull; Le sous-menu se déclenche au clic de souris et ne nécessite pas la classe <code>is-megadropdown-parent</code></li><li>&bull; Flexiness Framework est un Design System orienté CSS et ne prévoit pas le Javascript nécessaire à ce comportement</li><li>&bull; Pour la structure des sous-menus, voyez la section suivante de la documentation</li></ul>"}}
+    {{#content "light"}}
+    <nav aria-label="main navigation" class="navbar is-new" role="navigation">
+        <!-- LOGO -->
+        <!-- DEUXIEME NIVEAU : NAVIGATION PRINCIPALE AVEC SOUS-MENUS -->
+        <!-- PREMIER NIVEAU : RECHERCHE, LIENS DIRECTS, LOGIN -->
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-icons">
+                    <a href="#" class="navbar-item">
+                        <span class="icon">
+                            <i class="flexi-hands-helping"></i>
+                        </span>
+                        <span class="is-hidden-touch">Assistance</span>
+                    </a>
+                    <a href="#" class="navbar-item">
+                        <span class="icon">
+                            <i class="flexi-store"></i>
+                        </span>
+                        <span class="is-hidden-touch">Nos boutiques</span>
+                    </a>
+                    <a href="#" class="navbar-item">
+                        <span class="icon is-stacked">
+                            <i aria-hidden="true" class="flexi-ui-shopping-cart"></i>
+                            <span class="badge is-up">2</span>
+                        </span>
+                        <span class="is-hidden-touch">Panier</span>
+                    </a>
+                    <div class="navbar-item is-alternate">
+                        <a class="navbar-link">
+                            <span class="icon">
+                                <i class="flexi-ui-user" aria-hidden="true"></i>
+                            </span>
+                            <span class="is-hidden-touch">Se connecter</span>
+                            <!-- SOUS-MENU DE CONNEXION / ESPACE MEMBRE -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<!-- Sous-menu -->
+<section class="section">
+    {{#> snippet id="navbar-dropdown" title="Sous-menu Espace Client" desc="<ul><li>&bull; Le bouton pour afficher le dropdown est de taille fixe et son contenu sera tronqué si nécessaire, avec adjonction d'une ellipse</li><li>&bull; Si le menu comporte une croix de fermeture, celle-ci se situe en premier dans le HTML du sous-menu (élément <code>button</code> avec classe <code>navbar-dropdown-close</code>)</li><li>&bull; À nouveau, le Javascript nécessaire à ce comportement n'est pas géré par Flexiness Framework et doit être implémenté de manière indépendante</li><li>&bull; La plupart des éléments présents dans le sous-menu sont des éléments Flexiness Framework classiques (pas besoin d'utiliser des classes telles que <code>navbar-item</code> ou <code>navbar-link</code>)</li></ul>"}}
+    {{#content "light"}}
+    <!-- DISPOSITION EN COLONNES UNIQUEMENT POUR LA DOCUMENTATION -->
+    <div class="columns">
+        <div class="column">
+            <nav aria-label="main navigation" class="navbar is-new" role="navigation">
+                <!-- LOGO -->
+                <!-- DEUXIEME NIVEAU : NAVIGATION PRINCIPALE AVEC SOUS-MENUS -->
+                <!-- PREMIER NIVEAU : RECHERCHE, LIENS DIRECTS, LOGIN -->
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="navbar-icons">
+                            <div class="navbar-item is-alternate" id="js-dropdown-documentation-guest">
+                                <a class="navbar-link">
+                                    <span class="icon">
+                                        <i class="flexi-ui-user" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="is-hidden-mobile">Se connecter</span>
+                                </a>
+                                <div class="navbar-dropdown">
+                                    <button type="button" class="navbar-dropdown-close" aria-label="close"
+                                        id="js-dropdown-documentation-close"></button>
+                                    <div class="has-text-centered">
+                                        <p class="title is-size-2">Identifiez-vous</p>
+                                        <p>pour accéder à votre compte</p>
+                                    </div>
+                                    <div>
+                                        <div class="field">
+                                            <div class="control has-dynamic-placeholder">
+                                                <input class="input" type="text"
+                                                    placeholder="N° de mobile, clé/tablette ou email">
+                                                <label>N° de mobile, clé/tablette ou email</label>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control has-dynamic-placeholder has-icons-right">
+                                                <input class="input" type="password" placeholder="Mot de passe">
+                                                <label>Mot de passe</label>
+                                                <span class="icon is-small">
+                                                    <i class="flexi-ui-eye-s"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="is-checkradio" id="remplacez_moi" type="checkbox"
+                                                    name="remplacez_moi">
+                                                <label for="remplacez_moi">Se souvenir de moi</label>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <button type="submit" class="button is-primary is-fullwidth">Me
+                                                connecter</button>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <a class="link">Mot de passe oublié</a>
+                                    </p>
+                                    <div class="navbar-divider"></div>
+                                    <p class="icon-and-text">
+                                        <span class="icon has-text-secondary is-small">
+                                            <i class="flexi-ui-user"></i>
+                                        </span>
+                                        <a class="link">Créer mon compte client</a>
+                                    </p>
+                                    <div class="navbar-divider"></div>
+                                    <p class="icon-and-text">
+                                        <span class="icon is-small">
+                                            <i class="flexi-sim-card"></i>
+                                        </span>
+                                        <a class="link has-text-tertiary">Client carte prépayée</a>
+                                    </p>
+                                    <p class="icon-and-text">
+                                        <span class="icon is-small">
+                                            <i class="flexi-cogs"></i>
+                                        </span>
+                                        <a class="link has-text-tertiary">Activer ma ligne</a>
+                                    </p>
+                                    <p class="icon-and-text">
+                                        <span class="icon is-small">
+                                            <i class="flexi-ui-question-circle"></i>
+                                        </span>
+                                        <a class="link has-text-tertiary">Aide à la connexion</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="column">
+            <nav aria-label="main navigation" class="navbar is-new" role="navigation">
+                <!-- LOGO -->
+                <!-- DEUXIEME NIVEAU : NAVIGATION PRINCIPALE AVEC SOUS-MENUS -->
+                <!-- PREMIER NIVEAU : RECHERCHE, LIENS DIRECTS, LOGIN -->
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="navbar-icons">
+                            <div class="navbar-item is-alternate" id="js-dropdown-documentation-client">
+                                <a class="navbar-link">
+                                    <span class="icon">
+                                        <i class="flexi-ui-user" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="is-hidden-mobile">Jean-Christophe</span>
+                                </a>
+                                <div class="navbar-dropdown">
+                                    <button type="button" class="navbar-dropdown-close" aria-label="close"
+                                        id="js-dropdown-documentation-close"></button>
+                                    <div class="has-text-centered">
+                                        <p class="title is-size-2">Pascal</p>
+                                        <p>Bienvenue dans votre espace client</p>
+                                    </div>
+                                    <p>
+                                        <a class="link has-text-tertiary">Infos personnelles</a>
+                                    </p>
+                                    <p>
+                                        <a class="link has-text-tertiary">Factures &amp; paiements</a>
+                                    </p>
+                                    <p>
+                                        <a class="link has-text-tertiary">Mes demandes</a>
+                                    </p>
+                                    <p>
+                                        <a class="link has-text-tertiary">Mes commandes</a>
+                                    </p>
+                                    <div class="navbar-divider"></div>
+                                    <p>
+                                        <a class="link has-text-tertiary">Déconnexion</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<!-- Version mobile -->
+<section class="section">
+    {{#> snippet id="navbar-mobile" title="Version mobile" desc="<p class='text is-size-6 icon-and-text'><span class='icon is-small'><i class='flexi-ui-exclamation-circle-s'></i></span><span>Activez le « Mode Reponsive » de la documentation pour cette section</span></p><p class='text is-size-5'>Fonctionnement du menu</p><ul><li>&bull; Le menu de navigation principale étant masqué par la classe <code>is-hidden-touch</code>, il faut le recréer dans le menu mobile ; le code n'est pas nécessairement identique.</li><li>&bull; Les contenus bonus placés dans la <code>div.navbar-extras</code> doivent également être répétés si nécessaire</li><li>&bull; Chaque fils direct dans le menu est une <code>div.navbar-dropdown-section</code> (sauf si besoin d'une séparation visuelle)</li><li>&bull; La séparation visuelle est toujours gérée par <code>div.navbar-divider</code></li></ul><br/><p class='text is-size-5'>Fonctionnement du sous-menu</p><ul><li>&bull; Les éléments de sous-menu, comme la navigation principale, doivent être au sein d'une <code>div.navbar-item-accordion</li><li>&bull; Chaque <code>div.navbar-item-accordion</code> possède un attribut <code>id</code> qui permettra d'afficher le sous-menu</li><li>&bull; Le premier enfant s'y trouvant est un lien de retour pointant vers <code>#</code></li><li>&bull; Chaque titre d'accordéon est un lien avec la classe <code>navbar-item-accordion-header</code></li><li>&bull; La destination de ce lien est l'ancre interne définie dans l'attribut <code>id</code> de la <code>div.navbar-item-accordion</code></li><li>&bull; Le sous-menu à afficher se trouve dans une <code>div.navbar-item-accordion-content</code></li></ul>"}}
+    {{#content "light"}}
+    <nav aria-label="main navigation" class="navbar is-new" role="navigation">
+        <!-- LOGO -->
+        <!-- DEUXIEME NIVEAU : NAVIGATION PRINCIPALE AVEC SOUS-MENUS -->
+        <!-- PREMIER NIVEAU : RECHERCHE, LIENS DIRECTS, LOGIN -->
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-icons">
+                    <a href="#" class="navbar-item">
+                        <span class="icon is-stacked">
+                            <i aria-hidden="true" class="flexi-ui-shopping-cart"></i>
+                            <span class="badge is-up">2</span>
+                        </span>
+                        <span class="is-hidden-mobile">Panier</span>
+                    </a>
+                    <!-- LIEN DE CONNEXION POUR DESKTOP -->
+                    <div class="navbar-item is-alternate" id="js-dropdown-documentation-guest">
+                        <a class="navbar-link">
+                            <span class="icon">
+                                <i class="flexi-ui-user" aria-hidden="true"></i>
+                            </span>
+                            <span class="is-hidden-mobile">Se connecter</span>
+                        </a>
+                        <!-- SOUS-MENU SUR DESKTOP -->
+                    </div>
+                    <!-- LIEN DE CONNEXION POUR MOBILE/TABLETTE (IS-HIDDEN-DESKTOP) -->
+                    <div class="navbar-item is-alternate is-active is-hidden-desktop">
+                        <span class="icon">
+                            <i aria-hidden="true" class="flexi-ui-menu"></i>
+                        </span>
+                        <div class="navbar-dropdown">
+                            <div class="navbar-dropdown-section navbar-extras">
+                                <div class="control has-dynamic-placeholder has-icons-right">
+                                    <input class="input" type="text" placeholder="Forfait, téléphones, fibre…">
+                                    <label class="input-dynamic-placeholder">Recherche</label>
+                                    <span class="icon">
+                                        <i class="flexi-ui-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="navbar-divider"></div>
+                            <div class="navbar-dropdown-section">
+                                <div class="navbar-item-accordion" id="telephones">
+                                    <a href="#" class="navbar-item-accordion-back">Retour</a>
+                                    <a href="#telephones" class="navbar-item-accordion-header">Téléphones et accessoires</a>
+                                    <div class="navbar-item-accordion-content">
+                                        <h4 class="navbar-category-title icon-and-text">
+                                            <span class="icon is-small">
+                                                <i class="flexi-mobile"></i>
+                                            </span>
+                                            <a href="">Téléphones</a>
+                                        </h4>
+                                        <a class="navbar-link">Iphone</a>
+                                        <a class="navbar-link">Samsung</a>
+                                        <a class="navbar-link">Huawei</a>
+                                        <a class="navbar-link">Tous les téléphones mobiles</a>
+                                        <a class="navbar-link">Téléphones reconditionnés</a>
+                                        <a class="navbar-link">Reprise de votre téléphone</a>
+                                        <a class="navbar-link">Click and collect</a>
+                                        <h4 class="navbar-category-title icon-and-text">
+                                            <span class="icon is-small">
+                                                <i class="flexi-v-sign"></i>
+                                            </span>
+                                            <a href="">Bons plans</a>
+                                        </h4>
+                                        <a class="navbar-link is-highlighted">Tous les Bons Plans</a>
+                                        <h4 class="navbar-category-title icon-and-text">
+                                            <span class="icon is-small">
+                                                <i class="flexi-mobile"></i>
+                                            </span>
+                                            <a href="">Téléphones</a>
+                                        </h4>
+                                        <a class="navbar-link">Iphone</a>
+                                        <a class="navbar-link">Samsung</a>
+                                        <a class="navbar-link">Huawei</a>
+                                        <a class="navbar-link">Tous les téléphones mobiles</a>
+                                        <a class="navbar-link">Téléphones reconditionnés</a>
+                                        <a class="navbar-link">Reprise de votre téléphone</a>
+                                        <a class="navbar-link">Click and collect</a>
+                                        <h4 class="navbar-category-title icon-and-text">
+                                            <span class="icon is-small">
+                                                <i class="flexi-v-sign"></i>
+                                            </span>
+                                            <a href="">Bons plans</a>
+                                        </h4>
+                                        <a class="navbar-link is-highlighted">Tous les Bons Plans</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Forfaits mobiles</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Box internet</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Forfait mobile + Box</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Promos</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navbar-dropdown-section">
+                                <a href="#" class="navbar-item has-ending-arrow">Accéder à votre espace client</a>
+                                <a href="#" class="navbar-item has-ending-arrow">Suivre votre commande</a>
+                                <a href="#" class="navbar-item has-ending-arrow">Activer votre ligne</a>
+                            </div>
+                            <div class="navbar-divider"></div>
+                            <div class="navbar-dropdown-section">
+                                <a href="#" class="navbar-item icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-hands-helping"></i>
+                                    </span>
+                                    <span>Assistance</span>
+                                </a>
+                                <a href="#" class="navbar-item icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-store"></i>
+                                    </span>
+                                    <span>Nos boutiques</span>
+                                </a>
+                                <a href="#" class="navbar-item icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-ui-logo"></i>
+                                    </span>
+                                    <span>La marque</span>
+                                </a>
+                                <a href="#" class="navbar-item icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-user-tie"></i>
+                                    </span>
+                                    <span>Professionel</span>
+                                </a>
+                            </div>
+                            <div class="navbar-dropdown-section">
+                                <div class="columns is-mobile">
+                                    <div class="column">
+                                        <a href="#" class="is-flex is-positionned-center">
+                                            <img src="../static/store-apple.svg" class="is-block" />
+                                        </a>
+                                    </div>
+                                    <div class="column">
+                                        <a href="#" class="is-flex is-positionned-center">
+                                            <img src="../static/store-google.svg" class="is-block" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<!-- Header au complet -->
+<section class="section">
+    {{#> snippet id="navbar" title="Header au complet" desc="<ul><li>&bull; Ajoutez la classe <code>is-new</code> pour activer le nouveau header</li><li>&bull; Utilisez la classe <code>is-alternate</code> pour le bouton « Se connecter »</li><li>&bull; Le code du moteur de recherche et des liens principaux de navigation nécessite d'être dupliqué dans le menu mobile</li><li>&bull; Pour tester le nouveau menu en sticky, ajouter la classe <code>is-sticky</code></ul>"}}
+    {{#content "light"}}
+    <nav aria-label="main navigation" class="navbar is-new" role="navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item is-hidden-tablet">
+                <img alt="Bouygues Telecom" src="../static/logo-bouygues-telecom-mobile.svg">
+            </a>
+
+            <a class="navbar-item is-hidden-mobile">
+                <img alt="Bouygues Telecom" src="../static/logo-bouygues-telecom.svg">
+            </a>
+        </div>
+        <div class="navbar-menu is-hidden-touch">
+            <div class="navbar-start">
+                <div class="navbar-links">
+                    <div class="navbar-item is-hoverable is-megadropdown-parent">
+                        <a href="#" class="navbar-link">Téléphones / Accessoires</a>
+                        <div class="navbar-dropdown">
+                            <div class="navbar-dropdown-section is-fullheight">
+                                <h4 class="navbar-category-title icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-mobile"></i>
+                                    </span>
+                                    <a href="">Téléphones</a>
+                                </h4>
+                                <a class="navbar-link">Iphone</a>
+                                <a class="navbar-link">Samsung</a>
+                                <a class="navbar-link">Huawei</a>
+                                <a class="navbar-link">Tous les téléphones mobiles</a>
+                                <a class="navbar-link">Téléphones reconditionnés</a>
+                                <a class="navbar-link">Reprise de votre téléphone</a>
+                                <a class="navbar-link">Click and collect</a>
+                                <h4 class="navbar-category-title icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-v-sign"></i>
+                                    </span>
+                                    <a href="">Bons plans</a>
+                                </h4>
+                                <a class="navbar-link is-highlighted">Tous les Bons Plans</a>
+                            </div>
+                            <div class="navbar-dropdown-section is-fullheight">
+                                <h4 class="navbar-category-title icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-headphones"></i>
+                                    </span>
+                                    <a href="">Accessoires pour téléphone</a>
+                                </h4>
+                                <a class="navbar-link">Étuis et protections</a>
+                                <a class="navbar-link">Clé 4G et tablette 4G</a>
+                                <a class="navbar-link is-highlighted">Tous les accessoires pour téléphone</a>
+                                <h4 class="navbar-category-title icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-hotspot"></i>
+                                    </span>
+                                    <a href="">Accessoires pour box</a>
+                                </h4>
+                                <a class="navbar-link">Répéteur wifi</a>
+                                <a class="navbar-link">Clavier</a>
+                                <a class="navbar-link is-highlighted">Tous les accessoires pour box</a>
+                            </div>
+                            <div class="navbar-dropdown-section is-fullheight">
+                                <a href="">
+                                    <img src="https://picsum.photos/id/191/327/227" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-item is-hoverable">
+                        <a href="#" class="navbar-link">Forfaits mobile</a>
+                    </div>
+                    <div class="navbar-item is-hoverable">
+                        <a href="#" class="navbar-link">Box internet</a>
+                    </div>
+                    <div class="navbar-item is-hoverable">
+                        <a href="#" class="navbar-link">Forfaits mobile + Box</a>
+                    </div>
+                    <div class="navbar-item is-hoverable">
+                        <a href="#" class="navbar-link icon-and-text has-text-primary">
+                            <span>Promos</span>
+                            <span class="icon is-small">
+                                <i class="flexi-v-sign"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-links">
+                    <div class="navbar-item is-hoverable">
+                        <a href="#" class="navbar-link">Professionnel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-extras is-hidden-touch">
+                <div class="control has-dynamic-placeholder has-icons-right">
+                    <input class="input" type="text" placeholder="Forfait, téléphones, fibre…">
+                    <label class="input-dynamic-placeholder">Recherche</label>
+                    <span class="icon">
+                        <i class="flexi-ui-search"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-icons">
+                    <a href="#" class="navbar-item">
+                        <span class="icon">
+                            <i class="flexi-hands-helping"></i>
+                        </span>
+                        <span class="is-hidden-mobile">Assistance</span>
+                    </a>
+                    <a href="#" class="navbar-item">
+                        <span class="icon">
+                            <i class="flexi-store"></i>
+                        </span>
+                        <span class="is-hidden-mobile">Nos boutiques</span>
+                    </a>
+                    <a href="#" class="navbar-item">
+                        <span class="icon is-stacked">
+                            <i aria-hidden="true" class="flexi-ui-shopping-cart"></i>
+                            <span class="badge is-up">2</span>
+                        </span>
+                        <span class="is-hidden-mobile">Panier</span>
+                    </a>
+                    <div class="navbar-item is-alternate" id="js-dropdown-documentation-new">
+                        <a class="navbar-link">
+                            <span class="icon">
+                                <i class="flexi-ui-user" aria-hidden="true"></i>
+                            </span>
+                            <span class="is-hidden-mobile">Se connecter</span>
+                        </a>
+                        <!-- menu de connexion ou d'espace membre -->
+                    </div>
+                    <!-- partie mobile : masquée à partir de 768px -->
+                    <div class="navbar-item is-alternate is-active is-hidden-desktop">
+                        <span class="icon">
+                            <i aria-hidden="true" class="flexi-ui-menu"></i>
+                        </span>
+
+                        <div class="navbar-dropdown">
+                            <div class="navbar-dropdown-section navbar-extras">
+                                <div class="control has-dynamic-placeholder has-icons-right">
+                                    <input class="input" type="text" placeholder="Forfait, téléphones, fibre…">
+                                    <label class="input-dynamic-placeholder">Recherche</label>
+                                    <span class="icon">
+                                        <i class="flexi-ui-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="navbar-divider"></div>
+
+                            <div class="navbar-dropdown-section">
+                                <div class="navbar-item-accordion">
+                                    <a href="#telephones" class="navbar-item-accordion-header">Téléphones et
+                                        accessoires</a>
+                                    <div class="navbar-item-accordion-content" id="telephones">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Forfaits mobiles</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Box internet</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Forfait mobile + Box</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Promos</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="navbar-dropdown-section">
+                                <a href="#" class="navbar-item has-ending-arrow">Accéder à votre espace client</a>
+                                <a href="#" class="navbar-item has-ending-arrow">Suivre votre commande</a>
+                                <a href="#" class="navbar-item has-ending-arrow">Activer votre ligne</a>
+                            </div>
+
+                            <div class="navbar-divider"></div>
+
+                            <div class="navbar-dropdown-section">
+                                <a href="#" class="navbar-item icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-hands-helping"></i>
+                                    </span>
+                                    <span>Assistance</span>
+                                </a>
+                                <a href="#" class="navbar-item icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-store"></i>
+                                    </span>
+                                    <span>Nos boutiques</span>
+                                </a>
+                                <a href="#" class="navbar-item icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-ui-logo"></i>
+                                    </span>
+                                    <span>La marque</span>
+                                </a>
+                                <a href="#" class="navbar-item icon-and-text">
+                                    <span class="icon is-small">
+                                        <i class="flexi-user-tie"></i>
+                                    </span>
+                                    <span>Professionel</span>
+                                </a>
+                            </div>
+
+                            <div class="navbar-dropdown-section">
+                                <div class="columns is-mobile">
+                                    <div class="column">
+                                        <a href="#" class="is-flex is-positionned-center">
+                                            <img src="../static/store-apple.svg" class="is-block" />
+                                        </a>
+                                    </div>
+                                    <div class="column">
+                                        <a href="#" class="is-flex is-positionned-center">
+                                            <img src="../static/store-google.svg" class="is-block" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<!-- Transition NPM -->
+<section class="section">
+    {{#> snippet id="navbar-npm" title="Header de transition sur NPM" desc="<ul><li>&bull; Utilisable sur toutes les pages NPM qui ne souhaitent pas encore passer au nouveau header</li><li>&bull; Ajoutez la classe <code>is-npm</code> pour activer ce header de transition</li></ul>"}}
+    {{#content "light"}}
+    <nav aria-label="main navigation" class="navbar is-npm" role="navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#" title="Bouygues Telecom">
+                <a class="navbar-item is-hidden-tablet">
+                    <img alt="Bouygues Telecom" src="../static/logo-bouygues-telecom-mobile.svg">
+                </a>
+                <a class="navbar-item is-hidden-mobile">
+                    <img alt="Bouygues Telecom" src="../static/logo-bouygues-telecom.svg">
+                </a>
+            </a>
+        </div>
+        <div class="navbar-menu is-hidden-touch is-hidden-desktop-only">
+            <div class="navbar-start">
+                <div class="navbar-links">
+                    <div class="navbar-item is-hoverable is-megadropdown-parent">
+                        <a class="navbar-link" href="#">Mobile</a>
+                        <div class="navbar-dropdown">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="navbar-dropdown-section is-fullheight">
+                                        <a class="title is-4" href="#">Forfaits mobile</a>
+                                        <a class="navbar-item" href="#">Forfaits Sensation</a>
+                                        <a class="navbar-item" href="#">Forfaits B&amp;YOU</a>
+                                        <a class="navbar-item" href="#">Séries Spéciales B&amp;YOU</a>
+                                        <a class="navbar-item" href="#">Cartes prépayées</a>
+                                        <a class="navbar-item" href="#">Carte prépayée touriste Europe</a>
+                                        <a class="navbar-item" href="#">Toutes les options pour votre forfait mobile</a>
+                                        <a class="navbar-item" href="#">Forfait clé 4G</a>
+                                        <hr class="navbar-divider is-invisible">
+                                        <a class="navbar-item is-highlighted" href="#">La 4G Bouygues Telecom</a>
+                                        <a class="navbar-item is-highlighted" href="#">La 5G Bouygues Telecom</a>
+                                        <hr class="navbar-divider is-invisible">
+                                        <a class="navbar-item" href="#">Réseau mobile en zones rurales</a>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="navbar-dropdown-section is-fullheight">
+                                        <a class="title is-4" href="#">Téléphones</a>
+                                        <a class="navbar-item" href="#">Téléphones mobiles</a>
+                                        <a class="navbar-item" href="#">Accessoires mobiles</a>
+                                        <a class="navbar-item" href="#">Téléphones reconditionnés</a>
+                                        <a class="navbar-item" href="#">Reprise Mobile</a>
+                                        <a class="navbar-item" href="#">Hotspots et tablettes 4G</a>
+                                        <a class="navbar-item" href="#">Réparation Téléphone</a>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="navbar-dropdown-section is-fullheight">
+                                        <p class="title is-4">Déjà client</p>
+                                        <a class="navbar-item bf-login" href="#">Changer votre forfait</a>
+                                        <a class="navbar-item bf-login" href="#">Gérer vos options mobile</a>
+                                        <a class="navbar-item bf-login" href="#">Changer de téléphone</a>
+                                        <a class="navbar-item" href="#">Souscrire un nouveau forfait</a>
+                                        <a class="navbar-item bf-login" href="#">Offres de remboursement</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-item is-hoverable">
+                        <a class="navbar-link" href="#">Box Internet</a>
+                    </div>
+                    <div class="navbar-item is-hoverable">
+                        <a class="navbar-link" href="#">Forfait + Box</a>
+                    </div>
+                    <div class="navbar-item is-hoverable">
+                        <a class="navbar-link" href="#">Assistance</a>
+                    </div>
+                    <div class="navbar-item is-hoverable">
+                        <a class="navbar-link" href="#">Pro/Entreprises</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-icons">
+                    <a class="navbar-item is-hidden-touch" href="#">
+                        <i aria-hidden="true" class="icon flexi-ui-search"></i>
+                        <span class="is-hidden-mobile">Rechercher</span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <i aria-hidden="true" class="icon flexi-ui-marker"></i>
+                        <span class="is-hidden-touch">Boutiques</span>
+                    </a>
+                    <a class="navbar-item is-hidden-touch" href="#" id="hfch--panier--links">
+                        <i aria-hidden="true" class="icon flexi-ui-shopping-cart"></i>
+                        <span class="is-hidden-touch">Panier</span>
+                    </a>
+                    <a class="navbar-item is-hidden-desktop" href="#">
+                        <i aria-hidden="true" class="icon flexi-ui-shopping-cart"></i>
+                    </a>
+
+                    <div class="navbar-item is-megadropdown-parent bf-connected is-hidden" id="moncompteon">
+                        <div class="navbar-link">
+                            <i aria-hidden="true"
+                                class="icon is-circled is-small has-background-success has-text-white flexi-ui-user"></i>
+                            <span class="has-dropdown-arrow is-hidden-touch">Mon compte</span>
+                        </div>
+                        <div class="navbar-dropdown is-right-aligned animate-from-top">
+                            <a class="navbar-item bf-login" href="#">Accéder à votre compte</a>
+                            <a class="navbar-item bf-login" href="#">Suivre votre commande</a>
+                            <a class="navbar-item" href="#">Activer votre ligne</a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item has-text-weight-normal bf-logout" href="#">Déconnexion</a>
+                        </div>
+                    </div>
+                    <div class="navbar-item is-megadropdown-parent is-fourth bf-login bf-disconnected" id="moncompteoff">
+                        <div class="navbar-link">
+                            <i aria-hidden="true" class="icon flexi-ui-user"></i>
+                            <span class="has-dropdown-arrow is-hidden-touch">Mon compte</span>
+                        </div>
+                        <div class="navbar-dropdown is-right-aligned">
+                            <div class="columns is-centered">
+                                <div class="column is-10">
+                                    <h2 class="title has-text-grey is-size-4 is-centered">Identifiez-vous</h2>
+                                    <p class="title has-text-grey is-size-6 is-centered">pour accéder à votre compte.</p>
+                                </div>
+                            </div>
+                            <div id="bfcontainer"></div>
+                            <a class="button is-primary is-text" href="#">Mot de passe oublié ?</a>
+                            <hr class="is-divider is-marginless">
+                            <div class="columns is-centered">
+                                <div class="column is-10">
+                                    <div class="rows">
+                                        <div class="row"></div>
+                                        <div class="row">
+                                            <p class="icon-and-text">
+                                                <span class="icon has-text-primary is-small">
+                                                    <i class="flexi-ui-user"></i>
+                                                </span>
+                                                <a class="is-underline has-text-primary" href="#" target="_blank">Créer mon compte client</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="is-divider is-marginless">
+                            <div class="columns is-centered">
+                                <div class="column is-10">
+                                    <div class="rows has-text-grey">
+                                        <div class="row"></div>
+                                        <div class="row">
+                                            <p class="icon-and-text">
+                                                <span class="icon is-small">
+                                                    <i class="flexi-sim-card"></i>
+                                                </span>
+                                                <a class="is-underline is-size-6" href="#" target="_blank">Client carte prépayée</a>
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="icon-and-text">
+                                                <span class="icon is-small">
+                                                    <i class="flexi-cogs"></i>
+                                                </span>
+                                                <a class="is-underline is-size-6" href="#" target="_blank">Activer ma ligne</a>
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="icon-and-text">
+                                                <span class="icon is-small">
+                                                    <i class="flexi-ui-question-circle"></i>
+                                                </span>
+                                                <a class="is-underline is-size-6" href="#" target="_blank">Aide à la connexion</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navbar-item has-background-white is-loading" id="bf-loading">
+                                <div class="navbar-center">
+                                    <div class="field">
+                                        <div class="control has-icons-right">
+                                            <input class="required input" placeholder="XXX XX XXXXXX" size="40" tabindex="2" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="control has-icons-right">
+                                            <input class="required input" placeholder="XXX XX XXXXXX" size="40" tabindex="2" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <input class="is-checkradio has-background-color is-info custom-checkbox" type="checkbox">
+                                    </div>
+                                    <div class="field">
+                                        <div class="control">
+                                            <button class="button is-primary is-fullwidth" disabled="" type="submit">Me connecter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-item is-active is-megadropdown-parent is-hidden-widescreen">
+                        <div class="navbar-link">
+                            <i aria-hidden="true" class="icon flexi-ui-menu"></i>
+                        </div>
+                        <div class="navbar-dropdown">
+                            <div class="navbar-dropdown-section">
+                                <div class="field">
+                                    <div class="control has-dynamic-placeholder has-icons-right">
+                                        <input class="input" id="searchInput" placeholder="Recherche" type="text"> <label
+                                            class="input-dynamic-placeholder">Recherche</label> <i
+                                            class="icon flexi-ui-search" id="searchBtn"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="is-divider is-marginless"></div>
+                            <div class="navbar-dropdown-section">
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Forfaits mobile</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item" href="#">Forfaits Sensation</a>
+                                        <a class="navbar-item" href="#">Forfaits B&amp;YOU</a>
+                                        <a class="navbar-item" href="#">Série Spéciale B&amp;YOU</a>
+                                        <a class="navbar-item" href="#">Cartes prépayées</a>
+                                        <a class="navbar-item" href="#">Carte prépayée touriste Europe</a>
+                                        <a class="navbar-item" href="#">Les options pour votre forfait</a>
+                                        <a class="navbar-item" href="#">Forfaits pour hotspots et tablette</a>
+                                        <a class="navbar-item" href="#">La 4G Bouygues Telecom</a>
+                                        <a class="navbar-item" href="#">La 5G Bouygues Telecom</a>
+                                        <a class="navbar-item" href="#">Réseau mobile en zones rurales</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Téléphones</div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Offres Box</div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Offres Box + Mobile</div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Assistance</div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Pro/Entreprise</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<!-- Ancien header -->
+<section class="section">
+    {{#> snippet id="navbar-old" title="Ancien header" desc="<ul><li>&bull;<code>is-tab</code> est déprécié au profit de <code>is-active</code></li><li>&bull; un élément de navigation sur fond gris possède la classe <code>is-alternate</code></li><li>&bull; les éléments mobile/desktop sont gérés avec les classes <code>is-hidden-mobile</code> ou <code>is-hidden-tablet</code></li></ul>"}}
+    {{#content "light"}}
+    <nav aria-label="main navigation" class="navbar" role="navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item is-hidden-tablet">
+                <img alt="Bouygues Telecom" src="../static/logo-bouygues-telecom-mobile.svg">
+            </a>
+
+            <a class="navbar-item is-hidden-mobile">
+                <img alt="Bouygues Telecom" src="../static/logo-bouygues-telecom.svg">
+            </a>
+        </div>
+        <div class="navbar-menu is-hidden-mobile">
+            <div class="navbar-start">
+                <div class="navbar-links">
+                    <div class="navbar-item is-hoverable is-megadropdown-parent">
+                        <a href="#" class="navbar-link">Mobile</a>
+                        <div class="navbar-dropdown">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="navbar-dropdown-section is-fullheight">
+                                        <h4 class="navbar-category-title">
+                                            <a href="">Lorem ipsum</a>
+                                        </h4>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                        <hr class="navbar-divider is-invisible">
+                                        <a class="navbar-link is-highlighted">Item highlighted</a>
+                                        <a class="navbar-link is-highlighted">Item highlighted</a>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="navbar-dropdown-section is-fullheight">
+                                        <h4 class="navbar-category-title">Lorem ipsum</h4>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                        <a class="navbar-link">Lorem ipsum dolor</a>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <a href="">
+                                        <img src="https://picsum.photos/id/191/327/227" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-item">Box</div>
+                    <div class="navbar-item">Box + device</div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-icons">
+                    <a class="navbar-item">
+                        <span class="icon">
+                            <i aria-hidden="true" class="flexi-ui-search"></i>
+                        </span>
+                        <span class="is-hidden-mobile">Recherche</span>
+                    </a>
+                    <a class="navbar-item">
+                        <span class="icon">
+                            <i aria-hidden="true" class="flexi-ui-shopping-cart"></i>
+                        </span>
+                        <span class="is-hidden-mobile">Panier</span>
+                    </a>
+                    <div class="navbar-item is-alternate" id="js-dropdown-documentation-old">
+                        <div class="navbar-link">
+                            <span class="icon is-circled is-small has-background-success has-text-white">
+                                <i aria-hidden="true" class="flexi-ui-user"></i>
+                            </span>
+                            <span class="has-dropdown-arrow is-hidden-mobile">Jean-Christophe</span>
+                        </div>
+                        <div class="navbar-dropdown is-right-aligned">
+                            <a class="navbar-item">Infos personnelles</a>
+                            <a class="navbar-item">Factures &amp; paiements</a>
+                            <div class="navbar-divider"></div>
+                            <a class="navbar-item has-text-weight-normal">Déconnexion</a>
+                        </div>
+                    </div>
+                    <a class="navbar-item is-fourth">
+                        <span class="icon">
+                            <i class="flexi-ui-user" aria-hidden="true"></i>
+                        </span>
+                        <span class="is-hidden-mobile">Mon compte</span>
+                    </a>
+                    <div class="navbar-item is-hoverable is-active is-megadropdown-parent is-hidden-tablet">
+                        <span class="icon">
+                            <i aria-hidden="true" class="flexi-ui-menu"></i>
+                        </span>
+
+                        <div class="navbar-dropdown">
+                            <div class="navbar-dropdown-section">
+                                <div class="field">
+                                    <div class="control has-dynamic-placeholder has-icons-right">
+                                        <input class="input" type="text" placeholder="Recherche">
+                                        <label class="input-dynamic-placeholder">Recherche</label>
+                                        <span class="icon">
+                                            <i class="flexi-ui-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="is-divider is-marginless"></div>
+
+                            <div class="navbar-dropdown-section">
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Item</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion is-active">
+                                    <div class="navbar-item-accordion-header">Item</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Item</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <div class="navbar-item-accordion">
+                                    <div class="navbar-item-accordion-header">Item</div>
+                                    <div class="navbar-item-accordion-content">
+                                        <a class="navbar-item">Item</a>
+                                        <a class="navbar-item">Item</a>
+                                    </div>
+                                </div>
+                                <a class="navbar-item">Item</a>
+                                <a class="navbar-item">Item</a>
+                                <hr class="navbar-divider is-invisible">
+                                <a class="navbar-item is-highlighted">Item highlighted</a>
+                                <a class="navbar-item is-highlighted">Item highlighted</a>
+                            </div>
+
+                            <div class="navbar-dropdown-section">
+                                <h4 class="title is-4">Titre</h4>
+                                <a class="navbar-item has-ending-arrow">Item</a>
+                                <a class="navbar-item has-ending-arrow">Item</a>
+                                <a class="navbar-item has-ending-arrow">Item</a>
+                                <a class="navbar-item has-ending-arrow">Item</a>
+                                <a class="navbar-item has-ending-arrow">Item</a>
+                                <a class="navbar-item has-ending-arrow">Item</a>
+                            </div>
+
+                            <div class="navbar-dropdown-section">
+                                <div class="columns is-mobile">
+                                    <div class="column">
+                                        <a href="#" class="is-flex is-positionned-center">
+                                            <img src="../static/store-apple.svg" class="is-block" />
+                                        </a>
+                                    </div>
+                                    <div class="column">
+                                        <a href="#" class="is-flex is-positionned-center">
+                                            <img src="../static/store-google.svg" class="is-block" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

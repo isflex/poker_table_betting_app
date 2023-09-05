@@ -1,0 +1,33 @@
+---
+title: Bac à sable
+menu: false
+active: {
+    sandbox: true
+}
+---
+
+{{#extend "page"}}
+    {{#content "page"}}
+        <section class="hero is-instit is-small">
+            <div class="hero-body">
+                <div class="container is-fluid">
+                    <h1 class="title">{{ title }}</h1>
+                    <h2 class="subtitle">Utilisez-cette page pour tester vos composants</h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="columns is-fullheight is-gapless sandbox-context" data-save-sandbox="true">
+            <div class="column is-4">
+                <textarea class="textarea code-editor" style="height: 100%">&lt;button class="button is-primary"&gt;
+                    &lt;i class="flexi-ui-play-s"&gt;&lt;/i&gt; Je suis un bouton
+                    &lt;/button&gt;
+                </textarea>
+            </div>
+
+            <div class="column is-8">
+                <div class="section is-grey code-preview"></div>
+            </div>
+        </div>
+    {{/content}}
+{{/extend}}

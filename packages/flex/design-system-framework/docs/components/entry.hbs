@@ -1,0 +1,129 @@
+---
+title: Saisie
+active: {
+components: {
+entry: true
+}
+}
+root: ../
+---
+{{#extend "menu-page"}}
+    {{#content "content"}}
+        {{#> components-title desc="Représente les éléments de type INPUT et TEXTAREA, ces éléments permettent de récolter des informations saisies librement par l'utilisateur. Ces éléments doivent être contenu dans une balise <form></form>"}}
+        {{/components-title }}
+
+        <section class="section has-background-white">
+            {{#> snippet id="form-1" dark="" title="Zone de texte simple" desc="Une simple zone de texte. <br> Pour pouvoir ajouter un loader, utiliser la class <code>is-searching</code>."}}
+                {{#content "light"}}
+                    <div class="field">
+                        <div class="control has-dynamic-placeholder">
+                            <input class="input" type="text" placeholder="Text input">
+                            <label>Text input</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control has-dynamic-placeholder">
+                            <input class="input" type="text" placeholder="Text input">
+                            <label>Text input</label>
+                            <span class="is-searching"></span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control has-dynamic-placeholder has-icons-right">
+                            <input class="input" type="password" placeholder="Votre mot de passe">
+                            <label>Votre mot de passe</label>
+                            {{!-- <span class="is-searching"></span> --}}
+                            <span class="icon is-small">
+                                <i class="flexi-ui-eye-s"></i>
+                            </span>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="textarea-1" dark="" title="Zone texte multiligne" desc=""}}
+                {{#content "light"}}
+                    <div class="field">
+                        <div class="control has-dynamic-placeholder">
+                            &lt;textarea class="textarea" placeholder="Text input"&gt;&lt;/textarea&gt;
+                            <label>Text input</label>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="form-3" dark="" title="Inclure des icônes" desc="Champ avec des icônes"}}
+                {{#content "light"}}
+                    <div class="field">
+                        <div class="control has-icons-right has-dynamic-placeholder">
+                            <input class="input is-danger" type="text" placeholder="Zone de texte en erreur" value="erreur">
+                            <label>Erreur mot de passe</label>
+                            <span class="icon has-password-discover">
+                                <i class="flexi-ui-eye-s"></i>
+                            </span>
+                        </div>
+                        <p class="help is-danger">Ce mot de passe ne respecte pas les règles de sécurité</p>
+                    </div>
+                    <div class="field">
+                        <div class="control has-icons-right has-dynamic-placeholder">
+                            <input class="input is-danger" type="text" placeholder="Zone de texte en erreur" value="erreur">
+                            <label>Zone de texte en erreur</label>
+                            <span class="icon">
+                                <i class="flexi-ui-exclamation-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control has-icons-right has-dynamic-placeholder">
+                            <input class="input is-warning" type="text" placeholder="Zone de texte warning" value="warning">
+                            <label>Zone de texte warning</label>
+                            <span class="icon">
+                                <i class="flexi-ui-exclamation-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control has-icons-right has-dynamic-placeholder">
+                            <input class="input is-success" type="text" placeholder="Zone de texte valide" value="success">
+                            <label>Zone de texte valide</label>
+                            <span class="icon">
+                                <i class="flexi-ui-check-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+
+        <section class="section">
+            {{#> snippet id="form-4" dark="" title="Saisie de texte" desc="Le champ est un élément de formulaire composé au moins d’un titre et d’une zone de saisie. Le nombre de champs dans un formulaire dépend du nombre d’informations nécessaires pour répondre à une demande ou de la volonté de qualifier plus ou moins précisément un individu."}}
+                {{#content "light"}}
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Normal input">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-hovered" type="text" placeholder="Hovered input">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-focused" type="text" placeholder="Focused input">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Disabled input" disabled>
+                        </div>
+                    </div>
+                {{/content}}
+            {{/snippet}}
+        </section>
+    {{/content}}
+{{/extend}}

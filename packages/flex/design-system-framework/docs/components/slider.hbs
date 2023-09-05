@@ -1,0 +1,39 @@
+---
+title: Slider
+active: {
+    components: {
+        slider: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Un slider permet de mettre plusieurs contenus à la suite qui défileront automatiquement, au clic sur un indicateur, ou au swipe. La documentation complète du slider, externe à Trilgoy, est disponible sur trilogy-slider, cette page ne concerne donc que les utilisations propres à Flexiness Framework"}}{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="slider-1" title="Slider neutralisé sur desktop" desc="Un slider peut parfois n'être utile que sur mobile, le contenu s'affichant normalement sur ordinateur. Utilisez la classe <code>is-motionless-desktop</code> pour désactiver son comportement sur ordinateur, tout en laissant le slider fonctionner parfaitement sur mobile. Cela permet ainsi de ne pas dupliquer le code HTML pour deux comportements différents."}}
+        {{#content "light"}}
+            {{!-- <script src="../../../trilogy-slider/dist/trilogy-slider.min.js"></script> --}}
+            <div class="is-motionless-desktop" data-slider>
+                <div class="columns" data-slider-pages>
+                    <div class="column is-12-mobile is-4-tablet" data-slider-page>
+                        <p class="title is-3">Slide 1</p>
+                        <p>Enim culpa et ex velit. Laborum velit in ea id id non sunt eiusmod. Incididunt occaecat minim aute adipisicing. Ex incididunt tempor magna sit officia nostrud nostrud consectetur nostrud proident ut. Sit pariatur nisi proident culpa anim laboris dolore sit adipisicing eu nisi aliqua deserunt.</p>
+                    </div>
+                    <div class="column is-12-mobile is-4-tablet" data-slider-page>
+                        <p class="title is-3">Slide 2</p>
+                        <p>Excepteur aute cupidatat irure Lorem. Lorem cillum dolor esse sint. Adipisicing et Lorem velit nostrud pariatur ex eu laborum est. Velit eiusmod incididunt sit cupidatat adipisicing excepteur consequat cillum elit. Officia culpa id aliquip in cillum consequat Lorem excepteur sint.</p>
+                    </div>
+                    <div class="column is-12-mobile is-4-tablet" data-slider-page>
+                        <p class="title is-3">Slide 3</p>
+                        <p>Voluptate deserunt do ipsum tempor reprehenderit laborum ipsum laborum est qui. Dolor officia dolore duis dolor voluptate pariatur sunt velit. Amet esse sint voluptate duis id commodo dolor occaecat dolor fugiat aliqua ea.</p>
+                    </div>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

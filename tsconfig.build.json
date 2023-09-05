@@ -1,0 +1,36 @@
+{
+  "files": [],
+  "compilerOptions": {
+      "disableSourceOfProjectReferenceRedirect": false
+  },
+  "references": [
+    // { "path": "./packages/flex/domain-lib-mobx-react-router/tsconfig.build.json" },
+    // { "path": "./packages/flex/domain-lib-global-react/tsconfig.build.json" },
+    // { "path": "./packages/flex/domain-lib-utils/tsconfig.build.json" },
+    // { "path": "./packages/flex/domain-utils/tsconfig.build.json" },
+    { "path": "./packages/flex/domain-tailwind/tsconfig.build.json" },
+    
+    { "path": "./packages/flex/config/certs/tsconfig.esm.build.json" },
+    { "path": "./packages/flex/config/certs/tsconfig.cjs.build.json" },
+
+    { "path": "./packages/flex/config/eslint/tsconfig.build.json" },
+
+    { "path": "./packages/flex/config/languages/tsconfig.build.json" },
+
+    { "path": "./packages/flex/design-system-framework/tsconfig.build.json" },
+    { "path": "./packages/flex/design-system-react-ts/tsconfig.build.json" },
+
+    // { "path": "./packages/flex/domain-app/tsconfig.build.json" },
+
+    // { "path": "./packages/flex/domain-database/nestjs-with-graphql/tsconfig.build.json" },
+
+    // { "path": "./packages/gateway/nextjs-telenko/tsconfig.build.json" },
+
+    // { "path": "./pipeline-ci/build-bake/tsconfig.build.json" },
+
+    { "path": "./apps/poker/api/tsconfig.build.json" },
+    { "path": "./apps/poker/common/tsconfig.build.json" },
+    { "path": "./apps/poker/client/tsconfig.build.json" },
+    { "path": "./apps/poker/server/tsconfig.build.json" },
+  ]
+}

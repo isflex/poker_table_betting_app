@@ -1,0 +1,321 @@
+{{#extend "templates/boutique-layout"}}
+{{#content "page"}}
+
+<main class="main-content" style="max-width: 630px;">
+    <section class="section has-text-centered">
+        <div class="stepper" data-label-mobile="Livraison">
+            <div class="step" data-label="Panier">1</div>
+            <div class="step" data-label="Coordonnées">2</div>
+            <div class="step is-current is-active" data-label="Livraison">3</div>
+            <div class="step" data-label="Conservation de votre numéro">4</div>
+            <div class="step" data-label="Paiement">5</div>
+        </div>
+    </section>
+
+    <section class="section has-background-grey-lighter">
+        <div class="container is-fluid">
+            <div class="box">
+                <div class="box-content">
+                    <h6 class="title is-6">Coordonnées</h6>
+                    <div class="columns is-mobile">
+                        <div class="column">
+                            <p class="text">
+                                <span class="is-block">Mr Dupond Martin</span>
+                                <span class="is-block">47 rue Turbigo</span>
+                                <span class="is-block">75003 Paris</span>
+                            </p>
+                        </div>
+                        <div class="column is-narrow is-flex is-aligned-bottom">
+                            <a class="link has-text-primary">Modifier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="box-content">
+                    <h6 class="title is-6">Adresse de facturation</h6>
+                    <div class="columns is-mobile">
+                        <div class="column">
+                            <p class="text">
+                                <span class="is-block">Mr Dupond Martin</span>
+                                <span class="is-block">47 rue Turbigo</span>
+                                <span class="is-block">75003 Paris</span>
+                            </p>
+                        </div>
+                        <div class="column is-narrow is-flex is-aligned-bottom">
+                            <a class="link has-text-primary">Modifier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="title is-3 has-text-centered">Livraison</h3>
+
+            <div class="box">
+                <div class="box-content">
+                    <h6 class="title is-6">Adresse de livraison</h6>
+                    <div class="columns is-mobile">
+                        <div class="column">
+                            <p class="text">
+                                <span class="is-block">Mr Dupond Martin</span>
+                                <span class="is-block">47 rue Turbigo</span>
+                                <span class="is-block">75003 Paris</span>
+                            </p>
+                        </div>
+                        <div class="column is-narrow is-flex is-aligned-bottom">
+                            <a class="link has-text-primary">Modifier</a>
+                        </div>
+                    </div>
+
+                    <div class="is-divider"></div>
+
+                    <h6 class="title is-6">Choisissez votre mode de livraison</h6>
+                    <form action="">
+                        <!-- Mode livraison : Click&Collect -->
+                        <div class="box is-flat">
+                            <div class="box-content has-background-grey-lighter">
+                                <div class="field is-mobile">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input checked="checked" class="is-checkradio" id="clickCollect" name="type" type="radio">
+                                            <label for="clickCollect">
+                                                <span class="icon-and-text">
+                                                    <span class="icon is-large is-info is-marginless">
+                                                        <span class="flexi-stopwatch-click-collect"></span>
+                                                    </span>
+                                                    <span class="has-text-weight-semibold">Click&Collect</span>
+                                                </span>
+                                                <span class="paragraph text is-2 is-marginless">Retrait de votre mobile en boutique gratuit dès 2 heures.</span>
+                                                <span class="paragraph text has-text-primary has-text-weight-semibold is-uppercase">Gratuit</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <hr class="is-divider">
+
+                                    <p class="title is-6">Saisissez votre code postal</p>
+
+                                    <div class="field">
+                                        <div class="control has-dynamic-placeholder">
+                                            <input class="input has-background-white" type="text" placeholder="Code postal">
+                                            <label class="input-dynamic-placeholder">Code postal</label>
+                                        </div>
+                                    </div>
+
+                                    <p class="title is-6">Sélectionner votre boutique :</p>
+
+                                    <div class="tabs is-centered" role="tablist">
+                                        <ul>
+                                            <li role="presentation"><a role="tab" class="is-active" aria-selected="true">Liste</a></li>
+                                            <li role="presentation"><a role="tab">Carte</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Liste Boutique -->
+                                    <div class="box">
+                                        <div class="box-content">
+                                            <span class="icon-and-text">
+                                                <span class="icon is-medium is-info is-marginless">
+                                                    <span class="flexi-ui-marker-s"></span>
+                                                </span>
+                                                <span class="">0.2 km</span>
+                                            </span>
+                                            <h6 class="title is-6">Bouygues Telecom Paris République</h6>
+                                            <p class="text is-1">
+                                                <span class="is-block">16 Place de la République</span>
+                                                <span>75010 Paris</span>
+                                            </p>
+                                            <p class="text is-1">09 81 66 21 28</p>
+
+                                            <div class="is-divider is-marginless"></div>
+                                            <section class="accordions">
+                                                <article class="accordion">
+                                                    <div class="accordion-header is-grouped is-justified-center-mobile is-justified-left-tablet toggle">
+                                                        <h5>Voir les horaires</h5>
+                                                        <button class="toggle" aria-label="toggle"></button>
+                                                    </div>
+
+                                                    <!-- Horaires d'ouvertures -->
+                                                    <div class="accordion-body">
+                                                        <div class="accordion-content">
+                                                            <div class="table-container">
+                                                                <table class="table is-compact">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Lundi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Mardi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Mercredi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Jeudi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr class="has-text-weight-semibold">
+                                                                            <td>Vendredi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Samedi</td>
+                                                                            <td><p>Fermé</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Dimanche</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </section>
+                                            <button class="button is-success">
+                                                <span class="icon-and-text">
+                                                    <span class="icon">
+                                                        <i class="flexi-ui-check-r has-text-white"></i>
+                                                    </span>
+                                                    <span>Sélectionné</span>
+                                                </span>
+                                            </button>
+                                        </div>
+
+                                        <div class="box-content">
+                                            <div class="is-divider is-unboxed"></div>
+
+                                            <span class="icon-and-text">
+                                                <span class="icon is-medium is-info is-marginless">
+                                                    <span class="flexi-ui-marker-s"></span>
+                                                </span>
+                                                <span class="">0.5 km</span>
+                                            </span>
+
+                                            <h6 class="title is-6">Bouygues Telecom Paris République</h6>
+
+                                            <p class="text is-1">
+                                                <span class="is-block">16 Place de la République</span>
+                                                <span>75010 Paris</span>
+                                            </p>
+                                            <p class="text is-1">09 81 66 21 28</p>
+
+                                            <div class="is-divider is-marginless"></div>
+
+                                            <section class="accordions">
+                                                <article class="accordion">
+                                                    <div class="accordion-header is-grouped is-justified-center-mobile is-justified-left-tablet toggle">
+                                                        <h5>Voir les horaires</h5>
+                                                        <button class="toggle" aria-label="toggle"></button>
+                                                    </div>
+
+                                                    <div class="accordion-body">
+                                                        <div class="accordion-content">
+                                                            <div class="table-container">
+                                                                <table class="table is-compact">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Lundi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Mardi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Mercredi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Jeudi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr class="has-text-weight-semibold">
+                                                                            <td>Vendredi</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Samedi</td>
+                                                                            <td><p>Fermé</p></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Dimanche</td>
+                                                                            <td><p>De 9h30 à 19h00</p></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </section>
+
+                                            <button class="button is-primary">
+                                                <span class="icon-and-text">
+                                                    <span class="icon is-hidden">
+                                                        <i class="flexi-ui-check-r has-text-white"></i>
+                                                    </span>
+                                                    <span>Sélectionné</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mode livraison : relais Colis -->
+                        <div class="box is-flat">
+                            <div class="box-content has-background-grey-lighter">
+                                <div class="field is-mobile">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input checked="checked" class="is-checkradio" id="relaisColis" name="type" type="radio">
+                                            <label for="relaisColis">
+                                                <span class="has-text-weight-semibold">Retrait en Relais colis</span>
+                                                <span class="paragraph text is-2 is-marginless">Livraison prévu entre le 09/03 et le 11/03</span>
+                                                <span class="paragraph text has-text-primary has-text-weight-semibold is-uppercase">Gratuit</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mode livraison : colissimo -->
+                        <div class="box is-flat">
+                            <div class="box-content has-background-grey-lighter">
+                                <div class="field is-mobile">
+                                    <div class="field is-narrow">
+                                        <div class="control">
+                                            <input checked="checked" class="is-checkradio" id="livraison" name="type" type="radio">
+                                            <label for="livraison">
+                                                <span class="has-text-weight-semibold">Livraison à domicile Colissimo</span>
+                                                <span class="paragraph text is-2 is-marginless">Livraison prévu entre le 10/03 et le 15/03</span>
+                                                <span class="paragraph text has-text-primary has-text-weight-semibold is-uppercase">10€</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="is-divider"></div>
+
+                    <a href="#" class="button is-primary" disabled="true">Continuer</a>
+                </div>
+            </div>
+
+            <div class="has-text-centered">
+                <a class="link has-text-primary">Sauvegarder et revenir plus tard</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+{{/content}}
+{{/extend}}

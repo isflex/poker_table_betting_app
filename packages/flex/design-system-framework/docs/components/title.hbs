@@ -1,0 +1,96 @@
+---
+title: Titres et textes
+menu: true
+active: {
+    style: {
+        text: true
+    }
+}
+root: ../
+---
+
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc=""}}
+{{/components-title }}
+
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">Titres</h2>
+        {{#> snippet id="title" title="Niveaux de titres" dark="true" do="true" warning="true" dont="true" desc=""}}
+            {{#content "light"}}
+                <p class="title is-1">Ceci est un titre de niveau 1</p>
+                <p class="title is-2">Ceci est un titre de niveau 2</p>
+                <p class="title is-3">Ceci est un titre de niveau 3</p>
+                <p class="title is-4">Ceci est un titre de niveau 4</p>
+                <p class="title is-5">Ceci est un titre de niveau 5</p>
+                <p class="title is-6">Ceci est un titre de niveau 6</p>
+                <p class="title is-7">Ceci est un titre de niveau 7</p>
+            {{/content}}
+
+            {{#content "dark"}}
+                <p class="title is-1 is-inverted">Ceci est un titre de niveau 1</p>
+                <p class="title is-2 is-inverted">Ceci est un titre de niveau 2</p>
+                <p class="title is-3 is-inverted">Ceci est un titre de niveau 3</p>
+                <p class="title is-4 is-inverted">Ceci est un titre de niveau 4</p>
+                <p class="title is-5 is-inverted">Ceci est un titre de niveau 5</p>
+                <p class="title is-6 is-inverted">Ceci est un titre de niveau 6</p>
+                <p class="title is-7 is-inverted">Ceci est un titre de niveau 7</p>
+            {{/content}}
+
+            {{#content "do"}}
+                <ul class="list">
+                    <li>Utilisez la classe <strong class="has-text-primary">.title</strong> pour donner à un texte les propriétés d'un titre. <br> Par défaut, il s'agira du plus haut niveau de titre.</li>
+                    <li>Utilisez les classes <strong class="has-text-primary">.is-1</strong> à <strong class="has-text-primary">.is-7</strong> pour changer la taille du titre. <br> <span class="paragraph text is-2 has-text-info"><em>Selon le principe de typographie fluide, ces tailles s'adaptent automatiquement selon la résolution et il n'existe plus de taille de texte précis pour une résolution donnée.</em></span></li>
+                </ul>
+            {{/content}}
+
+            {{#content "warning"}}
+                <p>Des éléments HTML ayant une forte valeur en référencement (H1, H2, etc.) devraient avoir des classes portant le même nom, à des fins d'accessibilité et de référencement.</p>
+                <p>Donc même s'il est tentant d'utiliser ces classes pour ajuster une taille de texte dans un élément HTML qui n'a pas le même poids, par exemple : <code>&lt;h1 class="title is-3"&gt;</code></p>
+                <p><strong>Cela dénote probablement d'une mauvaise UI</strong> et il vaut mieux rediscuter de la charte graphique.</p>
+            {{/content}}
+
+            {{#content "dont"}}
+                <p>Ne pas utiliser le helper <strong class="has-text-danger">.is-size-xx</strong>. Ce helper sert seulement a décider d'une taille de texte dans un contexte spécifique, mais ne doit pas être utilisé pour un titre.</p>
+            {{/content}}
+        {{/snippet}}
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2">Texte</h2>
+        {{#> snippet id="text" title="Niveaux de textes" dark="true" do="true" warning="true" desc=""}}
+            {{#content "light"}}
+                <p class="text is-1">Ceci est un texte de niveau 1</p>
+                <p class="text is-2">Ceci est un texte de niveau 2</p>
+                <p class="text is-3">Ceci est un texte de niveau 3</p>
+                <p class="text is-4">Ceci est un texte de niveau 4</p>
+            {{/content}}
+
+            {{#content "dark"}}
+                <p class="text is-1 is-inverted">Ceci est un texte de niveau 1</p>
+                <p class="text is-2 is-inverted">Ceci est un texte de niveau 2</p>
+                <p class="text is-3 is-inverted">Ceci est un texte de niveau 3</p>
+                <p class="text is-4 is-inverted">Ceci est un texte de niveau 4</p>
+            {{/content}}
+
+            {{#content "do"}}
+                <ul class="list">
+                    <li>Utilisez la classe <strong class="has-text-primary">.text</strong> et les classes <strong class="has-text-primary">.is-1</strong> à <strong class="has-text-primary">.is-4</strong> pour changer la taille du texte.</li>
+                    <li>Les classes <strong>.text .is-xx</strong> fonctionne seulement sur une balise paragraphe : <code>&lt;p class="text is-1"&gt;</code>.</li>
+                </ul>
+            {{/content}}
+
+            {{#content "warning"}}
+                <p>Si l'on souhaite utiliser ces classes sur une balise <strong>span</strong> par exemple, alors ajoutez en plus la classe <strong class="has-text-primary">.paragraph</strong>.</p>
+                <p>Ce qui donnera ceci : <code>&lt;span class="paragraph text is-1"&gt;</code>.</p>
+            {{/content}}
+
+        {{/snippet}}
+    </div>
+</section>
+
+{{/content}}
+{{/extend}}

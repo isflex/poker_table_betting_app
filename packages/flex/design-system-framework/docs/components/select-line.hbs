@@ -1,0 +1,32 @@
+---
+title: Sélecteur de Lignes
+active: {
+    components: {
+        select-line: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Obsolète"}}
+{{/components-title }}
+
+    <section class="section">
+        <div class="box is-danger">
+            <div class="box-header">
+                <div class="box-title">Don't</div>
+            </div>
+            <div class="box-content">
+                <p class="title is-size-4">Le sélecteur de Lignes est devenu obsolète <span class="tag is-danger">deprecated</span>.</p>
+                <p>Il est devenu une facette du composant <span class="has-text-weight-semibold">Slice</span> vous pouvez les retrouver dans les liens suivants :</p>
+
+                <ul class="list">
+                    <li><a class="link has-text-primary" href="slice.hbs#slice-checkbok-icon">Slice avec icône</a></li>
+                    <li><a class="link has-text-primary" href="slice.hbs#slice-checkbok-img">Slice avec une image</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+{{/content}}
+{{/extend}}

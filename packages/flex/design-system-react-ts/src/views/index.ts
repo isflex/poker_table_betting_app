@@ -1,0 +1,10 @@
+// ///////////////////////// Dynamic Bootstrap /////////////////////////////
+
+import('./bootstrap')
+export {}
+
+// /////////////////////// Synchronous Bootstrap ///////////////////////////
+
+// // @ts-expect-error
+// import bootstrap from './bootstrap'
+// bootstrap(() => {})

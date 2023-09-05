@@ -1,0 +1,87 @@
+// {
+//   "compilerOptions": {
+//     "module": "commonjs",
+//     "moduleResolution": "node",
+//     "target": "es5",
+//     "lib": ["esnext"],
+//     "experimentalDecorators": true,
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "esModuleInterop": true,
+//     "allowSyntheticDefaultImports": true,
+//     "strict": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "noFallthroughCasesInSwitch": true,
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "declaration": true,
+//     "baseUrl": ".",
+//     "rootDir": "src",
+//     "outDir": "dist",
+//     "paths": {
+//       "flexiness": ["../../../packages/flex/types"],
+//       "pointingpoker-common": ["../common"],
+//       // "flex-design-system-framework/all.module.scss": ["../../../packages/design-system-framework/src/modules3/default/all.module.scss"],
+//     }
+//   },
+//   "include": [
+//     "src/**/*"
+//   ],
+//   "exclude": [
+//     "node_modules",
+//     "dist/**/*",
+//   ],
+//   "references": [
+//     { "path": "../common/tsconfig.build.json" },
+//   ]
+// }
+
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "target": "es2018",
+    "preserveConstEnums": true,
+    "forceConsistentCasingInFileNames": false,
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "flexiness": ["../../../packages/flex/types"],
+      "pointingpoker-api/*": ["../api/src/*"],
+      "amplify/*": ["../api/dist/*"],
+      "pointingpoker-common": ["../common"],
+      // "flex-design-system-framework/all.module.scss": ["../../../packages/design-system-framework/src/modules3/default/all.module.scss"],
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist/**/*"
+  ],
+  "references": [
+    { "path": "../api/tsconfig.build.json" },
+    { "path": "../common/tsconfig.build.json" }
+  ]
+}

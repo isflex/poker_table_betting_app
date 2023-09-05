@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.build.base.json",
+  "include": [
+    "./apps/**/src/**/*.{ts, tsx}",
+    "./packages/**/src/**/*.{ts, tsx}"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/build/**/*",
+    "**/dist/**/*"
+  ]
+}

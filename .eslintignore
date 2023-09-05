@@ -1,0 +1,11 @@
+node_modules
+.storybook
+build
+package-lock.json
+**/webpack.config.js
+**/webpack.lib.config.js
+**/webpack.web.config.js
+setup.js
+# packages
+
+amplify-codegen-temp/models

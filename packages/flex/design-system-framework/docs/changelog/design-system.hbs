@@ -1,0 +1,350 @@
+---
+title: Changelog Design System
+active: {
+    changelog: {
+        design-system: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+
+<section class="hero is-instit">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Changelog</h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {{> tabs-changelog }}
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.10</div>
+            <div class="box-content">
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Icônes : refonte de nombreux éléments</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.9</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Icônes : extraction de certains logos considérés comme des icônes dans une police dédiée</li>
+                    <li>Navbar : possibilité de la rendre sticky</li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Prix : modifications cosmétiques sur la partie mise en exposant</li>
+                    <li>Navbar : modifications cosmétiques des liens survolés</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Modal : les angles restent arrondis lorsque l'on scroll à l'intérieur</li>
+                    <li>Version namespacée : cassée depuis Flexiness Framework 1.3.6, à nouveau fonctionnelle</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.8</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Icônes : possibilité d'ajouter un fond penché</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.7</div>
+            <div class="box-content">
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Popover : changement de style</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Extension Google Chrome</li>
+                </ul>
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Icônes : alignement possible d'une icône avec plusieurs lignes de texte</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.6</div>
+            <div class="box-content">
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Liens : sur mobile, suppression de l'animation des liens animés</li>
+                    <li>Liens : Taille de caractère à 14px</li>
+                    <li>Normalisation des conventions : <code>lib</code> n'existe plus et seul <code>dist</code> contient la version buildé</li>
+                    <li>Les URLs des polices de caractère sont immutables (pas de hash final)</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Alignement de la période affichée dans un prix</li>
+                    <li>Cartes : en mode horizontal, l'image s'affiche correctement sur mobile</li>
+                    <li>Cartes : en mode horizontal, sur mobile, correction du padding</li>
+                    <li>Navbar : correction de l'icône de l'utilisateur coupée sur IE11</li>
+                    <li>Icone et texte : correction de l'alignement lorsque le texte est sur plusieurs lignes</li>
+                    <li>Icône : 4G/5G "drapeau", le fond s'affiche correctement</li>
+                </ul>
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Barre de progression : nouvelle déclinaison ayant une hauteur de 5px</li>
+                    <li>Liens : nouvelle déclinaison permettant de supprimer le soulignement</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.5</div>
+            <div class="box-content">
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Tabs : Graisse de l'onglet sélectionné</li>
+                    <li>Modale : Cosmétiques du titre, de l'espacement, de la croix de fermeture</li>
+                    <li>Formulaires : Cosmétiques des différents éléments (input, textarea, select)</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Alignement de la période affichée dans un prix</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.3</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Notification informative avec icône prédéfinie</li>
+                    <li>Possibilité de changer la police de caractères d'un titre de carte</li>
+                    <li>Certains composants React sont désormais en Typescript</li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Tailles des prix</li>
+                    <li>Comportement de la balise <code>header</code></li>
+                    <li>Taille du text de niveau 3</li>
+                    <li>Couleur du séparateur</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li><code>is-multiline</code> sur mobile</li>
+                    <li>Rendus des liens statiques et animés désormais identiques</li>
+                    <li>Arrondis sur tous les angles d'une carte, avec et sans image</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.2</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Sommaire automatique dans les pages Composants de la documentation</li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Recherche dans le menu de navigation sur mobile</li>
+                    <li>Les indicateurs du slider sont désormais ronds</li>
+                    <li>Composant Notification revu</li>
+                    <li>Taille et style des titres revus</li>
+                    <li>Espacement intérieur de Carte et de Box revus</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Gestion des éléments masqués dans les tableaux</li>
+                    <li>Retour de la bordure en haut d'une zone de texte sémantique (erreur, warning, success)</li>
+                    <li>Comportement des tuiles sur mobile</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.3.0</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Ajout d'un mode NOPREVIEW sur la documentation</li>
+                    <li>Ajout d'une facette pour éviter le scroll lors d'une modal ouverte</li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>La police Bouygues Read remplace désormais Open Sans </li>
+                    <li>Mise à jour de la typo, la taille, la graisse et la couleur correspondante <span class="tag">BREAKING CHANGE VISUEL</span></li>
+                    <li>Le snippet copié-collé depuis la page Icones est désormais plus complet</li>
+                    <li>Améliorations et refonte du header</li>
+                    <li>Gestion du sous-menu de navigation sur mobile</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Mise en place d'un overflow hidden dans la modal vanilla </li>
+                    <li>Le <code>is-multiline</code> fonctionne désormais en version tablette</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.2.0</div>
+            <div class="box-content">
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Mise à jour de la couleur sémantique « danger »</li>
+                    <li>Mise à jour de la couleur par défaut du header d'une Box</li>
+                    <li>Mise à jour du composant Tile quand il est utilisé au sein d'une Box</li>
+                    <li>Mise à jour du composant Tag <span class="tag">BREAKING CHANGE</span></li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Ajustements graphiques du nouveau header</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.1.3</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Changelog accessible depuis la documentation</li>
+                    <li>Nouveau composant « Compte à rebours »</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.1.2</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Nouvelles icônes en deux formats (avec et sans fond) : 4G, 4G+, 4G/5G, 5G</li>
+                    <li>Nouvelle icône <code>flexi-ui-relais-colis-express</code></li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Mise à jour des couleurs sémantiques « success » et « warning »</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Nouveau menu de navigation amélioré sur mobile</li>
+                    <li>Meilleure visibilité des chevrons prev/next dans un slider</li>
+                    <li>Amélioration de l'état standard du composant Option</li>
+                    <li>Alignement à gauche pour le contenu des slices</li>
+                    <li>Images des cartes horizontales sur IE 11 nécessitant un polyfill en Javascript</li>
+                    <li>Refactorisation de Flexiness Framework Vanilla pour meilleure compatibilité IE 11</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.1.1</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Nouveau composant « Option »</li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Mise à jour des différents niveaux de gris</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Code du footer sur Flexiness Framework React</li>
+                    <li>Annulation de l'auto-zoom dans les champs de formulaire sur iOS</li>
+                    <li>Centrage du contenu de la modale</li>
+                    <li>Ajustement visuel des boutons radio</li>
+                    <li>La classe <code>is-multiline</code> n'a plus d'impact sur mobile</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.1.0</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Nouveau header disponible sous forme de facette (<code>is-new</code>)</li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Les images arrondies situées dans une Slice ont désormais une taille réduite</li>
+                    <li>Légère mise à jour visuelle des éléments de formulaires radio, checkbox, switch</li>
+                    <li>Légère mise à jour visuelle des boutons</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Espacement ajusté en-dessous de l'icône d'une notification sur mobile</li>
+                    <li>Homogénéité des Heros de type <code>has-background</code> et <code>has-pattern-dark</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.0.4</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Le code HTML associé à la classe <code>icon-and-text</code> permet de placer l'icône à gauche comme à droite</li>
+                    <li>La classe <code>icon-and-text</code> peut être placée au-dessus ou en-dessous du texte grâce à la classe <code>is-stacked</code></li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Nouveau « pattern » dark pour les Heros, Footer, etc.</li>
+                    <li>Les notifications ayant la classe <code>has-description</code> sur mobile voient l'icône se positionner <em>au-dessus</em> et plus à côté</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Espacement ajusté en-dessous de l'icône d'une notification sur mobile</li>
+                    <li>Homogénéité des Heros de type <code>has-background</code> et <code>has-pattern-dark</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.0.3</div>
+            <div class="box-content">
+                <h3 class="title is-3">Ajouts</h3>
+                <ul class="list">
+                    <li>Facette <code>is-transparent</code> pour les slices</li>
+                </ul>
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Nouveau « pattern » dark appliqué au Footer</li>
+                    <li>Nouveau « pattern » dark applicables via une facette aux composants Hero et Section</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v1.0.2</div>
+            <div class="box-content">
+                <h3 class="title is-3">Changements</h3>
+                <ul class="list">
+                    <li>Le bouton <code>is-primary.is-outlined</code> se comporte comme le bouton <code>is-secondary</code></li>
+                    <li>Mise à jour de la police Bouygues Speak</li>
+                    <li>Diminution de la taille du titre d'un Hero : de 60px à 52px</li>
+                    <li>Les boutons secondaires sur un fond de couleurs sont désormais filaires</li>
+                </ul>
+                <h3 class="title is-3">Corrections</h3>
+                <ul class="list">
+                    <li>Correction de la couleur de fond de l'élément de la navbar lorsque le client est connecté</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{{/content}}
+{{/extend}}

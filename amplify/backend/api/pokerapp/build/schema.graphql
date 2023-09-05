@@ -1,0 +1,220 @@
+type ISSUE {
+  id: ID!
+  name: String!
+  desc: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelISSUEConnection {
+  items: [ISSUE]!
+  nextToken: String
+}
+
+input ModelISSUEFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  desc: ModelStringInput
+  and: [ModelISSUEFilterInput]
+  or: [ModelISSUEFilterInput]
+  not: ModelISSUEFilterInput
+}
+
+type Query {
+  getISSUE(id: ID!): ISSUE
+  listISSUES(filter: ModelISSUEFilterInput, limit: Int, nextToken: String): ModelISSUEConnection
+}
+
+input ModelISSUEConditionInput {
+  name: ModelStringInput
+  desc: ModelStringInput
+  and: [ModelISSUEConditionInput]
+  or: [ModelISSUEConditionInput]
+  not: ModelISSUEConditionInput
+}
+
+input CreateISSUEInput {
+  id: ID
+  name: String!
+  desc: String
+}
+
+input UpdateISSUEInput {
+  id: ID!
+  name: String
+  desc: String
+}
+
+input DeleteISSUEInput {
+  id: ID!
+}
+
+type Mutation {
+  createISSUE(input: CreateISSUEInput!, condition: ModelISSUEConditionInput): ISSUE
+  updateISSUE(input: UpdateISSUEInput!, condition: ModelISSUEConditionInput): ISSUE
+  deleteISSUE(input: DeleteISSUEInput!, condition: ModelISSUEConditionInput): ISSUE
+}
+
+input ModelSubscriptionISSUEFilterInput {
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  desc: ModelSubscriptionStringInput
+  and: [ModelSubscriptionISSUEFilterInput]
+  or: [ModelSubscriptionISSUEFilterInput]
+}
+
+type Subscription {
+  onCreateISSUE(filter: ModelSubscriptionISSUEFilterInput): ISSUE @aws_subscribe(mutations: ["createISSUE"])
+  onUpdateISSUE(filter: ModelSubscriptionISSUEFilterInput): ISSUE @aws_subscribe(mutations: ["updateISSUE"])
+  onDeleteISSUE(filter: ModelSubscriptionISSUEFilterInput): ISSUE @aws_subscribe(mutations: ["deleteISSUE"])
+}

@@ -1,0 +1,92 @@
+---
+title: Changelog Flexiness Framework Vanilla
+active: {
+    changelog: {
+        vanilla: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+
+<section class="hero is-instit">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Changelog Flexiness Framework Vanilla</h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {{> tabs-changelog }}
+
+        <div class="box is-info">
+            <div class="box-header">v0.6.2</div>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Ajout des comportements nécessaires au nouveau header</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v0.5.0</div>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Possibilité de rendre la navbar sticky</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v0.4.0</div>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Possibilité d'insérer une vidéo en autoplay dans la modal</li>
+                    <li>Possibilité de fermer la modale en cliquant n'importe où dans la page</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v0.3.2</div>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Patch pour faire fonctionner Vanilla JS sur des éléments chargés dynamiquement</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v0.3.0</div>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Ajout d'un composant compte à rebours : <code>flexi-countdown</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v0.2.0</div>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Amélioration de la compatibilité IE 11</li>
+                    <li>Ajout d'un polyfill pour remplacer le comportement CSS <code>object-fit: cover</code> sur les Cards</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box is-info">
+            <div class="box-header">v0.1.2</div>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Suppresion de l'événement <code>alert()</code> lié à la touche Échap</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{{/content}}
+{{/extend}}

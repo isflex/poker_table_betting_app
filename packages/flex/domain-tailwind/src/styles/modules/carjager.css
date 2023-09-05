@@ -1,0 +1,383 @@
+
+@layer components {
+  .search-input {
+    @apply w-60 mb-5 block;
+  }
+
+  .carjager_whiteHover {
+    color: var(--flex-link-inverse, #109db9) !important;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .carjager_imgHover:after,
+  .carjager_whiteHover:after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0,0,0,0.25);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .carjager_whiteHover:hover {
+    color: var(--flex-link-hover-inverse, #109db9) !important;
+    /* color: var(--flex-link-inverse, #109db9) !important; */
+    cursor: pointer;
+  }
+
+  .carjager_whiteHover:hover:after {
+    background-color: rgba(0,0,0,0.15);
+  }
+
+  .carjager_whiteHover:hover .carjager_moreCarsCardTitle {
+    /* color: var(--flex-link-hover-inverse, #109db9) !important; */
+    color: var(--flex-link-inverse, #109db9) !important;
+    cursor: pointer;
+  }
+
+  .carjager_highLight {
+    color: var(--flex-link-hover-inverse, #109db9) !important;
+  }
+
+  .carjager_highLightWhite > a { 
+    color: #fff !important;
+  }
+
+  .carjager-btn.primary {
+    background-color: var(--flex-link-hover-inverse, #109db9) !important;
+  }
+
+  .carjager-btn.secondary {
+    background-color: #000 !important;
+  }
+
+  .carjager_bordered {
+    border-color: transparent;
+    border-width: 6px;
+    border-radius: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .carjager_bordered {
+      border-width: 4px;
+      border-radius: 1.5rem;
+    }
+  }
+
+  @supports (font-size: clamp(3rem, calc(11vw+0.8rem), 8rem)) {
+    .carjager_textHuge {
+      font-size: clamp(3rem, calc(11vw+0.8rem), 8rem) !important;
+    }
+  }
+}
+
+@layer utilities {
+  .grayed-out-disabled {
+    @apply disabled:opacity-50;
+  }
+
+  .carjager_cardHeight,
+  .carjager_moreCarsCardHeight,
+  .carjager_sliderCardHeight {
+    height: 12rem;
+  }
+
+  @media (min-width: 640px) {
+    .carjager_cardHeight,
+    .carjager_moreCarsCardHeight,
+    .carjager_sliderCardHeight {
+      height: 16rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carjager_cardHeight {
+      height: 19rem;
+    }
+
+    .carjager_moreCarsCardHeight {
+      height: 24.1rem;
+    }
+
+    .carjager_sliderCardHeight {
+      height: 19rem;
+    }
+  }
+
+  .carjager_cardContent {
+    padding: 1rem !important;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    z-index: 2;
+  }
+
+  @media (min-width: 1024px) {
+    .carjager_cardContent {
+      background: #fff;
+      z-index: 2;
+    }
+  }
+
+  .carjager_cardTitle {
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .carjager_cardTitle h1,
+  .carjager_cardTitle h2 {
+    width: 100%;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  
+  .carjager_card .carjager_imgHover:after {
+    background-color: rgba(150,150,150,0.1);
+    z-index: 2;
+  }
+
+  /* .carjager_card:hover .carjager_imgHover:after {
+    background-color: rgba(0,0,0, 1);
+    border: 1rem solid var(--flex-link-hover, #109db9);
+    filter: blur(5rem);
+    transition: border 250ms linear;
+    opacity: 1;
+    z-index: 0;
+  } */
+
+  .carjager_card:hover .carjager_imgHover:after {
+    background-color: rgba(0,0,0,0);
+  }
+
+
+  .carjager_card img {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  /* .carjager_card:hover img {
+    opacity: 1;
+    mix-blend-mode: normal;
+  } */
+
+  .carjager_moreCarsCardTitle {
+    font-size: 1.5em !important;
+    letter-spacing: 0.05em !important;
+    line-height: 1.2em !important;
+  }
+
+  @supports (font-size: clamp(1rem, calc(3vw+0.8rem), 3rem)) {
+    .carjager_moreCarsCardTitle {
+        font-size: clamp(1rem, calc(3vw+0.8rem), 3rem) !important;
+    }
+  }
+
+  .carjager_moreCarsCard .carjager_whiteHover:after {
+    background-color: rgba(0,0,0,0.25);
+  }
+
+  .carjager_moreCarsCard:hover .carjager_whiteHover:after {
+    background-color: rgba(0,0,0,0.15);
+  }
+
+  .carjager_cardPrice {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--flex-link-inverse, #109db9) !important;
+  }
+
+  /*
+  .carjager_cardContent:hover .carjager_cardPrice,
+  .carjager_cardContent:hover .carjager_cardPrice:before,
+  .carjager_cardContent:hover .carjager_cardPrice:after {
+    color: var(--flex-link-hover-inverse, #109db9) !important;
+  }
+  */
+
+  @media (max-width: 1023px) {
+    .carjager_cardPrice:before {
+      content: '';
+      position: absolute;
+      border-bottom: 2px solid var(--flex-link-inverse, #109db9) !important;
+      width: 15%;
+      left: 7.5%;
+      bottom: 1.6rem;
+    } 
+    .carjager_cardPrice:after {
+      content: '';
+      position: absolute;
+      border-bottom: 2px solid var(--flex-link-inverse, #109db9) !important;
+      width: 15%;
+      right: 7.5%;
+      bottom: 1.6rem;
+    } 
+  }
+
+  @media (min-width: 1024px) {
+    .carjager_cardPrice {
+      min-width: auto;
+      width: 50%;
+      flex-wrap: nowrap;
+      align-items: flex-end;
+      padding: 0 0 0 1rem !important;
+      color: unset !important;
+    }
+
+    .carjager_cardPrice:hover {
+      color: unset !important;
+    }
+  }
+
+  .carjager_Page > .carjager_cardHeader {
+    border-radius: 0;
+  }
+
+  .carjager_cardHeaderHeight {
+    height: auto;
+  }
+
+  .carjager_cardHeaderImg {
+    height: 50vh !important;
+  }
+
+  .carjager_cardHeaderContent {
+    margin-top: 38vh;
+  }
+
+  @media (max-width: 767px) {
+    .carjager_cardHeaderContent {
+      padding: 0 !important;
+    }
+  }
+
+  .carjager-btn-logo {
+    width: 25rem;
+    height: 6rem !important;
+    font-size: 0.8rem !important;
+    position: relative;
+  }
+
+  @media (max-width: 767px) {
+    .carjager-btn-logo {
+      height: 10rem !important;
+      border-width: 0 !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  .carjager-btn-logo:hover {
+    font-size: 0.85rem !important;
+    transition: font-size 100ms bezier;
+  }
+
+  .carjager-btn-logo.buy {
+    color: #fff;
+    background-color: black;
+  }
+
+  .carjager-btn-logo.buy #carjager_logo_buy {
+    width: 4.5rem;
+    fill: #fff;
+  }
+
+  .carjager-btn-logo.sell {
+    color: #fff;
+    background-color: var(--flex-link-hover-inverse);
+  }
+
+  .carjager-btn-logo.sell #carjager_logo_sell {
+    width: 3.8rem;
+    fill: #fff;
+  }
+
+  .carjager_selectedCar {
+    width: auto;
+    min-height: calc(100vh - 40rem);
+  }
+
+  .carjager_selectedCarCard {
+    width: auto;
+    min-height: 40vh;
+  }
+
+  @media (min-width: 768px) {
+    .carjager_selectedCarCard {
+      min-height: 60vh;
+    }
+  }
+
+  .details_Characteristics {
+    border-color: #000;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .details_Characteristics {
+    }
+
+    .details_Characteristics_columnDivider {
+      position: relative;
+    }
+
+    .details_Characteristics_columnDivider:after {
+      content: '';
+      position: absolute;
+      border-left: 2px solid black;
+      right: -50px;
+      height: 82%;
+      top: 10%;
+    } 
+  }
+
+  .details_Contacts {
+    border-color: #000;
+  }
+
+  .carjager_imageListImgHeightTall,
+  .carjager_imageListImgHeightBig {
+    overflow: hidden;
+    height: calc(100vw / 2);
+    border-radius: 2rem;
+  }
+
+  .carjager_imageListImgHeightNormal {
+    overflow: hidden;
+    height: calc(100vw / 2 / 2);
+    border-radius: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .carjager_imageListImgHeightTall,
+    .carjager_imageListImgHeightBig {
+      height: calc(100vw / 4);
+    }
+
+    .carjager_imageListImgHeightNormal {
+      height: calc(100vw / 4 / 2);
+    }
+  }
+
+  .imageListImgLast .carjager_whiteHover:after {
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .imageListImgLast:hover .carjager_whiteHover:after {
+    background-color: rgba(0,0,0,0.25);
+  }
+
+  .MoreArticles .carjager_sliderCardHeight img {
+    padding: 1rem;
+    border-width: 4px;
+    border-radius: 1.5rem;
+  }
+}

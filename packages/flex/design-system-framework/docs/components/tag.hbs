@@ -1,0 +1,146 @@
+---
+title: Tag
+active: {
+    components: {
+        tag: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title}}
+{{/components-title }}
+
+    <section class="section">
+        {{#> snippet id="simple-tag" dark="true" title="Tag simple" desc=""}}
+            {{#content "light"}}
+                <span class="tag">Tag par défaut</span>
+                <span class="tag is-secondary">Tag secondaire</span>
+                <span class="tag is-success">Tag success</span>
+                <span class="tag is-danger">Tag danger</span>
+                <span class="tag is-warning">Tag warning</span>
+            {{/content}}
+
+            {{#content "dark"}}
+                <span class="tag is-inverted">Tag par défaut</span>
+                <span class="tag is-secondary is-inverted">Tag secondaire</span>
+                <span class="tag is-success is-inverted">Tag success</span>
+                <span class="tag is-danger is-inverted">Tag danger</span>
+                <span class="tag is-warning is-inverted">Tag warning</span>
+            {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        {{#> snippet id="actionnable-tag" dark="true" do="true" dont="true" title="Tag avec actions" desc="Un container <code>.tags</code> devient nécessaire pour créer des tags plus complexes.<br/>&bull; Pour ajouter une action, la classe <code>.has-addons</code> est nécessaire, le curseur de souris devient alors une main au hover.<br/>&bull; Pour une action de suppression par exemple, on ajoutera aussi <code>.is-delete</code> (d'autres actions à venir dans le futur).<br/>&bull; Pour changer la couleur du tag, pensez à mettra la classe adéquate <b>sur le container</b> afin d'impacter tous les enfants.<br/>&bull; Pour gérer l'espacement entre plusieurs tags mis à la suite, une marge est ajoutée à droite de chaque tag ; pour la supprimer, ajoutez la facette <code>.is-gapless</code> sur le container des tags.<br/><b>Le comportement au clic sur le tag n'est pas du ressort de Flexiness Framework : l'attribut <code>data-tag-action</code> n'est là qu'à titre de suggestion.</b>"}}
+            {{#content "light"}}
+                <div class="tags has-addons is-delete">
+                    <span class="tag">Tag par défaut (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+
+                <div class="tags has-addons is-delete is-secondary">
+                    <span class="tag">Tag secondaire (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+
+                <div class="tags has-addons is-delete is-warning">
+                    <span class="tag">Tag warning (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+
+                <div class="tags has-addons is-delete is-success">
+                    <span class="tag">Tag success (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+
+                <div class="tags has-addons is-delete is-danger">
+                    <span class="tag">Tag danger (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+            {{/content}}
+
+            {{#content "dark"}}
+                <div class="tags has-addons is-delete is-inverted">
+                    <span class="tag">Tag par défaut (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+
+                <div class="tags has-addons is-delete is-secondary is-inverted">
+                    <span class="tag">Tag secondaire (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+
+                <div class="tags has-addons is-delete is-warning is-inverted">
+                    <span class="tag">Tag warning (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+
+                <div class="tags has-addons is-delete is-success is-inverted">
+                    <span class="tag">Tag success (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+
+                <div class="tags has-addons is-delete is-danger is-inverted">
+                    <span class="tag">Tag danger (supprimable)</span>
+                    <button class="tag" data-tag-action="delete">
+                        <span class="icon"><i class="flexi-ui-times-r"></i></span>
+                    </button>
+                </div>
+            {{/content}}
+
+            {{#content "do"}}
+                <ul class="list">
+                    <li>Intégrer la classe de couleur (principale ou sémantique) sur le container des tags : <code>&lt;div class="tags is-secondary"&gt;</code>, ceci afin de bien impacter tous les enfants.</li>
+                    <li>La classe <code>has-addons</code> est nécessaire pour ajouter des actions. Ce composant est tourné vers l'avenir : bien que seule l'action de suppression soit disponible pour le moment (<code>.is-delete</code>), d'autres viendront par la suite</li>
+                </ul>
+            {{/content}}
+
+            {{#content "dont"}}
+                <ul class="list">
+                    <li>Laisser la classe de couleur (principale ou sémantique) sur le tag, et non sur son container : <code>&lt;div class="tags"&gt;&lt;div class="tag is-secondary"&gt;&lt;/div&gt;…&lt;/div&gt;</code></li>
+                </ul>
+            {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        {{#> snippet id="multiple-tags" title="Tags multiples" desc="Un container <code>.tags</code> est nécessaire pour créer des ensembles de tags <b>et gérer leur espacement</b> lorsque ceux-ci se retrouvent sur plusieurs lignes. Pour supprimer cette marge en bas de chaque tag, ajoutez une facette <code>is-gapless</code> sur le container des tags."}}
+            {{#content "light"}}
+                <div class="tags">
+                    <span class="tag">Samsung</span>
+                    <span class="tag">Huawei</span>
+                    <span class="tag">Xiaomi</span>
+                    <span class="tag">Apple</span>
+                    <span class="tag">Écran supérieur ou égal à 6 pouces</span>
+                    <span class="tag">Écran inférieur à 6 pouces</span>
+                    <span class="tag">Résitant à l'eau</span>
+                    <span class="tag">Compatible 5G</span>
+                    <span class="tag">Stockage 128 Go et plus</span>
+                    <span class="tag">Coque offerte</span>
+                    <span class="tag">Spotify 3 mois offerts</span>
+                </div>
+            {{/content}}
+        {{/snippet}}
+    </section>
+{{/content}}
+{{/extend}}

@@ -1,0 +1,86 @@
+---
+title: Class HTML dépréciées
+menu: true
+active: {
+    deprecated-elements: {
+        class-deprecated: true
+    }
+}
+root: ../
+---
+
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Voici la liste des Class qui sont dépréciées."}}
+{{/components-title }}
+
+<section class="section">
+    <div class="container">
+        <div class="box is-warning">
+            <header class="box-header">
+                <p>Explication du tableau</p>
+            </header>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Le nom des <span class="has-text-primary">.class</span> dépréciées</li>
+                    <li>A partir de quelle Version cette <span class="has-text-primary">.class</span> est dépréciée</li>
+                    <li>Dans quelle composant est utilisé cette <span class="has-text-primary">.class</span></li>
+                    <li>La date de suppression définitive de cette <span class="has-text-primary">.class</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="box is-paddingless">
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Version</th>
+                        <th>Composants</th>
+                        <th>Suppression définitive</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="has-text-primary">.is-flex</td>
+                        <td>0.10.3</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-primary">.has-overlap</td>
+                        <td>0.9.0</td>
+                        <td>Hero</td>
+                        <td>1.8.0</td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-primary">.is-overlap-small</td>
+                        <td>0.9.0</td>
+                        <td>Hero</td>
+                        <td>1.8.0</td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-primary">.is-overlap-medium</td>
+                        <td>0.9.0</td>
+                        <td>Hero</td>
+                        <td>1.8.0</td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-primary">.is-overlap-large</td>
+                        <td>0.9.0</td>
+                        <td>Hero</td>
+                        <td>1.8.0</td>
+                    </tr>
+                    <tr>
+                        <td class="has-text-primary">.is-striked</td>
+                        <td>1.1.0</td>
+                        <td>Bouton</td>
+                        <td>1.8.0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{{/content}}
+{{/extend}}

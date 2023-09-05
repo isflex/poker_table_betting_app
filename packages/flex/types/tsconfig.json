@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "isolatedModules": true,
+    "lib": [
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": ".",
+    "strict": true,
+    "target": "esnext",
+    "useUnknownInCatchVariables": true,
+    "typeRoots": [
+      "index.d.ts"
+    ],
+    "paths": {
+      "flex_design_system_react_ts_styled": ["../flex/design-system-react-ts/src/styled"],
+      "pointingpoker-common": ["../../../apps/poker/common"],
+    },
+  },
+  "include": [
+    "./definitions/**/*"
+  ]
+}

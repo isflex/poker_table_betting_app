@@ -1,0 +1,23 @@
+{
+  "extends": "../../../tsconfig.build.settings.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "allowJs": true,
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "flexiness": ["../../../packages/flex/types"],
+      "pointingpoker-api/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "./types/**/*.d.ts"
+  ],
+  "exclude": [
+    "dist/**/*",
+    "build/**/*",
+    ".eslintrc.js"
+  ]
+}

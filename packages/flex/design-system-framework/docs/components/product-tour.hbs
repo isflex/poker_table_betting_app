@@ -1,0 +1,150 @@
+---
+title: Product Tour
+active: {
+    components: {
+        product-tour: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="La « Visite guidée » est un composant dédié au guidage du visiteur, par exemple lors d'une présentation, aide interactive, visite guidée, etc."}}
+{{/components-title }}
+
+<section class="section is-product-tour-specific">
+    {{#> snippet id="product-tour-1" title="La base" desc="Ci-dessous le code minimal du composant.<ul><li>&bull; L'affichage est provoqué par la classe <strong>is-active</strong> qui doit être ajoutée par le back.</li><li>&bull; Le positionnement dans la page (top, right, bottom, left) est à gérer par le back.</li><li>&bull; Vous pouvez ajouter n'importe quel texte ou composant dans <strong>.product-tour-content</strong></li></ul>"}}
+        {{#content "light"}}
+            <div class="product-tour is-active">
+                <div class="product-tour-content">
+                    <p class="suptitle">Exemple de titre possible</p>
+                    <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section is-product-tour-specific">
+    {{#> snippet id="product-tour-2" title="Avec flèche" desc="Même display que précédemment, la flèche en plus.<ul><li>&bull; Celle-ci se place par défaut en haut et au centre.</li><li>&bull; Les snippets suivant vous montrer comment modifier ce comportement.</li></ul>"}}
+        {{#content "light"}}
+            <div class="product-tour is-active">
+                <div class="arrow"></div>
+                <div class="product-tour-content">
+                    <p class="suptitle">Exemple de titre possible</p>
+                    <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section is-product-tour-specific">
+    {{#> snippet id="product-tour-3" title="Positionnement de la flèche" desc="Reprenant les règles déjà connues de Flexiness Framework, il est possible de changer le positionnement de la flèche. Par défaut, celle-ci est en haut du composant.<ul><li>&bull; Flèche en bas : <strong>is-bottom</strong></li><li>&bull; Flèche à droite : <strong>is-right</strong></li><li>&bull; Flèche à gauche : <strong>is-left</strong></li></ul>"}}
+        {{#content "light"}}
+            <div class="product-tour is-active">
+                <div class="arrow is-left"></div>
+                <div class="product-tour-content">
+                    <p class="suptitle">Exemple de titre possible</p>
+                    <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section is-product-tour-specific">
+    {{#> snippet id="product-tour-4" title="Alignement de la flèche" desc="Reprenant les règles déjà connues de Flexiness Framework, il est possible de changer l'alignement de la flèche. Par défaut, celle-ci est centrée.<ul><li>&bull; Flèche à 20% : <strong>is-one-fifth</strong></li><li>&bull; Flèche à 25% : <strong>is-one-quarter</strong></li><li>&bull; Flèche à 33% : <strong>is-one-thrid</strong></li><li>&bull; Flèche à 40% : <strong>is-two-fifths</strong></li><li>&bull; Flèche à 60% : <strong>is-three-fifths</strong></li><li>&bull; Flèche à 66% : <strong>is-two-thirds</strong></li><li>&bull; Flèche à 75% : <strong>is-three-quarters</strong></li><li>&bull; Flèche à 80% : <strong>is-four-fifths</strong></li></ul>"}}
+        {{#content "light"}}
+            <div class="product-tour is-active">
+                <div class="arrow is-one-fifth"></div>
+                <div class="product-tour-content">
+                    <p class="suptitle">Exemple de titre possible</p>
+                    <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section is-product-tour-specific">
+    {{#> snippet id="product-tour-5" title="Positionnement et alignement de la flèche" desc="Vous pouvez évidemment cumuler les règles de positionnement et d'alignement en cumulant les règles des deux snippets précédents."}}
+       {{#content "light"}}
+            <div class="product-tour is-active">
+                <div class="arrow is-left is-three-quarters"></div>
+                <div class="product-tour-content">
+                    <p class="suptitle">Exemple de titre possible</p>
+                    <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section is-product-tour-specific">
+    {{#> snippet id="product-tour-6" title="Icône de fermeture" desc="Celle-ci sera placée en haut à droite, sans possibilité de la déplacer. La classe <code>close</code> est impérative. De même que la taille d'icône (toutes les tailles d'icônes classiques sont utilisables)."}}
+        {{#content "light"}}
+            <div class="product-tour is-active">
+                <div class="arrow"></div>
+                <button class="icon close is-small">
+                    <i class="flexi-ui-times"></i>
+                </button>
+                <div class="product-tour-content">
+                    <p class="suptitle">Exemple de titre</p>
+                    <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section is-product-tour-specific">
+    {{#> snippet id="product-tour-7" title="Image / icône décorative" desc="Vous pouvez agrémenter le composant d'une icône/image décorative (sans oublier de préciser sa taille), si nécessaire. Celle-ci peut se placer à gauche ou à droite en fonction de la classe que vous utilisez : <strong>has-icon-left</strong> ou <strong>has-icon-right</strong>."}}
+        {{#content "light"}}
+            <div class="product-tour has-icon-left is-active">
+                <div class="arrow"></div>
+                <span class="icon is-medium">
+                    <img src="https://tinyfac.es/data/avatars/475605E3-69C5-4D2B-8727-61B7BB8C4699-500w.jpeg" class="is-rounded" />
+                </span>
+                <button class="icon close is-small">
+                    <i class="flexi-ui-times"></i>
+                </button>
+                <div class="product-tour-content">
+                    <p class="suptitle">Exemple de titre</p>
+                    <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section is-product-tour-specific">
+    {{#> snippet id="product-tour-8" title="Liens de navigation" desc="Dans le cas d'un step-by-step interactif, des liens Pécédent et Suivant seront nécessaires et peuvent être ajoutés comme suit."}}
+        {{#content "light"}}
+            <div class="product-tour has-icon-left is-active">
+                <div class="arrow"></div>
+                <span class="icon is-medium">
+                    <img src="https://tinyfac.es/data/avatars/475605E3-69C5-4D2B-8727-61B7BB8C4699-500w.jpeg" class="is-rounded" />
+                </span>
+                <button class="icon close is-small">
+                    <i class="flexi-ui-times"></i>
+                </button>
+                <div class="product-tour-content">
+                    <p class="suptitle">Exemple de titre</p>
+                    <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <div class="columns is-mobile is-centered">
+                        <div class="column is-6 has-text-left">
+                            <a class="link">Précédent</a>
+                        </div>
+                        <div class="column is-6 has-text-right">
+                            <a class="link">Suivant</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

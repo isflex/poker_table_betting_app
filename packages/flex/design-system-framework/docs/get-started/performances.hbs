@@ -1,0 +1,109 @@
+---
+title: Performance
+menu: true
+active: {
+    get-started: {
+        performances: true
+    }
+}
+root: ../
+---
+
+{{#extend "menu-page"}}
+
+{{#content "content"}}
+<section class="hero is-instit">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Performance</h1>
+            <p class="subtitle">Squelettes de pages et de contenus</p>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <h3 class="title is-3">Définition</h3>
+        <p>La page de squelette rassemble une variété de composants de type “zoning” ou “wireframe” afin de représenter un modèle basse fidélité d’une page dont les contenus sont en cours de chargement.</p>
+        <p>Par ce principe, la perception du temps d’affichage est amoindrie et le niveau de performance de la page est augmenté.</p>
+        <h3 class="title is-3">Fonctionnement</h3>
+        <p>Pour créer un squelette sur une page où un composant, ajoutez lui la classe <span class="tag">is-loading</span>. Une fois le composant chargé, retirez la classe <span class="tag">is-loading</span> et ajoutez la classe <span class="tag">is-loaded</span>, Flexiness Framework se chargera alors de modifier son apparence de la façon suivante :</p>
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <div class="box is-info">
+                    <div class="box-header">
+                        <div class="box-title">Composant en cours de chargement</div>
+                    </div>
+                    <div class="box-content">
+                        <div class="card is-article is-loading">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="../static/card-sample.png" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    <p class="suptitle">Subtitle</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-4">
+                <div class="box is-info">
+                    <div class="box-header">
+                        <div class="box-title">Composant chargé</div>
+                    </div>
+                    <div class="box-content">
+                        <div class="card is-article is-loaded">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="../static/card-sample.png" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    <p class="suptitle">Subtitle</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ex, aliquam at neque eu, vulputate vera.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="title is-3">Conseils d'utilisation</h3>
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <div class="box is-danger">
+                    <div class="box-header">
+                        <div class="box-title">Don't</div>
+                    </div>
+                    <div class="box-content">
+                        <ul>
+                            <li>Ne pas utiliser de squelettes lors du chargement de contenu asynchrones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-4">
+                <div class="box is-success">
+                    <div class="box-header">
+                        <div class="box-title">Do</div>
+                    </div>
+                    <div class="box-content">
+                        <ul>
+                            <li>Utiliser un squelette lors du chargement de contenu asynchrones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/content}}
+{{/extend}}

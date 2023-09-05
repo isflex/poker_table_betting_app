@@ -1,0 +1,127 @@
+{{#extend "templates/aco-layout"}}
+{{#content "page"}}
+<script src="../js/load-simulator.js"></script>
+
+<main class="main-content">
+
+    <section class="hero is-info aco-home is-loading">
+        <div class="hero-body">
+            <div class="container is-fluid">
+                <h1 class="title">Bonjour Michel</h1>
+                <h2 class="subtitle">Test</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section has-overlap has-background-grey-lighter is-loading">
+        <div class="container is-fluid">
+            <div class="notification has-description has-body">
+                <div class="icon">
+                    <i class="flexi-home"></i>
+                </div>
+                <div class="body">
+                    <h5 class="title is-5">Facture et paiement</h5>
+                    <p>Un texte un peu long. Un texte un peu long. Un texte un peu long. Un texte un peu long. Un texte un peu long. </p>
+                </div>
+                <div class="call-to-action">
+                    <i class="flexi-right_arrow"></i>
+                </div>
+            </div>
+
+            <h4 class="title is-4">Commande en cours</h4>
+            <div class="box is-info">
+                <header class="box-header is-info">
+                    <p class="box-header-title">Component</p>
+                    <p class="box-header-help">En livraison</p>
+                </header>
+                <div class="box-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section has-background-white">
+        <div class="container is-fluid">
+            <h4 class="title is-4">Mes lignes mobiles et fixes</h4>
+            <div class="box is-info">
+                <header class="box-header">
+                    <p class="box-header-title">Component</p>
+                </header>
+                <div class="box-content is-grey">
+                    <div class="content tile is-ancestor">
+                        <div class="tile is-parent">
+                            <div class="tile is-child box">
+                                <h5 class="title is-5">Mon mobile</h5>
+                                <p>Gérer, dépanner</p>
+                            </div>
+                        </div>
+                        <div class="tile is-parent">
+                            <div class="tile is-child box">
+                                <h5 class="title is-5">Mon offre</h5>
+                                <p>Forfaits & Options</p>
+                            </div>
+                        </div>
+                        <div class="tile is-parent">
+                            <div class="tile is-child box">
+                                <h5 class="title is-5">Ma conso</h5>
+                                <p>Dépassement forfait</p>
+                                <p class="title is-3 is-success">0,00 €</p>
+                                <hr class="is-divider">
+                                <progress class="progress is-success" value="15" max="100">15%</progress>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="title is-4">Cas plus complexe</h4>
+            <div class="box is-info">
+                <header class="box-header">
+                    <p class="box-header-title">Component</p>
+                </header>
+                <div class="box-content is-grey">
+                    <div class="content tile is-ancestor">
+                        <div class="tile is-vertical">
+                            <div class="tile">
+                                <div class="tile is-parent">
+                                    <div class="tile is-child box">
+                                        <h5 class="title is-5">Mon mobile</h5>
+                                        <p>Gérer, dépanner</p>
+                                    </div>
+                                </div>
+                                <div class="tile is-parent">
+                                    <div class="tile is-child box">
+                                        <h5 class="title is-5">Mon offre</h5>
+                                        <p>Forfaits & Options</p>
+                                    </div>
+                                </div>
+                                <div class="tile is-parent">
+                                    <div class="tile is-child box">
+                                        <h5 class="title is-5">Ma conso</h5>
+                                        <p>Dépassement forfait</p>
+                                        <p class="title is-3 is-success">0,00 €</p>
+                                        <hr class="is-divider">
+                                        <progress class="progress is-success" value="15" max="100">15%</progress>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tile is-parent is-12">
+                                <div class="tile is-child box">
+                                    <h5 class="title is-5">Ma conso</h5>
+                                    <p>Dépassement forfait</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{{/content}}
+{{/extend}}

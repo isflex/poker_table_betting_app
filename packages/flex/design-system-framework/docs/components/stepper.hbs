@@ -1,0 +1,69 @@
+---
+title: Stepper
+active: {
+    components: {
+        stepper: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Le stepper permet de suivre un parcours, étapes par étapes. Les libellés de chaque étape proviennent de l'attribut data-label."}}{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="stepper-1" title="Étape en cours d'exécution" desc="Utilisez <code>is-current</code> pour l'étape en cours d'exécution."}}
+        {{#content "light"}}
+            <div class="stepper">
+                <div class="step is-current" data-label="Choix boutique">1</div>
+                <div class="step" data-label="Validation">2</div>
+                <div class="step" data-label="Résumé">3</div>
+                <div class="step" data-label="Confirmation">4</div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="stepper-2" title="Étape terminée" desc="Utilisez <code>is-done</code> une fois que l'étape est terminée."}}
+        {{#content "light"}}
+            <div class="stepper">
+                <div class="step is-done" data-label="Choix boutique">1</div>
+                <div class="step is-current" data-label="Validation">2</div>
+                <div class="step" data-label="Résumé">3</div>
+                <div class="step" data-label="Confirmation">4</div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="stepper-3" title="Étape en cours de consultation" desc="Il peut arriver que l'utilisateur revienne en arrière dans le parcours. Utilisez <code>is-active</code> pour mettre en avant l'étape qu'il est en train de consulter."}}
+        {{#content "light"}}
+            <div class="stepper">
+                <div class="step is-done is-active" data-label="Choix boutique">1</div>
+                <div class="step is-done" data-label="Validation">2</div>
+                <div class="step is-current" data-label="Résumé">3</div>
+                <div class="step" data-label="Confirmation">4</div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="stepper-4" title="Centrer un stepper" desc="Le stepper n'est pas centré par défaut. Il vous faut donc le contenir dans un élément qui centre. Voici deux exemples."}}
+        {{#content "light"}}
+            <section class="section has-text-centered">
+                <div class="stepper">
+                    <div class="step is-done" data-label="Choix boutique">1</div>
+                    <div class="step is-done" data-label="Validation">2</div>
+                    <div class="step is-current" data-label="Résumé">3</div>
+                    <div class="step" data-label="Confirmation">4</div>
+                </div>
+            </section>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

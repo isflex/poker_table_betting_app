@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.build.base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "noEmit": false,
+    "composite": true,
+    "incremental": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

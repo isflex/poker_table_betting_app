@@ -1,0 +1,31 @@
+---
+title: Fil d'ariane
+active: {
+    components: {
+        breadcrumb: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Texte introductif"}}
+{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="breadcrumb" title="Fil d'ariane"}}
+    {{#content "light"}}
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="#">Level 1</a></li>
+            <li><a href="#">Level 2</a></li>
+            <li><a href="#">Level 3</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Level 4</a></li>
+        </ul>
+    </nav>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

@@ -1,0 +1,309 @@
+---
+title: Les colonnes
+menu: true
+active: {
+    structure: {
+        columns: true
+    }
+}
+root: ../
+---
+
+{{#extend "menu-page"}}
+    {{#content "extra-css"}}
+        <link href="get-started.scss" rel="stylesheet">
+    {{/content}}
+    {{#content "extra-js"}}
+        <script src="get-started.js"></script>
+    {{/content}}
+
+    {{#content "content"}}
+        <section class="hero is-instit">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">{{ title }}</h1>
+                    <h2 class="subtitle">Répartition horizontale</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Introduction</h2>
+                <p>Les colonnes font partie des outils essentiels pour composer votre page. Elles s'utilisent très simplement de la façon suivante :</p>
+                <p>N'hésitez pas à modifier le code ci-dessous pour faire des essais :</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns"&gt;
+                            &lt;div class="column"&gt;&lt;/div&gt;
+                            &lt;div class="column"&gt;&lt;/div&gt;
+                            &lt;div class="column"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-1" type="checkbox" name="mode-wireframe-1" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-1">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Taille des colonnes</h2>
+                <p>Les colonnes se basent sur une grille de 12 unités de large.</p>
+                <p>Utiliser les notations <code>is-1</code> à <code>is-12</code> pour définir la taille de vos colonnes.</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns"&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-6"&gt;&lt;/div&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-2" type="checkbox" name="mode-wireframe-2" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-2">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+
+                <p><code>is-narrow</code> permet à une colonne de prendre la taille minimale possible, en fonction de son contenu :</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns"&gt;
+                            &lt;div class="column is-narrow"&gt;.&lt;/div&gt;
+                            &lt;div class="column is-6"&gt;&lt;/div&gt;
+                            &lt;div class="column"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-2" type="checkbox" name="mode-wireframe-2" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-2">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Colonnes sur plusieurs lignes </h2>
+                <p>Ajoutez <code>is-multiline</code> pour que vos colonnes passent automatiquement d'une ligne à l'autre</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns is-multiline"&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-4"&gt;&lt;/div&gt;
+                            &lt;div class="column is-2"&gt;&lt;/div&gt;
+                            &lt;div class="column is-4"&gt;&lt;/div&gt;
+                            &lt;div class="column is-5"&gt;&lt;/div&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-4"&gt;&lt;/div&gt;
+                            &lt;div class="column is-4"&gt;&lt;/div&gt;
+                            &lt;div class="column is-4"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-7" type="checkbox" name="mode-wireframe-7" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-7">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Gestion responsive</h2>
+                <p>Par défaut, les colonnes passent les unes en-dessous des autres en version mobile. Il est possible d'utiliser la classe <code>is-mobile</code> pour les forcer à rester côte-à-côte sur mobile.</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns is-mobile"&gt;
+                            &lt;div class="column"&gt;&lt;/div&gt;
+                            &lt;div class="column"&gt;&lt;/div&gt;
+                            &lt;div class="column"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-4" type="checkbox" name="mode-wireframe-4"
+                                class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-4">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+
+                <p>Il est également possible de personaliser la taille des colonnes en fonction de la taille de l'écran</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns is-mobile"&gt;
+                            &lt;div class="column is-2-desktop is-2-tablet is-6-mobile"&gt;&lt;/div&gt;
+                            &lt;div class="column is-10-desktop is-10-tablet is-6-mobile"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-5" type="checkbox" name="mode-wireframe-5"
+                                class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-5">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Centrer les colonnes</h2>
+                <p><code>is-centered</code> permet de centrer les colonnes</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns is-centered"&gt;
+                            &lt;div class="column is-2"&gt;&lt;/div&gt;
+                            &lt;div class="column is-4"&gt;&lt;/div&gt;
+                            &lt;div class="column is-2"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-11" type="checkbox" name="mode-wireframe-11"
+                                class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-11">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+
+                <p>Il est possible d'utiliser des offets <code>is-offset-1</code> à <code>is-offset-12</code> pour gérer
+                    l'alignement horizontal des colonnes de façon plus fine</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns is-mobile"&gt;
+                            &lt;div class="column is-2 is-offset-1-desktop is-offset-3-mobile"&gt;&lt;/div&gt;
+                            &lt;div class="column is-4 is-offset-2"&gt;&lt;/div&gt;
+                            &lt;div class="column is-2"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-6" type="checkbox" name="mode-wireframe-6"
+                                class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-6">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Imbrication</h2>
+                <p>Les colonnes peuvent être imbriquées</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns"&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-6"&gt;
+                            &lt;div class="columns"&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-6"&gt;&lt;/div&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-8" type="checkbox" name="mode-wireframe-8" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-8">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Gestion de la marge entre les colonnes</h2>
+                <p>La marge entre les colonnes peut être supprimée à l'aide de <code>is-gapless</code> ...</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns is-gapless"&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-6"&gt;&lt;/div&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-9" type="checkbox" name="mode-wireframe-9" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-9">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+
+                <p>... ou personnalisée avec <code>is-variable</code> et <code>is-0</code> à <code>is-8</code></p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns is-variable is-2"&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-6"&gt;&lt;/div&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="columns is-variable is-8"&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;div class="column is-6"&gt;&lt;/div&gt;
+                            &lt;div class="column is-3"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-10" type="checkbox" name="mode-wireframe-10" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-10">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/content}}
+{{/extend}}

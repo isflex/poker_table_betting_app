@@ -1,0 +1,50 @@
+---
+title: Compte à rebours
+active: {
+    components: {
+        countdown: true
+    }
+}
+root: ../
+---
+
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Un compte à rebours est un décompte vers une fin connue."}}
+{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="countdown" dark="true" do="true" title="Compte à rebours" desc="" draft=""}}
+        {{#content "light"}}
+            <ul class="countdown">
+                <li class="count"><span class="value">19</span>j</li>
+                <li class="count"><span class="value">20</span>h</li>
+                <li class="count"><span class="value">33</span>m</li>
+                <li class="count"><span class="value">50</span>s</li>
+            </ul>
+        {{/content}}
+
+        {{#content "dark"}}
+            <div class="has-text-centered">
+                <ul class="countdown is-inverted">
+                    <li class="count"><span class="value">19</span>j</li>
+                    <li class="count"><span class="value">20</span>h</li>
+                    <li class="count"><span class="value">33</span>m</li>
+                    <li class="count"><span class="value">50</span>s</li>
+                </ul>
+            </div>
+        {{/content}}
+
+        {{#content "do"}}
+            <p><em>Voir les exemples ci-dessus</em></p>
+
+            <ul class="list">
+                <li>Le compte à rebours peut si on le souhaite être centré ou aligné à gauche/droite, pour ce faire, il faut que le composant soit dans un parent avec la classe <span class="has-text-primary has-text-weight-semibold">.has-text-centered</span> comme l'exemple ci-dessus.</li>
+                <li>Lorsque le compte à rebours se trouve dans un bloc à fond coloré, alors il faut lui ajouter la classe <span class="has-text-primary has-text-weight-semibold">.is-inverted</span>.</li>
+            </ul>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

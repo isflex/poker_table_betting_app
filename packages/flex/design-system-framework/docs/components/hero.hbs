@@ -1,0 +1,171 @@
+---
+title: Hero
+active: {
+    components: {
+        hero: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Bannière de haut de page destiné à attirer l'attention."}}
+{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="hero-1" do="true" warning="" dont="" title="Utilisation basique" desc=""}}
+        {{#content "light"}}
+            <section class="hero">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">Bonjour Michel</h1>
+                        <h2 class="subtitle">Fugiat velit dolor ad adipisicing id quis enim cupidatat Lorem dolore aute excepteur tempor.</h2>
+                    </div>
+                </div>
+            </section>
+        {{/content}}
+
+        {{#content "do"}}
+            <ul class="list">
+                <li>Pour l'utiliser il suffit d'une <span class="has-text-primary has-text-weight-semibold">section.hero</span>, directement suivie d'une <span class="has-text-primary has-text-weight-semibold">div.hero-body</span></li>
+                <li>Sans spécifier de couleur le Hero de base est blanc</li>
+                <li>Il n'est pas restreint en taille, c'est son contenu qui le définit</li>
+                <li>Le contenu n'est pas centré par défaut mais il est possible de forcer le centrage en ajoutant la class <span class="has-text-primary has-text-weight-semibold">.hero.is-centered</span></li>
+            </ul>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="hero-3" do="true" warning="true" dont="" title="Utilisation avec fond de couleur" desc=""}}
+        {{#content "light"}}
+            <section class="hero is-info">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">Bonjour Michel</h1>
+                        <h2 class="subtitle">Fugiat velit dolor ad adipisicing id quis enim cupidatat Lorem dolore aute excepteur tempor.</h2>
+                    </div>
+                </div>
+            </section>
+            <br/>
+            <section class="hero has-background-tertiary">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title has-text-tertiary-invert">Bonjour Michel</h1>
+                        <h2 class="subtitle has-text-tertiary-invert">Fugiat velit dolor ad adipisicing id quis enim cupidatat Lorem dolore aute excepteur tempor.</h2>
+                    </div>
+                </div>
+            </section>
+        {{/content}}
+
+        {{#content "do"}}
+            <p>L'option <span class="has-text-primary has-text-weight-semibold">.is-info</span> est disponible et les textes automatiquement passés en blanc</p>
+        {{/content}}
+
+        {{#content "warning"}}
+            <p>Dans le cas où vous voudriez utiliser une autre couleur, via <span class="has-text-primary has-text-weight-semibold">.has-background-xxx</span>, pensez à utiliser <span class="has-text-primary has-text-weight-semibold">.has-text-xxx-invert</span> sur les éléments de votre Hero</p>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="hero-4" title="Utilisation avec image de fond" desc="En déclarant votre Hero avec <code>.is-primary</code>, les textes de celui-ci passeront en blanc. <br> Le Hero attend de votre part une image de fond, en ajoutant la class <code>has-background</code>."}}
+    {{#content "light"}}
+    <section class="hero is-primary has-background" style="background-image: url(https://picsum.photos/id/1/1500/600);">
+        <div class="hero-body">
+            <div class="container">
+                <p class="suptitle">Message de bienvenue</p>
+                <h1 class="title">Bonjour Michel</h1>
+                <h2 class="subtitle">Fugiat velit dolor ad adipisicing id quis enim cupidatat Lorem dolore aute excepteur tempor.</h2>
+                <button class="button">Click me !</button>
+            </div>
+        </div>
+    </section>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="hero-5" title="Ajouter un lien de retour" desc="Utilisez <code>.hero-back</code> sur votre lien."}}
+    {{#content "light"}}
+    <section class="hero">
+        <div class="hero-body">
+            <a class="hero-back" href="#">Retour</a>
+            <div class="container">
+                <p class="suptitle">Bien connecté</p>
+                <h1 class="title">Internet garanti</h1>
+                <p class="subtitle">Profitez d'Internet dès l'abonnement et même en cas de coupure grâce à une clé 4G dans les nouvelles offres Bbox.</p>
+            </div>
+        </div>
+    </section>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section" id="hero-overlap-1">
+    {{#> snippet id="hero-6" do="true" warning="" dont="true" title="Superposer le contenu qui suit sur un hero" desc=""}}
+        {{#content "light"}}
+            <section class="hero is-info is-overlapped">
+                <div class="hero-body">
+                    <div class="container">
+                        <p class="suptitle">Bien connecté</p>
+                        <h1 class="title">Internet garanti</h1>
+                        <p class="subtitle">Profitez d'Internet dès l'abonnement et même en cas de coupure grâce à une clé 4G dans les nouvelles offres Bbox.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="container">
+                    <div class="box">
+                        <div class="box-content">
+                            <p class="suptitle">Bien connecté</p>
+                            <h1 class="title">Internet garanti</h1>
+                            <p class="subtitle">Profitez d'Internet dès l'abonnement et même en cas de coupure grâce à une clé 4G dans les nouvelles offres Bbox.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {{/content}}
+
+        {{#content "do"}}
+            <p>Effectuez un overlap de votre contenu, en ajoutant la classe <span class="has-text-primary has-text-weight-semibold">.is-overlapped</span> sur la section Hero.</p>
+        {{/content}}
+
+        {{#content "dont"}}
+            <ul class="list">
+                <li>Les classes <span class="has-text-primary has-text-weight-semibold">.has-overlap, .is-overlap</span> deviennent obsolètes</li>
+                <li>Les classes <span class="has-text-primary has-text-weight-semibold">is-overlap-(small|medium|large)-(mobile|tablet|desktop)</span> ont été supprimés</li>
+            </ul>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section" id="hero-overlap-2">
+    {{#> snippet id="hero-7" title="Superposer le contenu qui suit sur un hero avec une image de fond" desc="Le Hero attend de votre part une image de fond, en ajoutant la class <code>has-background</code>. <br> Effectuez un <em>overlap</em> de votre contenu sur le hero en en ajoutant las class <code>is-overlapped</code> sur la section Hero"}}
+    {{#content "light"}}
+    <section class="hero is-primary has-background is-overlapped" style="background-image: url(https://picsum.photos/id/1/1500/600);">
+        <div class="hero-body">
+            <div class="container">
+                <p class="suptitle">Bien connecté</p>
+                <h1 class="title">Internet garanti</h1>
+                <p class="subtitle">Profitez d'Internet dès l'abonnement et même en cas de coupure grâce à une clé 4G dans les nouvelles offres Bbox.</p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <div class="box-content">
+                    <p class="suptitle">Bien connecté</p>
+                    <h1 class="title">Internet garanti</h1>
+                    <p class="subtitle">Profitez d'Internet dès l'abonnement et même en cas de coupure grâce à une clé 4G dans les nouvelles offres Bbox.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

@@ -1,0 +1,21 @@
+{
+  "name": "@types/flexiness",
+  "version": "0.0.1",
+  "description": "Type definitions for micro frontend development",
+  "author": "Flexiness",
+  "license": "MIT",
+  "main": "",
+  "types": "index",
+  "dependencies": {
+    "@flex-gateway-ssr/nextjs-telenko": "link:@flex-gateway-ssr/nextjs-telenko",
+    "@flexiness/domain-lib-mobx-react-router": "link:@flexiness/domain-lib-mobx-react-router",
+    "@types/react": "18.2.6",
+    "@types/react-router": "^5.1.18",
+    "history": "^5.3.0",
+    "i18next": "^22.4.14",
+    "immer": "^9.0.3",
+    "pointingpoker-common": "link:@pointingpoker-common",
+    "react": "^18.2.0",
+    "universal-router": "9.1.0"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "@flex-design-system",
+  "sourceRoot": "flex/design-system-framework/src",
+  "projectType": "library",
+  "targets": {
+    "build:fonts": {
+      "executor": "nx:run-script",
+      "outputs": ["flex/design-system-framework/src/assets/fonts"],
+      "options": {
+        "script": "build:fonts"
+      }
+    },
+    "build:css:rollup": {
+      "executor": "nx:run-script",
+      "outputs": ["flex/design-system-framework/dist"],
+      "options": {
+        "script": "build:css:rollup"
+      }
+    },
+    "build:types:modules3:default": {
+      "executor": "nx:run-script",
+      "outputs": ["flex/design-system-framework/src/modules3"],
+      "options": {
+        "script": "build:types:modules3:default"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "{workspaceRoot}/package.json",
+        "{workspaceRoot}/tsconfig.build.json",
+        "{workspaceRoot}/src/assets/fonts",
+        "{workspaceRoot}/dist",
+        "{workspaceRoot}/src/modules3"
+      ],
+      "outputs": [
+        "flex/design-system-framework/src/assets/fonts",
+        "flex/design-system-framework/dist",
+        "flex/design-system-framework/src/modules3",
+        "flex/domain-content/content/assets/fonts",
+        "flex/domain-content/content/css"],
+      "options": {
+        "command": "yarn workspace @flex-design-system/framework build"
+      }
+    }
+  },
+  "implicitDependencies": [],
+  "tags": ["scope:flexiness-staging"]
+}

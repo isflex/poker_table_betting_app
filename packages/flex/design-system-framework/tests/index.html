@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="../dist/flexiness-ds.css"/>
+  <meta charset="utf-8">
+  <style>
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('../src/assets/fonts/opensans-regular.woff2') format('woff2'), url('../src/assets/fonts/opensans-regular.woff') format('woff');
+    }
+
+    @font-face {
+      font-family: 'static-icons';
+      src: url('../src/assets/fonts/static-icons.woff2') format('woff2'), url('../src/assets/fonts/static-icons.woff') format('woff');
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    div.test {
+      width: 800px;
+      height: 500px;
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      align-items: center;
+    }
+
+    div.test > * {
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Buttons -->
+<div class="test">
+  <button class="button is-primary">Boutton</button>
+</div>
+<div class="test">
+  <button class="button is-success">Boutton</button>
+</div>
+<div class="test">
+  <button class="button is-warning">Boutton</button>
+</div>
+<div class="test">
+  <button class="button is-info">Boutton</button>
+</div>
+<div class="test">
+  <button class="button is-primary">Boutton</button>
+</div>
+<div class="test">
+  <button class="button" disabled>Inactive</button>
+</div>
+<div class="test">
+  <button class="button is-primary is-inverted">Standard</button>
+</div>
+
+<div class="test">
+  <div class="buttons is-centered">
+    <a class="button is-primary">Lien</a>
+    <button class="button is-primary">Button</button>
+    <input class="button is-primary" type="submit" value="Submit input">
+    <a class="button" disabled>Inactive</a>
+  </div>
+</div>
+
+<div class="test">
+  <div class="buttons is-centered">
+    <a class="button is-primary is-outlined">Standard</a>
+    <a class="button is-primary is-outlined" disabled>Inactive</a>
+    <a class="button is-primary is-text">Standard</a>
+    <a class="button is-primary is-text is-small">Standard</a>
+  </div>
+</div>
+
+<div class="test">
+  <p>Lorem ipsum dolor sit amet, consectetur <a class="has-text-primary">adipiscing</a> elit. tempus quis placerat ut,
+    porta nec nulla.</p>
+</div>
+
+<!-- Icones -->
+<div class="test">
+  <i class="flexi-help"></i>
+</div>
+
+<!-- File d'ariane -->
+<div class="test">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="#">Level 1</a></li>
+      <li><a href="#">Level 2</a></li>
+      <li><a href="#">Level 3</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Level 4</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Notifications -->
+<div class="test">
+  <div class="notification has-description has-body is-success">
+    <div class="icon">
+      <i class="flexi-success"></i>
+    </div>
+    <div class="content">
+      <h5 class="title is-5">Notification</h5>
+      <p>Un texte un peu long. Un texte un peu long. Un texte un peu long. Un texte un peu long. Un texte un peu
+        long. </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- boxs -->
+<div class="test">
+  <div class="box is-info">
+    <header class="box-header is-info">
+      <p class="box-header-title">
+        Component
+      </p>
+    </header>
+    <div class="box-content">
+      <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="test">
+  <div class="box is-success">
+    <header class="box-header">
+      <p class="box-header-title">
+        Component
+      </p>
+    </header>
+    <div class="box-content is-grey">
+      <div class="content tile is-ancestor">
+        <div class="tile is-4 is-vertical is-parent">
+          <div class="tile is-child box">
+            <h5 class="title is-5">Mon mobile</h5>
+            <p>Gérer, dépanner</p>
+          </div>
+          <div class="tile is-child box">
+            <p class="title">Two</p>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-child box">
+            <p class="title">Three</p>
+            <p>test</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Zone de texte -->
+<div class="test">
+  <div class="field">
+    <div class="control has-dynamic-placeholder">
+      <input class="input" type="text" placeholder="Text input">
+      <label class="input-dynamic-placeholder">Text input</label>
+    </div>
+  </div>
+</div>
+
+<div class="test">
+  <div class="field">
+    <div class="control has-dynamic-placeholder">
+      <input class="input" type="text" placeholder="Text input" value="Texte">
+      <label class="input-dynamic-placeholder">Text input</label>
+    </div>
+  </div>
+</div>
+
+<div class="test">
+  <div class="columns is-wireframe" style="width: 100%;">
+    <div class="column">
+      <div class="rows">
+        <div class="row">A</div>
+        <div class="row">B</div>
+        <div class="row">C</div>
+        <div class="row">D</div>
+        <div class="row">d</div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="rows">
+        <div class="row is-narrow">1</div>
+        <div class="row">2</div>
+        <div class="row is-narrow">3</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

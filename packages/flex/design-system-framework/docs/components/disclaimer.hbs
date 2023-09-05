@@ -1,0 +1,51 @@
+---
+title: Mentions Légales
+active: {
+    components: {
+        disclaimer: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="disclaimer"}}
+{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="disclaimer" title="Mentions Légales"}}
+    {{#content "light"}}
+    <section class="accordions disclaimer is-tri">
+        <article class="accordion is-tri">
+            <div class="accordion-header disclaimer-header is-grouped is-tri">
+                <button class="toggle button is-bordered" aria-label="toggle"></button>
+                <h6 class="title is-size-6 is-6 is-tri">Informations sur la Messagerie</h6>
+            </div>
+            <div class="accordion-body is-clipped is-tri">
+                <div class="accordion-content">
+                    <div class="disclaimer-content subtitle is-tri" togglebox="left">
+                        <div class="disclaimer-item">
+                            <p class="is-tri"><span>Durée maximale du message vocal : <strong>120 secondes</strong></span></p>
+                        </div>
+                        <div class="disclaimer-item">
+                            <p class="is-tri"><span>Durée maximale du message déposé : <strong>30 secondes</strong></span></p>
+                        </div>
+                        <div class="disclaimer-item">
+                            <p class="is-tri"><span>Durée maximum de sauvegarde des message consultés : <strong>30 jours</strong></span></p>
+                        </div>
+                        <div class="disclaimer-item">
+                            <p class="is-tri"><span>Durée maximum de sauvegarde des messages non lus :<strong>60 jours</strong></span></p>
+                        </div>
+                        <div class="disclaimer-item">
+                            <p class="is-tri"><span>Nombre maximal de messages autorisés : <strong>25 messages</strong></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+    {{/content}}
+    {{/snippet}}
+</section>
+{{/content}}
+{{/extend}}

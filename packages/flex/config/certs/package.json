@@ -1,0 +1,29 @@
+{
+  "name": "@flexiness/certs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "build:lib": "yarn clean:build && yarn build:tsc",
+    "build:tsc": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
+    "publish:fix": "./fixup.sh",
+    "clean:build": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.4",
+    "@types/node": "^18.0.3",
+    "flexiness": "link:@types/flexiness",
+    "tsconfig-paths": "4.0.0",
+    "tslib": "^2.4.0",
+    "typescript": "4.7.4"
+  },
+  "packageManager": "yarn@3.6.3"
+}

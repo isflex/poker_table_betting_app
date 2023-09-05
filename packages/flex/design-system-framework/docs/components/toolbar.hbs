@@ -1,0 +1,49 @@
+---
+title: Toolbar
+active: {
+    components: {
+        toolbar: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Description"}}
+{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="toolbar-1" title="Barre d'outil" desc="A placer juste après la barre de navigation"}}
+    {{#content "light"}}
+    <div class="toolbar has-background-white">
+        <div class="toolbar-group">
+            <div class="toolbar-item"> Ligne :</div>
+            <div class="toolbar-item">
+                <div class="field">
+                    <div class="select">
+                        <select>
+                            <option value="" selected="selected">Select lorem</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="toolbar-group is-elastic">
+            <div class="toolbar-space"></div>
+            <div class="toolbar-item is-clipped-to-bottom">
+                <div class="column tabs is-centered is-clipped is-paddingless">
+                    <ul>
+                        <li><a>Ma conso</a></li>
+                        <li class="is-active"><a>Mon offre</a></li>
+                        <li class=""><a>Mon mobile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="toolbar-space"></div>
+        </div>
+    </div>
+    {{/content}}
+    {{/snippet}}
+</section>
+{{/content}}
+{{/extend}}

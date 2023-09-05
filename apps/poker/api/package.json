@@ -1,0 +1,21 @@
+{
+  "name": "pointingpoker-api",
+  "main": "src/index",
+  "type": "module",
+  "devDependencies": {
+    "@aws-amplify/api": "5.4.4",
+    "@aws-amplify/api-graphql": "3.4.10",
+    "@aws-amplify/auth": "5.6.4",
+    "@aws-amplify/cache": "5.1.10",
+    "@aws-amplify/cli": "^12.4.0",
+    "@aws-amplify/core": "5.8.4",
+    "@aws-amplify/datastore": "4.7.4",
+    "@aws-crypto/sha256-browser": "5.0.0",
+    "@aws-crypto/sha256-js": "5.0.0",
+    "@aws-sdk/util-utf8-browser": "3.259.0"
+  },
+  "dependencies": {
+    "aws-amplify": "5.3.10"
+  },
+  "packageManager": "yarn@3.6.3"
+}

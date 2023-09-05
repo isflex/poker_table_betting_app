@@ -1,0 +1,36 @@
+---
+title: Changelog Flexiness Framework Slider
+active: {
+    changelog: {
+        slider: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+
+<section class="hero is-instit">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Changelog Flexiness Framework Slider</h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {{> tabs-changelog }}
+
+        <div class="box is-info">
+            <div class="box-header">v0.0.4</div>
+            <div class="box-content">
+                <ul class="list">
+                    <li>Le compte à rebours du slider s'arrête lorsque la souris le survole</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{{/content}}
+{{/extend}}

@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "lib": ["es2018", "dom"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmitHelpers": true,
+    "pretty": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2018",
+    "paths": {
+      "flexiness": ["./packages/flex/types"],
+      // "flex-gateway-ssr/*": ["./packages/gateway/nextjs-telenko/src/*"],
+      // "flex-gateway-ssr/link": ["./packages/gateway/nextjs-telenko/src/components/navigation/flexLink"],
+      // "flex-design-system-react-ts/*": ["./packages/flex/design-system-react-ts/src/*"],
+      "flex_design_system_react_ts_styled": ["./packages/flex/design-system-react-ts/src/styled"],
+      // "flex_design_system_react_ts_testbed": ["./packages/flex/design-system-react-ts/src/views/Modules"],
+      // "flex_design_system_react_ts_modfed/Components": ["./packages/flex/design-system-react-ts/src/index"],
+      "flex-design-system-framework/*": ["./packages/flex/design-system-framework/src/modules3/default/*"],
+      "flex-design-system-framework/all.module.scss": ["./packages/flex/design-system-framework/src/modules3/default/all.module.scss"],
+      // "flexApp_modfed/FlexComponents": ["./packages//flex/domain-app/src/FlexComponents"],
+      // "flexApp_modfed/FlexResponsive": [ "./packages//flex/domain-app/src/FlexResponsive"],
+      // "flexApp_modfed/FlexUtils": ["./packages//flex/domain-app/src/FlexUtils"],
+      "flex-tailwind/*": ["./packages/flex/domain-tailwind/dist/*"],
+      // "flex-languages/*": ["./packages/flex/config/languages/src/*"],
+      "pointingpoker-api/*": ["./apps/poker/api/src/*"],
+      "amplify/*": ["./apps/poker/api/dist/*"],
+      "pointingpoker-common/*": ["./apps/poker/common/src/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

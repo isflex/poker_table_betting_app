@@ -1,0 +1,8 @@
+@use "../utilities/variables" as *;
+@use "../utilities/mixins";
+
+// https://github.com/jgthms/bulma/issues/3446
+// @import "~bulma/sass/utilities/_all.sass";
+
+// @import "~bulma/sass/elements/content";
+@use "../utilities/vendors/bulma-extensions/content";

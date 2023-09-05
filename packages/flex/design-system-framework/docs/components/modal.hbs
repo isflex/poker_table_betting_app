@@ -1,0 +1,35 @@
+---
+title: Modal
+active: {
+    components: {
+        modal: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title desc="Modal"}}{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="menu-lateral" title="Modal" warning="true"}}
+        {{#content "light"}}
+            <a class="button is-primary" id="js-modal-opening">click me</a>
+            <div class="modal">
+                <div class="modal-content">
+                    <button class="modal-close is-large" aria-label="close" id="js-modal-closing"></button>
+                    <div class="modal-title">Titre</div>
+                    <p>Labore ea esse ea minim sit magna amet duis eiusmod est dolore. In irure aliquip anim reprehenderit sint eiusmod quis eiusmod eiusmod commodo aliquip non est do. Aliquip irure officia adipisicing culpa eiusmod do proident exercitation aliquip consequat. Deserunt occaecat aliqua magna esse cupidatat. Commodo tempor laboris mollit aute est ullamco aliqua. Reprehenderit occaecat reprehenderit veniam veniam eu mollit culpa pariatur do enim et duis ad exercitation. Est voluptate enim duis culpa.</p>
+                    <button class="button is-primary">Lorem ipsum</button>
+                </div>
+            </div>
+        {{/content}}
+
+        {{#content "warning"}}
+        <p>Afin de simplifier son utilisation, il n'est plus nécéssaire d'avoir le composant Box dans une modal.</p>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

@@ -1,0 +1,123 @@
+---
+title: Onglets
+active: {
+    components: {
+        tabs: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+    {{#> components-title desc="Les onglets ou « tabs » permettent de créer une navigation au sein d'une page. Ils intègrent une barre séparatrice par défaut."}}{{/components-title }}
+
+    <section class="section">
+        {{#> snippet title="Par défaut" id="default-tab" desc="Les onglets s'affichent alignés à gauche"}}
+            {{#content "light"}}
+                <div class="tabs" role="tablist">
+                    <ul>
+                        <li role="presentation">
+                            <a role="tab" class="is-active" aria-selected="true">Bouygues en bref</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">Carte de la couverture</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">Notre 5G</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">La Fibre by Bouygues</a>
+                        </li>
+                    </ul>
+                </div>
+            {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        {{#> snippet title="Alignement" id="aligned-tabs" desc="Utilisez les facettes <code>.is-centered</code> ou <code>.is-right</code> pour changer l'alignement du groupe d'onglet"}}
+            {{#content "light"}}
+                <div class="tabs is-centered" role="tablist">
+                    <ul>
+                        <li role="presentation">
+                            <a role="tab" class="is-active" aria-selected="true">Bouygues en bref</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">Carte de la couverture</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">Notre 5G</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">La Fibre by Bouygues</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tabs is-right" role="tablist">
+                    <ul>
+                        <li role="presentation">
+                            <a role="tab" class="is-active" aria-selected="true">Bouygues en bref</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">Carte de la couverture</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">Notre 5G</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">La Fibre by Bouygues</a>
+                        </li>
+                    </ul>
+                </div>
+            {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        {{#> snippet title="Intégration fine" id="melting-tabs" desc="Utilisez la facette <code>.is-clipped</code> pour supprimer la barre séparatrice du groupe d'onglet avec le reste de la page."}}
+            {{#content "light"}}
+                <div class="tabs is-clipped" role="tablist">
+                    <ul>
+                        <li role="presentation">
+                            <a role="tab" class="is-active" aria-selected="true">Bouygues en bref</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">Carte de la couverture</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">Notre 5G</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="tab">La Fibre by Bouygues</a>
+                        </li>
+                    </ul>
+                </div>
+            {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        {{#> snippet title="Pleine largeur" id="fullwidth-tabs" desc="Utilisez la facette <code>.is-fullwidth</code> pour donner au groupe d'onglets la possibilité de s'étendre sur toute la largeur disponible. Chaque onglet voit sa taille s'adapter en fonction du contenu."}}
+        {{#content "light"}}
+        <div class="tabs is-fullwidth" role="tablist">
+            <ul>
+                <li role="presentation">
+                    <a role="tab" class="is-active" aria-selected="true">Pictures</a>
+                </li>
+                <li role="presentation">
+                    <a role="tab">Music</a>
+                </li>
+                <li role="presentation">
+                    <a role="tab">Videos</a>
+                </li>
+                <li role="presentation">
+                    <a role="tab">Documents</a>
+                </li>
+            </ul>
+        </div>
+        {{/content}}
+        {{/snippet}}
+    </section>
+{{/content}}
+{{/extend}}

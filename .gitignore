@@ -1,18 +1,87 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+env/*
+# /!\ Must keep env/public
+!env/public
 
-# Other files and folders
-.settings/
+**/.docker-data
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+packages/flex/config/jest/puppeteer/output.json
+packages/flex/config/jest/puppeteer/junit.xml
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+packages/flex/config/cypress/report.json
+packages/flex/config/cypress/junit.xml
+packages/flex/config/cypress/cypress/screenshots/*
+packages/flex/config/cypress/cypress/videos/*
+packages/flex/config/cypress/cypress/reports/*
+packages/flex/config/cypress/cypress/downloads/*
+
+node_modules
+
+npm-debug.log
+package-lock.json
+packages-cache
+
+.parcel-cache
+.rollup.cache
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/folders.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+!.vscode/extensions.json
+
+######### If you're using Zero-Installs:
+# .yarn/unplugged
+# .yarn/build-state.yml
+
+.yarn/*
+!.yarn/cache/
+!.yarn/releases/
+!.yarn/plugins/
+!.yarn/versions/
+!.yarn/sdks/
+
+
+######### If you're not using Zero-Installs:
+# .pnp.*
+# .yarn/*
+# !.yarn/patches
+# !.yarn/plugins
+# !.yarn/releases
+# !.yarn/sdks
+# !.yarn/versions
+
+# # .yarn/*
+# # !.yarn/cache
+# # !.yarn/patches
+# # !.yarn/plugins
+# # !.yarn/releases
+# # !.yarn/sdks
+# # !.yarn/versions
+
+*.tsbuildinfo
+
+tmp
+
+#amplify-do-not-edit-begin
+amplify/\#current-cloud-backend
+amplify/.config/local-*
+amplify/logs
+amplify/mock-data
+amplify/mock-api-resources
+amplify/backend/amplify-meta.json
+amplify/backend/.temp
+apps/poker/api/build/
+apps/poker/api/dist/
+node_modules/
+aws-exports.js
+awsconfiguration.json
+amplifyconfiguration.json
+amplifyconfiguration.dart
+amplify-build-config.json
+amplify-gradle-config.json
+amplifytools.xcconfig
+.secret-*
+**.sample
+#amplify-do-not-edit-end

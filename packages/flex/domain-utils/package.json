@@ -1,0 +1,33 @@
+{
+  "name": "@flexiness/domain-utils",
+  "version": "0.0.1",
+  "description": "Utilities module for micro frontend development",
+  "keywords": [],
+  "author": "Flexiness <hello@flexiness.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/LoadComponent.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "flex-bake": "echo $(pwd)",
+    "build": "tsc -p ./tsconfig.build.json",
+    "clean:lib": "yarn clean:source && yarn clean:built",
+    "clean:source": "rimraf '{src/**/*.d.ts,src/**/*.js,src/**/*.js.map}'",
+    "clean:built": "rimraf '{dist,*.tsbuildinfo}'",
+    "clean:tsc:buildinfo": "rimraf '{*.tsbuildinfo}'",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --color --quiet --cache",
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "patch:rollup:lib": "npm version patch"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.3",
+    "flexiness": "link:@types/flexiness",
+    "loglevel": "1.8.0",
+    "rimraf": "^3.0.2",
+    "ts-node": "10.9.1",
+    "typescript": "4.7.4"
+  }
+}

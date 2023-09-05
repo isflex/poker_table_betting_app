@@ -1,0 +1,535 @@
+{{#extend "templates/boutique-layout"}}
+{{#content "page"}}
+
+<main class="main-content is-fullwidth">
+    <section class="section is-small hero" style="background: url(https://picsum.photos/id/114/1900/600/?blur=1) no-repeat;">
+        <div class="container">
+            <div class="hero-body">
+                <a class="hero-back has-text-white" href="#">Retour</a>
+                <div class="container">
+                    <h1 class="title has-text-white">Forfait sensation</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-10-desktop is-offset-1-desktop">
+                    <h2 class="title is-3 has-text-centered"> Choisir votre forfait mobile</h2>
+                    <div class="columns is-centered">
+                        <div class="column is-8-tablet">
+                            <div class="box">
+                                <div class="box-content has-text-centered">
+                                    <h5 class="title is-5">Souhaitez-vous conserver votre numéro ?</h5>
+                                    <p class="is-marginless">
+                                        Je conserve mon numéro et bénéficie de
+                                        <span class="has-text-primary has-text-weight-semibold"> -10€/mois </span>
+                                        de remise pendant 12 mois
+                                    </p>
+
+                                    <div class="buttons">
+                                        <a class="button is-outlined is-primary is-check-button">
+                                            <div class="field">
+                                                <div class="control">
+                                                    <input class="input is-hidden" type="checkbox" name="choose1" id="choose1">
+                                                    <label for="choose1">
+                                                        <span class="icon is-small">
+                                                            <i class="flexi-check"></i>
+                                                        </span>
+                                                        <span>Oui</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="button is-outlined is-grey is-check-button">
+                                            <div class="field">
+                                                <div class="control">
+                                                    <input class="input is-hidden" type="checkbox" name="choose2" id="choose2">
+                                                    <label for="choose2">
+                                                        <span class="icon is-small">
+                                                            <i class="flexi-check"></i>
+                                                        </span>
+                                                        <span>Non</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="has-text-right">
+                                        <a href="" class="has-text-weight-semibold has-text-primary link">En savoir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-table">
+                        <div class="pricing-plan">
+                            <div class="pricing-plan-product has-hat">
+                                <div class="sticker is-hat is-info">Test</div>
+                                <div class="plan-header has-background-white">
+                                    <p class="title">50Mo</p>
+                                    <p class="details">Engagement 24 mois</p>
+                                </div>
+
+                                <div class="plan-items has-background-white">
+                                    <div class="plan-price">
+                                        <div class="price is-main-price">
+                                            <p class="main">24</p>
+                                            <div class="price-details">
+                                                <span class="centimes">€99<sup>(3)</sup></span>
+                                                <span class="periode">/mois</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-item is-3">
+                                        <p class="sticker is-small is-success">Prix déjà client</p>
+                                        <div class="price is-6">
+                                            <p class="main">24</p>
+                                            <div class="price-details">
+                                            <span class="centimes">€99<sup>(3)</sup></span>
+                                            <span class="periode">/mois</span>
+                                            </div>
+                                        </div>
+                                        <p>12 mois, puis 1€</p>
+                                    </div>
+
+                                    <div class="plan-item">Forfait exclusivement bloqué</div>
+                                    <div class="plan-call-to-action">
+                                        <button class="button is-primary is-fullwidth">Ajouter au panier</button>
+                                    </div>
+                                </div>
+
+                                <div class="plan-items">
+                                    <div class="plan-item is-2">
+                                        <h6 class="plan-item-title">Appels / SMS / MMS</h6>
+                                        <p class="plan-item-details">2h d'appel, SMS / MMS illimités</p>
+                                    </div>
+                                    <div class="plan-item is-2">
+                                        <p class="sticker is-small is-info">Options</p>
+                                        <h6 class="plan-item-title">Option</h6>
+                                        <p class="plan-item-details">Option</p>
+                                    </div>
+                                </div>
+
+                                <div class="plan-footer">
+                                    <a class="link is-primary">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-plan">
+                            {{!-- <div class="pricing-plan-extra">
+                                <div class="card is-horizontal">
+                                    <div class="card-header has-background-grey-lighter"></div>
+                                    <div class="card-content">
+                                        <div class="content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
+                            <div class="pricing-plan-product has-hat">
+                                <div class="plan-header has-background-white">
+                                    <p class="title">50Mo</p>
+                                    <p class="details">Engagement 24 mois</p>
+                                </div>
+
+                                <div class="plan-items has-background-white">
+                                    <div class="plan-price">
+                                        <div class="price is-main-price">
+                                            <p class="main">24</p>
+                                            <div class="price-details">
+                                                <span class="centimes">€99<sup>(3)</sup></span>
+                                                <span class="periode">/mois</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-item is-3">
+                                        <p class="sticker is-small is-success">Prix déjà client</p>
+                                        <div class="price is-6">
+                                            <p class="main">24</p>
+                                            <div class="price-details">
+                                            <span class="centimes">€99<sup>(3)</sup></span>
+                                            <span class="periode">/mois</span>
+                                            </div>
+                                        </div>
+                                        <p>12 mois, puis 1€</p>
+                                    </div>
+
+                                    <div class="plan-item">Forfait exclusivement bloqué</div>
+                                    <div class="plan-call-to-action">
+                                        <button class="button is-primary is-fullwidth">Ajouter au panier</button>
+                                    </div>
+                                </div>
+
+                                <div class="plan-items">
+                                    <div class="plan-item is-2">
+                                        <h6 class="plan-item-title">Appels / SMS / MMS</h6>
+                                        <p class="plan-item-details">2h d'appel, SMS / MMS illimités</p>
+                                    </div>
+                                    <div class="plan-item is-2">
+                                        <p class="sticker is-small is-info">Options</p>
+                                        <h6 class="plan-item-title">Option</h6>
+                                        <p class="plan-item-details">Option</p>
+                                    </div>
+                                </div>
+
+                                <div class="plan-footer">
+                                    <a class="link is-primary">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-plan">
+                            <div class="pricing-plan-product has-hat">
+                                <div class="sticker is-hat is-info">Test</div>
+                                <div class="plan-header has-background-white">
+                                    <p class="title">50Mo</p>
+                                    <p class="details">Engagement 24 mois</p>
+                                </div>
+
+                                <div class="plan-items has-background-white">
+                                    <div class="plan-price">
+                                        <div class="price is-main-price">
+                                            <p class="main">24</p>
+                                            <div class="price-details">
+                                                <span class="centimes">€99<sup>(3)</sup></span>
+                                                <span class="periode">/mois</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-item is-3">
+                                        <p class="sticker is-small is-success">Prix déjà client</p>
+                                        <div class="price is-6">
+                                            <p class="main">24</p>
+                                            <div class="price-details">
+                                            <span class="centimes">€99<sup>(3)</sup></span>
+                                            <span class="periode">/mois</span>
+                                            </div>
+                                        </div>
+                                        <p>12 mois, puis 1€</p>
+                                    </div>
+
+                                    <div class="plan-item">Forfait exclusivement bloqué</div>
+                                    <div class="plan-call-to-action">
+                                        <button class="button is-primary is-fullwidth">Ajouter au panier</button>
+                                    </div>
+                                </div>
+
+                                <div class="plan-items">
+                                    <div class="plan-item is-2">
+                                        <h6 class="plan-item-title">Appels / SMS / MMS</h6>
+                                        <p class="plan-item-details">2h d'appel, SMS / MMS illimités</p>
+                                    </div>
+                                    <div class="plan-item is-2">
+                                        <p class="sticker is-small is-info">Options</p>
+                                        <h6 class="plan-item-title">Option</h6>
+                                        <p class="plan-item-details">Option</p>
+                                    </div>
+                                </div>
+
+                                <div class="plan-footer">
+                                    <a class="link is-primary">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-plan">
+                            <div class="pricing-plan-product has-hat">
+                                <div class="plan-header has-background-white">
+                                    <p class="title">50Mo</p>
+                                    <p class="details">Engagement 24 mois</p>
+                                </div>
+
+                                <div class="plan-items has-background-white">
+                                    <div class="plan-price">
+                                        <div class="price is-main-price">
+                                            <p class="main">24</p>
+                                            <div class="price-details">
+                                                <span class="centimes">€99<sup>(3)</sup></span>
+                                                <span class="periode">/mois</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-item is-3">
+                                        <p class="sticker is-small is-success">Prix déjà client</p>
+                                        <div class="price is-6">
+                                            <p class="main">24</p>
+                                            <div class="price-details">
+                                            <span class="centimes">€99<sup>(3)</sup></span>
+                                            <span class="periode">/mois</span>
+                                            </div>
+                                        </div>
+                                        <p>12 mois, puis 1€</p>
+                                    </div>
+
+                                    <div class="plan-item">Forfait exclusivement bloqué</div>
+                                    <div class="plan-call-to-action">
+                                        <button class="button is-primary is-fullwidth">Ajouter au panier</button>
+                                    </div>
+                                </div>
+
+                                <div class="plan-items">
+                                    <div class="plan-item is-2">
+                                        <h6 class="plan-item-title">Appels / SMS / MMS</h6>
+                                        <p class="plan-item-details">2h d'appel, SMS / MMS illimités</p>
+                                    </div>
+                                    <div class="plan-item is-2">
+                                        <p class="sticker is-small is-info">Options</p>
+                                        <h6 class="plan-item-title">Option</h6>
+                                        <p class="plan-item-details">Option</p>
+                                    </div>
+                                </div>
+
+                                <div class="plan-footer">
+                                    <a class="link is-primary">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-10-desktop is-offset-1-desktop">
+                    <h2 class="title is-3 has-text-centered">Nous sommes disponibles quand vous l‘êtes.</h2>
+
+                    <div class="columns">
+                        <div class="column">
+                            <div class="card has-text-left is-fullheight">
+                                <div class="card-image">
+                                    <figure class="image">
+                                        <img src="https://picsum.photos/id/1/460/200" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="title is-5">Service client jusqu'à 22h<br class="is-hidden-tablet-only">&nbsp;</h3>
+                                    <p class="has-text-grey">Notre service client joue les prolongations et reste ouvert jusqu’à 22h, du lundi au samedi.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="card has-text-left is-fullheight">
+                                <div class="card-image">
+                                    <figure class="image">
+                                        <img src="https://picsum.photos/id/237/460/200" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="title is-5">Rappel à l'heure de votre choix</h3>
+                                    <p class="has-text-grey">Fini les musiques d’attente, notre service client vous rappelle dans les 15 minutes ou à l’heure de votre choix</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="card has-text-left is-fullheight">
+                                <div class="card-image">
+                                    <figure class="image">
+                                        <img src="https://picsum.photos/id/1011/460/200" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="title is-5">Prise de rendez-vous en boutique</h3>
+                                    <p class="has-text-grey">C’est où vous voulez, quand vous voulez. Prenez rendez-vous en boutique et passez en priorité</p>
+                                    <a class="link" href="#">Prendre un rendez-vous</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section is-medium hero" style="background: url(https://picsum.photos/id/1031/1900/600/?blur=1) no-repeat;">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-5-tablet is-offset-1-tablet is-4-fullhd has-text-left">
+                        <h2 class="title is-size-4 is-size-3-desktop has-text-white">Découvrez les forfaits Sensation et bénéficiez d'avantages smartphone</h2>
+                        <button class="button">Voir les offres</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section is-large">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-5-desktop">
+                    <h2 class="title is-size-4 is-size-3-desktop has-text-centered has-text-left-tablet">
+					Toutes vos questions sur<br class="is-hidden-touch"> les forfaits Sensation&nbsp;?
+				    </h2>
+                    <p class="is-hidden-mobile">Retrouvez les réponses des experts<br> Bouygues Telecom</p>
+                </div>
+
+                <div class="column is-6-desktop">
+                    <div class="accordions">
+                        <article class="accordion">
+                            <div class="accordion-header toggle">
+                                <h3>Comment conserver mon numéro&nbsp;?</h3>
+                                <button class="toggle" aria-label="toggle"></button>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-content has-background-white content">
+                                    <p>Pour demander la portabilité de votre numéro de mobile, c’est simple :</p>
+                                    <p>1. <b>Composez gratuitement le 3179 afin d’obtenir votre numéro RIO (Relevé d’Identité Opérateur)</b> à partir de la ligne dont vous souhaitez conserver le numéro. Le RIO est un identifiant unique de 12 caractères attribué à chaque ligne téléphonique. Il permet de sécuriser votre numéro fixe ou mobile. Le RIO est nécessaire lors de la demande de portabilité de numéro entre opérateurs. Il est valable de la création de la ligne jusqu’à sa résiliation.</p>
+                                    <p>2. <b>Communiquez-nous</b> le numéro de téléphone que vous souhaitez conserver ainsi que votre RIO (pour les commandes en ligne, sélectionnez la case "Je souhaite conserver mon numéro de mobile actuel" et indiquez votre numéro RIO).</p>
+                                    <p>3. <b>Nous nous chargeons ensuite du transfert de votre ligne</b>, de sa mise en service et de la résiliation de votre ancien contrat.</p>
+                                    <p>NB: Seul le titulaire du contrat peut demander la portabilité du numéro. La <b>portabilité de votre numéro de mobile</b> s'effectue automatiquement au bout de 3 jours ouvrables minimum après l’activation de votre nouvelle carte SIM Bouygues Telecom (hors dimanches et jours fériés). Vous êtes prévenu par SMS du transfert de votre numéro.</p>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion">
+                            <div class="accordion-header toggle">
+                                <h3>Comment bénéficier de la remise de conservation du numéro&nbsp;?</h3>
+                                <button class="toggle" aria-label="toggle"></button>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-content has-background-white content">
+                                    <p><b>Les conditions pour profiter de cette remise.</b></p>
+                                    <p>Pour bénéficier d’une remise dans le cadre d’une conservation de votre numéro de mobile, vous devez :<br>
+                                        1. Avoir souscrit à un forfait Sensation éligible: Forfait 50Go et +.<br>
+                                        2. Conserver votre numéro.
+                                    </p>
+                                    <p><b>Comment bénéficier de ma remise ?</b></p>
+                                    <p>Vous souscrivez sur la boutique en ligne ?<br>Bonne nouvelle, vous n’avez rien à faire ! Votre remise s’appliquera automatiquement dès votre 1ère facture.</p>
+                                    <p>Vous souscrivez en boutique ou par téléphone ?<br>1. 3 jours ouvrés après la conservation de votre numéro de mobile, rendez-vous sur votre Espace Client et sélectionnez la ligne mobile concernée.</p>
+                                    <p>2. Dans la rubrique "Mon forfait et mes options"" &gt; Détail du tarif &gt; Bénéficiez d'offres de remboursement &gt; Cliquez sur « Consulter les offres» et suivez les instructions.</p>
+                                    <p>3. Le remboursement apparaîtra directement sur votre prochaine facture Bouygues Telecom. </p>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion">
+                            <div class="accordion-header toggle">
+                                <h3>Quels sont les avantages clients Bbox et comment en bénéficier&nbsp;?</h3>
+                                <button class="toggle" aria-label="toggle"></button>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-content has-background-white content">
+                                    <p>En tant que client Bbox, nous vous réservons des offres exclusives sur nos forfaits mobile. Pour en profiter, il suffit d’être client Bbox ou de souscrire une offre Bbox éligible.</p>
+                                    <ul>
+                                        <li>
+                                            <p><b>Déjà client Bbox ?</b><br>
+                                                Identifiez-vous et découvrez les prix qui vous sont réservés. Si vous détenez une offre Bbox Miami, Miami+, Fit, Must, Ultym, Sensation FTTH, Zone non dégroupée et 4G box, vous pourrez bénéficier jusqu’à 10€ de remise exclusive chaque mois sur votre forfait Sensation 50Go et +.<br>
+                                                - Sans condition de durée tant que vous êtes client Bbox<br>
+                                                - Directement appliquée sur votre forfait tous les mois !
+                                            </p>
+                                            <br>
+                                        </li>
+                                        <li>
+                                            <b>Pas encore client Bbox ? </b><br>Souscrivez sans plus attendre pour profiter des avantages clients Bbox.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion">
+                            <div class="accordion-header toggle">
+                                <h3>Comment activer l'option de blocage&nbsp;?</h3>
+                                <button class="toggle" aria-label="toggle"></button>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="accordion-content has-background-white content">
+                                    <p>L’option de blocage, disponible sur les forfaits Sensation 50Mo et 5Go, vous permet de bloquer gratuitement votre forfait. C’est la garantie d’une facture identique chaque mois, sans dépassement de forfait possible ! Pour activer l’<b>option de blocage</b> en quelques clics :</p>
+                                    <p>Si vous avez sélectionné l’option de blocage dès la souscription de votre forfait, vous n’avez rien faire c’est automatique !</p>
+                                    <p>Si vous souhaitez activer l’option de blocage après la souscription de votre forfait :</p>
+                                    <p>1. Rendez-vous sur votre Espace Client et sélectionnez la ligne concernée.</p>
+                                    <p>2. Allez dans la rubrique « Voir toutes les options disponibles ».</p>
+                                    <p>3. Choisissez l’option « <b>Blocage</b> » et activez-la en cliquant sur « <b>Souscrire</b> ».</p>
+                                    <p><b>L’activation de l’option est à effet immédiat</b>. Vous recevez un SMS de confirmation dès que l’option est activée.</p>
+                                    <p><b>NB</b> : L’option de blocage est incompatible avec toute autre option (sauf options Internet 100Mo, 500Mo et 1Go en France métropolitaine, Contrôle parental premium et Pack sécurité Norton) : elle entraîne la résiliation des autres options incompatibles éventuellement détenues comme par exemple le double appel, le renvoi d'appel, Pass Internet voyage...</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section is-large">
+        <div class="container has-text-centered">
+            <h2 class="title is-3 has-text-centered">Rejoignez nous en toute sérénité</h2>
+            <div class="columns is-mobile is-multiline">
+                <div class="column is-full-mobile">
+                    <div class="icon is-circled has-background-white is-huge">
+                        <span class="flexi-credit-card-lock has-text-info"></span>
+                    </div>
+                    <p class="title is-5">Paiement sécurisé</p>
+                    <p>Site et paiement sécurisé SSL<br> Visa, CB, Mastercard</p>
+                </div>
+
+                <div class="column is-half-mobile">
+                    <div class="icon is-circled has-background-white is-huge is-info">
+                        <span class="flexi-stopwatch-click-collect has-text-info"></span>
+                    </div>
+                    <p class="title is-5">Click&amp;Collect</p>
+                    <p>Retrait de votre mobile en&nbsp;boutique<br class="is-hidden-touch"> gratuit dès&nbsp;2&nbsp;heures</p>
+                </div>
+
+                <div class="column is-half-mobile">
+                    <div class="icon is-circled has-background-white is-huge is-info">
+                        <span class="flexi-user-headset has-text-info"></span>
+                    </div>
+                    <p class="title is-5">Service client</p>
+                    <p>Il y aura toujours un conseiller <br class="is-hidden-touch">à&nbsp;votre&nbsp;écoute</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section is-small has-background-white">
+        <div class="container">
+            <div class="columns">
+                <div class="accordions">
+                    <article class="accordion">
+                        <div class="accordion-header is-grouped is-justified-center-mobile is-justified-left-tablet toggle">
+                            <div class="columns is-fullwidth">
+                                <div class="column">
+                                    <nav class="breadcrumb" aria-label="breadcrumbs">
+                                        <ul>
+                                            <li><a href="#">Accueil</a></li>
+                                            <li><a href="#">Forfaits avec engagement</a></li>
+                                            <li><a href="#" class="is-active">Sensation</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                                <div class="column is-vcentered is-flex is-narrow">
+                                    <h5>Mentions légales</h5>
+                                    <button class="toggle" aria-label="toggle"></button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a class="has-text-primary">felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</main>
+
+{{/content}}
+{{/extend}}

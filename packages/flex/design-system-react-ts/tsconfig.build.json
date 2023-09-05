@@ -1,0 +1,47 @@
+{
+  "extends": "../../../tsconfig.build.settings.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "allowJs": true,
+    "paths": {
+      "flexiness": ["../types"],
+      "flex-gateway-ssr/*": ["../../gateway/nextjs-telenko/dist/*"],
+      "flex-design-system-react-ts/*": ["src/*"],
+      "flex-design-system-framework/*": ["../design-system-framework/src/modules3/default/*"],
+      "flex-design-system-framework/all.module.scss": ["../design-system-framework/src/modules3/default/all.module.scss"],
+    },
+    "types": ["jest", "node"],
+    "typeRoots": [
+      "node_modules/@types",
+      "../../../node_modules/@types",
+      "./types"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "src/assets/fonts/icons/*.json",
+    "types"
+  ],
+  "exclude": [
+    "node_modules",
+    "build/**/*",
+    "dist/**/*",
+    // "src/mui/**/*",
+    "src/styled-module-components/**/*.native.tsx",
+    // "src/unstyled-module-components/**/*",
+    // "src/views/App.tsx",
+    "webpack*config.js",
+    ".eslintrc.js",
+    // "../../gateway/nextjs-telenko/src/stores/UIStore.ts",
+    // "src/styled-module-components/slider/setup/TrilogySlider.js",
+  ],
+  "references": [
+    // { "path": "../domain-lib-mobx-react-router/tsconfig.build.json" },
+    // { "path": "../design-system-framework/tsconfig.build.json" },
+    // { "path": "../../gateway/nextjs-telenko/tsconfig.build.json" }
+  ]
+}
+

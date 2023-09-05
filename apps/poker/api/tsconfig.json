@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "target": "es2018",
+    "preserveConstEnums": true,
+    "forceConsistentCasingInFileNames": false,
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "flexiness": ["../../../packages/flex/types"],
+      "pointingpoker-api/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "./types/**/*.d.ts"
+  ],
+  "exclude": [
+    "dist/**/*",
+    "build/**/*",
+    ".eslintrc.js"
+  ]
+}

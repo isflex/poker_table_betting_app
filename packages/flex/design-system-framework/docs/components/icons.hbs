@@ -1,0 +1,151 @@
+---
+title: Icônes
+active: {
+    components: {
+        icons: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+    {{#> components-title desc="Une icône est composée d'un élément graphique (balise <i> avec une classe CSS pour le choix de l'icone) et d'espace vide autour de celui-ci (balise <span> agissant comme un container, avec différentes facettes pour le style ou la taille)."}}{{/components-title }}
+
+    <section class="section">
+        {{#> snippet id="icons-sizes" title="Tailles" desc="<ul><li>&bull; 4 tailles sont disponibles pour vos icônes : petite (<code>is-small</code>), moyenne (<code>is-medium</code>), grande (<code>is-large</code>), très grande (<code>is-huge</code>)</li><li>&bull; Ces facettes sont définies sur le container de l'icône (balise <code>&lt;span&gt;</code>)</li><li>&bull; Pour plus d'informations sur les icônes, <a href='/style/icons.hbs'>cliquez ici</a></li></ul>"}}
+            {{#content "light"}}
+                <span class="icon is-small">
+                    <i class="flexi-sim-card"></i>
+                </span>
+                <span class="icon is-medium">
+                    <i class="flexi-sim-card"></i>
+                </span>
+                <span class="icon is-large">
+                    <i class="flexi-sim-card"></i>
+                </span>
+                <span class="icon is-huge">
+                    <i class="flexi-sim-card"></i>
+                </span>
+            {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        <div class="container" id="icons-ui">
+            <h2 class="title is-size-4">Icônes d'interface utilisateur</h2>
+            <p>Chaque classe CSS pour votre balise <code>&lt;i&gt;</code> se trouve ici. Cliquez sur une icône pour copier automatiquement le code HTML nécessaire à son utilisation.</p>
+            {{> icons/ui}}
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" id="icons-all">
+            <h2 class="title is-size-4">Autres icônes</h2>
+            <p>Chaque classe CSS pour votre balise <code>&lt;i&gt;</code> se trouve ici. Cliquez sur une icône pour copier automatiquement le code HTML nécessaire à son utilisation.</p>
+            {{> icons/all}}
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" id="icons-picto">
+            <h2 class="title is-size-4">Pictos</h2>
+            <p>Chaque classe CSS pour votre balise <code>&lt;i&gt;</code> se trouve ici. Cliquez sur une icône pour copier automatiquement le code HTML nécessaire à son utilisation.</p>
+            {{> icons/picto}}
+        </div>
+    </section>
+
+    <section class="section">
+        {{#> snippet id="icons-circled" title="Container encerclé" desc="La classe <code>is-circled</code> vous permet de rendre le container d'une icône arrondie. Transparent par défaut, vous pouvez définir le fond du container avec une facette du type <code>has-background-xxx</code> (et la couleur de l'icône avec <code>has-text-xxx-invert</code>)"}}
+        {{#content "light"}}
+        <span class="icon is-circled is-small has-background-tertiary has-text-tertiary-invert">
+            <i class="flexi-home"></i>
+        </span>
+        <span class="icon is-circled is-medium has-background-tertiary has-text-tertiary-invert">
+            <i class="flexi-home"></i>
+        </span>
+        <span class="icon is-circled is-large has-background-tertiary has-text-tertiary-invert">
+            <i class="flexi-home"></i>
+        </span>
+        <span class="icon is-circled is-huge has-background-tertiary has-text-tertiary-invert">
+            <i class="flexi-home"></i>
+        </span>
+        {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        {{#> snippet id="icons-stretched" title="Container penché" desc="La classe <code>is-stretched</code> vous permet de remplir et de pencher le container de votre icône. A l'inverse de <code>is-circled</code>, la couleur de fond du container est déjà définie par Flexiness Framework."}}
+        {{#content "light"}}
+            <span class="icon is-stretched is-small">
+                <i class="flexi-4g-plus"></i>
+            </span>&nbsp;&nbsp;&nbsp;
+            <span class="icon is-stretched is-medium">
+                <i class="flexi-4g-plus"></i>
+            </span>&nbsp;&nbsp;&nbsp;
+            <span class="icon is-stretched is-large">
+                <i class="flexi-4g-plus"></i>
+            </span>&nbsp;&nbsp;&nbsp;
+            <span class="icon is-stretched is-huge">
+                <i class="flexi-4g-plus"></i>
+            </span>
+        {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        {{#> snippet id="icon-and-text" title="Icône avec texte" desc="<ul><li>&bull; Par défaut, l'icône sera alignée verticalement avec le texte.</li><li>&bull; Si vous avez plusieurs lignes de texte, il est alors préférable d'utiliser <code>.is-alternate</code> pour remonter l'icône face à la première ligne de texte.</li><li>&bull; Pour un affichage vertical, utilisez <code>.is-stacked</code></li><li>&bull; Pour inverser la position du texte et de l'icône, changez simplement l'ordre de votre HTML</li></ul>"}}
+            {{#content "light"}}
+
+                <span class="icon-and-text">
+                    <span class="icon is-small is-success">
+                        <i class="flexi-ui-check-circle-s"></i>
+                    </span>
+                    <span>Lorem Ipsum has been</span>
+                </span>
+
+                <hr class="is-divider">
+
+                <span class="icon-and-text is-alternate">
+                    <span class="icon is-small is-success">
+                        <i class="flexi-ui-check-circle-s"></i>
+                    </span>
+                    <span>Eu ut ad labore sint elit enim et magna culpa deserunt ea adipisicing. Sint esse labore ullamco ullamco qui elit duis amet sint officia non. Lorem incididunt ex exercitation commodo. Incididunt exercitation dolor aute eu dolor irure ullamco officia officia cillum nulla nostrud nulla. Dolore voluptate fugiat laboris ex excepteur fugiat nulla. Incididunt veniam incididunt adipisicing Lorem laborum. Pariatur et qui nulla qui adipisicing quis esse anim excepteur.</span>
+                </span>
+
+                <hr class="is-divider">
+
+                <span class="icon-and-text is-stacked">
+                    <span class="icon is-small is-success">
+                        <i class="flexi-ui-check-circle-s"></i>
+                    </span>
+                    <span>Lorem Ipsum</span>
+                </span>
+
+            {{/content}}
+        {{/snippet}}
+    </section>
+
+    <section class="section">
+        {{#> snippet id="status-icon" title="Statut" desc="<ul><li>&bull; Ajoutez une seconde icône dite « de statut » à une icône existante, en ajoutant la classe <code>has-status</code></li><li>&bull; N'oubliez pas de définir le parent et l'enfant avec les classes CSS correspondantes(<code>is-ancestor</code> pour le parent, <code>is-descendant</code> pour l'enfant)</li><li>&bull; Positionnez cette icône de statut avec <code>is-top</code> ou <code>is-bottom</code> selon votre besoin</li></ul>"}}
+            {{#content "light"}}
+                <span class="icon is-medium has-status is-ancestor">
+                    <i class="flexi-file-euro">
+                        <span class="icon is-circled is-descendant is-top">
+                            <i class="flexi-ui-check-circle-s"></i>
+                        </span>
+                    </i>
+                </span>
+                <hr class="is-divider" />
+                <span class="icon is-medium has-status is-ancestor">
+                    <i class="flexi-file-euro">
+                        <span class="icon is-circled is-descendant is-bottom">
+                            <i class="flexi-ui-times-circle-s"></i>
+                        </span>
+                    </i>
+                </span>
+            {{/content}}
+        {{/snippet}}
+    </section>
+
+{{/content}}
+{{/extend}}

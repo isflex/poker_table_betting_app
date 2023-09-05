@@ -1,0 +1,156 @@
+---
+title: Boite
+active: {
+    components: {
+        box: true
+    }
+}
+root: ../
+---
+{{#extend "menu-page"}}
+{{#content "content"}}
+{{#> components-title  desc="Les boites permettent de mettre en relief des éléments sur une page"}}
+{{/components-title }}
+
+<section class="section">
+    {{#> snippet id="simple-box" do="true" title="Boite simple" desc=""}}
+        {{#content "light"}}
+            <div class="box">
+                <div class="box-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                </div>
+            </div>
+        {{/content}}
+
+        {{#content "do"}}
+            <p>Bien que cela ne soit pas impératif, il est recommandé d'utiliser <strong class="has-text-primary">.box-content</strong> pour ajouter du <em>padding</em> dans la boite.</p>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="clickable-box" do="true" title="Boite cliquable" desc=""}}
+        {{#content "light"}}
+            <a class="box" href="#">
+                <div class="box-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                </div>
+            </a>
+        {{/content}}
+
+        {{#content "do"}}
+            <p>Créez simplement un lien  <strong class="has-text-primary"><code>&lt;a&gt;</code></strong> en lui donnant la classe <strong class="has-text-primary">.box</strong></p>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="flat-box" do="true" title="Boite flat" desc=""}}
+        {{#content "light"}}
+            <div class="box is-flat">
+                <div class="box-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                </div>
+            </div>
+            <div class="box is-flat is-flat-primary">
+                <div class="box-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                </div>
+            </div>
+            <div class="box is-flat is-flat-secondary">
+                <div class="box-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                </div>
+            </div>
+        {{/content}}
+
+        {{#content "do"}}
+            <ul class="list">
+                <li>La classe <strong class="has-text-primary">.is-flat</strong> permet de supprimer l'effet 3D de la carte, l'ombre disparait au profit d'une bordure simple.</li>
+                <li>La couleur de cette bordure est ensuite modifiable par une facette de type <strong>.is-flat-xxx</strong> où <b>xxx</b> représente les couleurs de la palette.</li>
+            </ul>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="box-header" do="true" title="Boite avec un header" desc=""}}
+        {{#content "light"}}
+            <div class="box">
+                <header class="box-header">
+                    <p>Box header</p>
+                </header>
+                <div class="box-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                </div>
+            </div>
+        {{/content}}
+
+        {{#content "do"}}
+            <ul class="list">
+                <li>Une classe <strong class="has-text-primary">.box-header</strong> placée avant l'élément <strong class="has-text-primary">.box-content</strong> suffit à ajouter un en-tête.</li>
+                <li>Par défaut la couleur de <strong class="has-text-primary">.box-header</strong> est de couleur <strong>tertiary</strong>.</li>
+            </ul>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="box-image" do="true" title="Boite avec une image de fond" desc=""}}
+        {{#content "light"}}
+            <div class="box is-fullheight has-background is-inverted" style="background-image:url(../static/bg-sensation.png);background-size:cover;background-position:50%;">
+                <div class="box-content">
+                    <h3 class="title is-2">Forfait Sensation</h3>
+                    <p class="text is-2">Engagement 24 mois.</p>
+                </div>
+            </div>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="box-footer" do="true" title="Boite avec un footer" desc=""}}
+        {{#content "light"}}
+            <div class="box">
+                <div class="box-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                </div>
+                <footer class="box-footer">
+                    <a href="#" class="link">Lien</a>
+                </footer>
+            </div>
+        {{/content}}
+
+        {{#content "do"}}
+            <ul class="list">
+                <li>Suivant le même principe que pour l'en-tête, un footer s'ajoute à une box après l'élément <strong class="has-text-primary">.box-content</strong>, via l'ajout d'un élément possédant la classe <strong class="has-text-primary">.box-footer</strong>.</li>
+                <li>Aucune couleur n'est prévue pour le footer d'une box.</li>
+            </ul>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+<section class="section">
+    {{#> snippet id="box-unboxed" do="true" title="Mettre un élément en pleine largeur" desc=""}}
+        {{#content "light"}}
+            <div class="box">
+                <div class="box-content">
+                    <div class="has-background-secondary">
+                        <p>Élément positionné normalement</p>
+                    </div>
+                    <hr class="is-divider">
+                    <div class="has-background-secondary is-unboxed">
+                        <p>Élément dont on annule les marges via "is-unboxed"</p>
+                    </div>
+                </div>
+            </div>
+        {{/content}}
+
+        {{#content "do"}}
+            <p>La classe <strong class="has-text-primary">.is-unboxed</strong> permet d'annuler les marges d'un composant à l'intérieur d'une boite</p>
+        {{/content}}
+    {{/snippet}}
+</section>
+
+{{/content}}
+{{/extend}}

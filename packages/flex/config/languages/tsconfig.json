@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+
+    "module": "esnext",
+    "outDir": "dist",
+    "target": "esnext",
+
+    "declaration": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "listEmittedFiles": false,
+    "listFiles": false,
+    "pretty": true,
+    "traceResolution": false,
+    "types": ["node", "jest"],
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "paths": {
+      "flexiness": ["../../types"],
+      "flex-languages/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+     "dist/**/*" 
+  ],
+  "references": [
+  ]
+}

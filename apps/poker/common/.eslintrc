@@ -1,0 +1,13 @@
+{
+  "ignorePatterns": [
+    "Dockerfile",
+    "README.md",
+    "*.yaml",
+    "node_modules/",
+    "build/",
+    "dist/",
+    "public/",
+    "src/index.ts",
+    "src/bootstrap.tsx"
+  ]
+}

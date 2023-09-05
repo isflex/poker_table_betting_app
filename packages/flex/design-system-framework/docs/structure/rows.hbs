@@ -1,0 +1,110 @@
+---
+title: Les rangées
+menu: true
+active: {
+    structure: {
+        rows: true
+    }
+}
+root: ../
+---
+
+{{#extend "menu-page"}}
+    {{#content "extra-css"}}
+        <link href="get-started.scss" rel="stylesheet">
+    {{/content}}
+    {{#content "extra-js"}}
+        <script src="get-started.js"></script>
+    {{/content}}
+
+    {{#content "content"}}
+        <section class="hero is-instit is-small">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">{{ title }}</h1>
+                    <h2 class="subtitle">Gérér l'alignement horizontal entre les éléments de deux colonnes</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Comportement de base</h2>
+                <p>Le composant <code>row</code> fonctionne comme les colonnes, mais il réparti ses enfants dans le sens vertical :</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns"&gt;
+                            &lt;div class="column"&gt;
+                            &lt;div class="rows"&gt;
+                            &lt;div class="row"&gt;&lt;/div&gt;
+                            &lt;div class="row"&gt;&lt;/div&gt;
+                            &lt;div class="row"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="column"&gt;
+                            &lt;div class="rows"&gt;
+                            &lt;div class="row"&gt;&lt;/div&gt;
+                            &lt;div class="row"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="column"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-1" type="checkbox" name="mode-wireframe-1" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-1">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Alignement horizontal</h2>
+                <p>Son utilisation avec la facette <code>is-narrow</code> permet d'aligner des éléments <b>identiques</b> horizontalement :</p>
+                <div class="horizontal-snippet sandbox-context columns">
+                    <div class="column is-6">
+                        <textarea class="code-editor">
+                            &lt;div class="columns"&gt;
+                            &lt;div class="column"&gt;
+                            &lt;div class="rows"&gt;
+                            &lt;div class="row"&gt;Case 1&lt;/div&gt;
+                            &lt;div class="row"&gt;Case 2&lt;/div&gt;
+                            &lt;div class="row is-narrow"&gt;
+                            &lt;div class="buttons is-centered"&gt;
+                            &lt;button class="button is-primary"&gt;Un boutton&lt;/button&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class="column"&gt;
+                            &lt;div class="rows"&gt;
+                            &lt;div class="row"&gt;Case 3&lt;/div&gt;
+                            &lt;div class="row is-narrow"&gt;
+                            &lt;div class="buttons is-centered"&gt;
+                            &lt;button class="button is-primary"&gt;Un boutton&lt;/button&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;/div&gt;
+                        </textarea>
+                    </div>
+                    <div class="column is-6 wireframe-switch-context">
+                        <div class="switch">
+                            <input id="mode-wireframe-2" type="checkbox" name="mode-wireframe-2" class="switch is-rounded is-info is-small" checked="checked">
+                            <label for="mode-wireframe-2">Mode wireframe</label>
+                        </div>
+                        <div class="code-preview has-wireframes">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/content}}
+{{/extend}}
