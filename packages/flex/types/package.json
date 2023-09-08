@@ -7,10 +7,12 @@
   "main": "",
   "types": "index",
   "dependencies": {
+    "@aws-amplify/api": "5.4.4",
     "@flex-gateway-ssr/nextjs-telenko": "link:@flex-gateway-ssr/nextjs-telenko",
     "@flexiness/domain-lib-mobx-react-router": "link:@flexiness/domain-lib-mobx-react-router",
     "@types/react": "18.2.6",
     "@types/react-router": "^5.1.18",
+    "amplify": "link:../../../api/dist",
     "history": "^5.3.0",
     "i18next": "^22.4.14",
     "immer": "^9.0.3",

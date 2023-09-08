@@ -21,6 +21,7 @@
     "paths": {
       "flex_design_system_react_ts_styled": ["../flex/design-system-react-ts/src/styled"],
       "pointingpoker-common": ["../../../apps/poker/common"],
+      "amplify/*": ["../../../api/dist/*"],
     },
   },
   "include": [

@@ -1,6 +1,6 @@
 import { decorate, observable } from 'mobx'
-// import { PokerBoard } from 'pointingpoker-common'
-const { PokerBoard, PokerTables, PokerTimer } = await import('pointingpoker-common/dist/index.js')
+const { PokerBoard, PokerTables, createTable, deleteTable, PokerTimer } = await import('pointingpoker-common/dist/index.js')
+import { onCreateIssue, CreateISSUEInput, onDeleteIssue, DeleteISSUEInput } from 'amplify/index.js'
 // import * as WebSocket from 'ws'
 import {
   Window,
@@ -22,7 +22,6 @@ export default class PokerClient {
   pokerClass: null | string = null
 
   board: any = new PokerBoard()
-  // board: any = new PokerTables().board
 
   serverBoard = this.board
 
@@ -32,8 +31,7 @@ export default class PokerClient {
 
   pendingActions: PokerAction[] = []
 
-  // tables: Table[] = []
-  tables: any = new PokerTables()
+  tables: any = new PokerTables([])
 
   serverTables = this.tables
 
@@ -72,19 +70,19 @@ export default class PokerClient {
 
       if (message.ack !== undefined) {
         // Remove all acknowledged actions
-        this.pendingActions = this.pendingActions.filter(it => it.seq > message.ack)
+        this.pendingActions = this.pendingActions.filter(it => (it.seq ?? 0) > message.ack)
 
       } else if (!this.clientId && message.clientId) { // initial message
           this.clientId = message.clientId
           this.updateBoardFromServer(message.snapshot)
-          this.updateTableFromServer(message.snapshotTables)
+          this.updateTableFromServer(message.initSnapshotTables)
       } else {
-        if (this.pokerClass === 'PokerBoard' || !this.pokerClass) {
+        if (message.source === 'PokerBoard') {
           this.updateBoardFromServer(message)
-        } else if (this.pokerClass === 'PokerTables') {
+        } else if (message.source === 'PokerTables') {
           this.updateTableFromServer(message)
-        } else if (this.pokerClass === 'PokerTimer') {
-          this.updateTableFromServer(message)
+        } else if (message.source === 'PokerTimer') {
+          this.updateTimerFromServer(message)
         }
       }
     })
@@ -100,7 +98,7 @@ export default class PokerClient {
   }
 
   /**
-	 * Sets the pokerClass to route processAction to the correct endpoint.
+	 * Sets the pokerClass to route processAction to correct class endpoint.
 	 */
   setPokerClass(newPokerClass: string) {
     this.pokerClass = newPokerClass
@@ -119,8 +117,7 @@ export default class PokerClient {
       id: this.clientId,
       seq: this.nextSeq++,
     }
-    this.pokerClass = action.source
-    this.pendingActions.push(action)
+    this.pokerClass = action.source || null
     if (this.pokerClass === 'PokerBoard') {
       this.board = this.board.processAction(action)
     } else if (this.pokerClass === 'PokerTables') {
@@ -128,10 +125,12 @@ export default class PokerClient {
     } else if (this.pokerClass === 'PokerTimer') {
       this.timers = this.timers.processAction(action)
     }
+    this.pendingActions.push(action)
     this.ws.send(JSON.stringify(action))
   }
 
   updateBoardFromServer(action: PokerAction) {
+    if (action.source !== 'PokerBoard') return
     this.serverBoard = this.serverBoard.processAction(action)
 
     // rebuild our local board with any pending actions since server's state
@@ -143,7 +142,21 @@ export default class PokerClient {
     this.board = board
   }
 
-  updateTableFromServer(action: PokerAction) {
+  updateTableFromServer = async (action: PokerAction) => {
+    if (action.source !== 'PokerTables') return
+    console.log('updateTableFromServer', action)
+    if (action.action === 'createTable') {
+      // await createTable(action.tableName, action.tableDesc)
+      await createTable(action.tableData.tableName, action.tableData.tableDesc)
+        .then((data) => {
+          if (data !== null) {
+            action = { ...action, tableData: { ...action.tableData, ...data }}
+          }
+        })
+    }
+    if (action.action === 'deleteTable' && action.tableData.id !== '') {
+      await deleteTable(action.tableData.id as string)
+    }
     this.serverTables = this.serverTables.processAction(action)
 
     // rebuild our local board with any pending actions since server's state
@@ -156,6 +169,7 @@ export default class PokerClient {
   }
 
   updateTimerFromServer(action: PokerAction) {
+    if (action.source !== 'PokerTimer') return
     this.serverTimers = this.serverTimers.processAction(action)
 
     // rebuild our local board with any pending actions since server's state

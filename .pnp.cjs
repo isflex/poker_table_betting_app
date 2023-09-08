@@ -11995,10 +11995,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/flex/types/",\
           "packageDependencies": [\
             ["@types/flexiness", "workspace:packages/flex/types"],\
+            ["@aws-amplify/api", "npm:5.4.4"],\
             ["@flex-gateway-ssr/nextjs-telenko", "link:@flex-gateway-ssr/nextjs-telenko::locator=%40types%2Fflexiness%40workspace%3Apackages%2Fflex%2Ftypes"],\
             ["@flexiness/domain-lib-mobx-react-router", "virtual:a559251697af3cd0b2e9f1d8d9066a7ca068cce8c7a7c0b035200c068af6c60e5ac9d7d7480110b1b1cff7404785ad792f2fabf6e2ce408a5cb603416f8d2b2b#workspace:packages/flex/domain-lib-mobx-react-router"],\
             ["@types/react", "npm:18.2.6"],\
             ["@types/react-router", "npm:5.1.20"],\
+            ["amplify", "link:./apps/poker/api/dist::locator=%40flexiness%2Fpoker_table_betting_app%40workspace%3A."],\
             ["history", "npm:5.3.0"],\
             ["i18next", "npm:22.5.1"],\
             ["immer", "npm:9.0.21"],\
@@ -28415,6 +28417,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["json-typescript", [\
+        ["npm:1.1.2", {\
+          "packageLocation": "./.yarn/cache/json-typescript-npm-1.1.2-e25aa6954b-fe14c730c5.zip/node_modules/json-typescript/",\
+          "packageDependencies": [\
+            ["json-typescript", "npm:1.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["json5", [\
         ["npm:1.0.2", {\
           "packageLocation": "./.yarn/cache/json5-npm-1.0.2-9607f93e30-866458a8c5.zip/node_modules/json5/",\
@@ -32632,6 +32643,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["tapable", "npm:2.2.1"],\
             ["ts-loader", "virtual:3a8fd3c362b3f51ade42353d61061988820250c5edafeb63ce9c7c438a318496eb1b2067a46e0689c16985e97803660944e22d64eca2433178e82bd32e139395#npm:9.4.2"],\
             ["tsconfig-paths-webpack-plugin", "npm:3.5.2"],\
+            ["tslib", "npm:2.6.2"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"],\
             ["unique-names-generator", "npm:4.7.1"],\
             ["webpack", "virtual:3a8fd3c362b3f51ade42353d61061988820250c5edafeb63ce9c7c438a318496eb1b2067a46e0689c16985e97803660944e22d64eca2433178e82bd32e139395#npm:5.75.0"],\
@@ -32706,8 +32718,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/ws", "npm:8.5.5"],\
             ["amplify", "link:./apps/poker/api/dist::locator=%40flexiness%2Fpoker_table_betting_app%40workspace%3A."],\
             ["aws-amplify", "npm:5.3.10"],\
+            ["cross-env", "npm:7.0.3"],\
             ["express", "npm:4.18.2"],\
             ["flexiness", "link:@types/flexiness::locator=pointingpoker-server%40workspace%3Aapps%2Fpoker%2Fserver"],\
+            ["json-typescript", "npm:1.1.2"],\
             ["nodemon", "npm:2.0.20"],\
             ["pointingpoker-api", "workspace:apps/poker/api"],\
             ["pointingpoker-client", "workspace:apps/poker/client"],\

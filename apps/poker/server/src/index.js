@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url)
 import * as http from 'http'
 import express from 'express'
 const WebSocket = require('ws')
-const { PokerBoard, PokerTables, PokerTimer } = await import('pointingpoker-common/dist/index.js')
+const { PokerBoard, PokerTables, getBaseTableState, PokerTimer } = await import('pointingpoker-common/dist/index.js')
 
 const port = 8080
 const app = express()
@@ -30,8 +30,12 @@ app.get('/', function(req, res) {
 let nextClientId = 1
 
 let board = new PokerBoard()
-// let board = new PokerTables().board
-let tables = new PokerTables()
+
+const _tables = await getBaseTableState(20)
+// console.log('getBaseTableState', _tables)
+let tables = new PokerTables(_tables)
+// let tables = new PokerTables([])
+
 let timers = new PokerTimer()
 
 function sendToAll(obj) {
@@ -43,8 +47,8 @@ function sendToAll(obj) {
   })
 }
 
-
-function processAction(action) {
+async function processAction(action) {
+  console.log(action)
   if (action.source === 'PokerBoard') {
     board = board.processAction(action)
   } else if ( action.source === 'PokerTables') {
@@ -67,9 +71,10 @@ wss.on('connection', ws => {
   send({
     clientId: myClientId,
     snapshot: board.snapshot,
-    snapshotTables: tables.snapshotTables
+    initSnapshotTables: tables.initSnapshotTables
   })
   processAction({ id: myClientId, source: 'PokerBoard', action: PokerBoard.ACTION_JOIN })
+  // processAction({ id: myClientId, source: 'PokerTables', action: PokerTables.ACTION_INIT_TABLES })
 
   ws.on('message', m => {
     console.log(`received: ${m}`)

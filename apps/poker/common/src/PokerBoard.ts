@@ -1,5 +1,7 @@
 import { produce, immerable, castDraft, enableMapSet } from 'immer'
+import { PokerTables, PokerTimer } from './index.js'
 import {
+  Table,
   PokerPlayer,
   PokerAction,
   PokerTableMap,
@@ -28,7 +30,6 @@ const actions = {
       joinedTableTimers: [],
       joinedTablesMap: new Map()
     })
-
     // const newTable = {...new PokerTables()}.tables
     // draft.players.push({
     //   id: action.id,
@@ -50,11 +51,12 @@ const actions = {
       player.name = action.name
       player.observer = action.observer
       player.joining = false
-      player.joinedTables = [...player.joinedTables, action.tableID]
+      player.joinedTables = [...player.joinedTables, action.tableData.tableId]
       player.joinedTablesMap = new Map([
         ...player.joinedTablesMap,
-        ...player.joinedTablesMap.set(action.tableID, {
-          tableId: action.tableID,
+        ...player.joinedTablesMap.set(action.tableData.tableId, {
+          id: action.tableData.id,
+          tableId: action.tableData.tableId,
           nextPlayerAction: action.nextPlayerAction
         })
       ])
@@ -91,7 +93,7 @@ const actions = {
   })
 }
 
-export class PokerBoard {
+export class PokerBoard  {
   [action: string]: any
 
   [immerable] = true
@@ -102,12 +104,25 @@ export class PokerBoard {
 
   players: PokerPlayer[] = []
 
+  // tables: Table[] = []
+
+  constructor() {
+    // super()
+    // this[immerable] = true
+    // this.tables = new PokerTables().tables
+  }
+
+  get _tables() {
+    return this.tables
+  }
+
   get pointOptions() {
     return pointOptions
   }
 
   get snapshot() {
     return {
+      source: 'PokerBoard',
       action: PokerBoard.ACTION_SNAPSHOT,
       currentlyVoting: this.currentlyVoting,
       players: this.players,
@@ -236,7 +251,6 @@ export class PokerBoard {
   }
 
   processAction(action: PokerAction) {
-    // if (action.source !== 'PokerBoard') return
     if (!action || !action.action)
       throw new Error('action is undefined')
 

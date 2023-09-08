@@ -62,7 +62,7 @@
     "node_modules",
     "dist/**/*",
     "build/**/*",
-    "webpack.config.cjs",
+    "webpack.config.js",
     ".eslintrc.js"
   ],
   "references": [

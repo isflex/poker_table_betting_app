@@ -54,7 +54,7 @@ export default class JoinComponent extends React.Component {
   }
 
   handleSubmit = event => {
-    this.props.onSubmit(this.state.name, this.state.observer, this.props.activeTable.tableId)
+    this.props.onSubmit(this.state.name, this.state.observer, this.props.activeTable)
     event.preventDefault()
   }
 

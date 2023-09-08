@@ -4,6 +4,8 @@ import {
 } from "immer"
 
 export class PokerTimer extends Date {
+  [action: string]: any
+  
   [immerable] = true
 
   date: Date = new Date()
@@ -43,5 +45,18 @@ export class PokerTimer extends Date {
     return produce(this, draft => {
       draft.minute++
     })
+  }
+
+  processAction(action: PokerTimer) {
+    if (!action || !action.action)
+      throw new Error('action is undefined')
+
+    // @ts-expect-error
+    const producer: typeof produce = actions[action.action]
+    if (!producer)
+      throw new Error(`unknown action ${action.action}`)
+
+    // @ts-expect-error
+    return producer(this, action)
   }
 }

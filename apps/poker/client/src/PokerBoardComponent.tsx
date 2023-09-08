@@ -84,7 +84,6 @@ const PokerBoardComponent: React.FC<PokerBoardComponentProps> = (props) => {
             </thead>
             <tbody>
               <>
-                {/* {activePlayers.filter(player => player.joinedTables.includes(props.activeTable?.tableId)).map(player =>  */}
                 {activePlayers.filter(player => props.board.isTableJoined(player, props.activeTable?.tableId)).map(player => 
                   <tr key={player.id}>
                     <td>{player.joining ? 'Incoming player...' : player.name}</td>

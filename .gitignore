@@ -4,6 +4,9 @@ env/*
 
 **/.docker-data
 
+# webpack
+**/.yarn/.cache/**
+
 packages/flex/config/jest/puppeteer/output.json
 packages/flex/config/jest/puppeteer/junit.xml
 
@@ -41,7 +44,6 @@ packages-cache
 !.yarn/plugins/
 !.yarn/versions/
 !.yarn/sdks/
-
 
 ######### If you're not using Zero-Installs:
 # .pnp.*

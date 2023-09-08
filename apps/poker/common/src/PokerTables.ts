@@ -1,47 +1,13 @@
 import { immerable, produce } from 'immer'
-import { PokerBoard } from './PokerBoard.js'
 import { uniqueNamesGenerator, starWars, adjectives, animals, colors } from 'unique-names-generator'
-import 'amplify/components/amplify-api-config.js'
-
-// import { Amplify, API } from 'aws-amplify'
-// import awsmobile from 'pointingpoker-api/aws-exports.js'
-// const awsmobile = await import('pointingpoker-api/aws-exports.js')
-// const { createISSUE } = await import('pointingpoker-api/dist/graphql/includes/index.js')
-
-// import { createISSUE, updateISSUE, deleteISSUE } from 'pointingpoker-api/graphql/includes/mutations.js'
-// const { createISSUE, updateISSUE, deleteISSUE } = await import('pointingpoker-api/graphql/includes/mutations.js')
-// import { getISSUE, listISSUES } from 'pointingpoker-api/graphql/includes/queries.js'
-// const { getISSUE, listISSUES } = await import('pointingpoker-api/graphql/includes/queries.js')
-
-// Amplify.configure(awsmobile)
+import { onListIssue, onCreateIssue, CreateISSUEInput, onDeleteIssue, DeleteISSUEInput } from 'amplify/index.js'
 
 import {
-  Issue,
   Table,
-  PokerAction
+  PokerAction,
 } from 'flexiness'
 
-// const onCreateIssue = async (issue: Issue) => {
-//   const newIssue = {
-//     name: issue.name,
-//     desc: issue.desc,
-//   }
-
-//   try {
-//     await API.graphql({
-//       query: createISSUE,
-//       variables: { input: newIssue },
-//     })
-
-//     // setIssueList((issues: Issue[]) => [...issues, { ...newIssue }])
-
-//     console.log('Successfully created a new Issue!')
-//   } catch (err) {
-//     console.log('error: ', err)
-//   }
-// }
-
-const generateTableName = () => {
+export const generateTableName = () => {
   const i = Math.floor(Math.random() * Math.floor(2))
   const nouns = [animals, starWars]
   const name = uniqueNamesGenerator({
@@ -53,112 +19,196 @@ const generateTableName = () => {
   return `${name} Table`
 }
 
-const desc = "Some quick example text to build on the card title and make up the bulk of the card's content."
+export const defaultDesc = "Some quick example text to build on the card title and make up the bulk of the card's content."
 
-const baseTableState = [
+let baseTableState = [
   {
-      id: "",
+      id: '',
       tableId: 1,
       name: generateTableName(),
-      desc: desc,
+      desc: defaultDesc,
       order: 9999,
-      active: false
+      active: false,
+      createdAt: '',
+      updatedAt: '',
+      __typename: 'ISSUE'
   },
   {
-      id: "",
+      id: '',
       tableId: 2,
       name: generateTableName(),
-      desc: desc,
+      desc: defaultDesc,
       order: 9999,
-      active: false
+      active: false,
+      createdAt: '',
+      updatedAt: '',
+      __typename: 'ISSUE'
   },
   {
-      id: "",
+      id: '',
       tableId: 3,
       name: generateTableName(),
-      desc: desc,
+      desc: defaultDesc,
       order: 9999,
-      active: false
+      active: false,
+      createdAt: '',
+      updatedAt: '',
+      __typename: 'ISSUE'
   },
   {
-      id: "",
+      id: '',
       tableId: 4,
       name: generateTableName(),
-      desc: desc,
+      desc: defaultDesc,
       order: 9999,
-      active: false
+      active: false,
+      createdAt: '',
+      updatedAt: '',
+      __typename: "ISSUE"
   },
 ]
 
+async function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+// https://stackoverflow.com/questions/43431550/async-await-class-constructor
+// https://dev.to/somedood/the-proper-way-to-write-async-constructors-in-javascript-1o8c
+export const getBaseTableState = async (limit: number) => {
+  try {
+
+    const _items = await onListIssue({ limit: limit }) || []
+    if (_items !== null) {
+      const items = _items.map((item, index) => {
+        return { ...item, tableId: index, order: 9999, active: false }
+      })
+      return items
+    }
+
+    // await sleep(500)
+    // return baseTableState
+
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+export const createTable = async (tableName: string, tableDesc: string) => {
+  try {
+
+    const newIssue: CreateISSUEInput = { name: tableName, desc: tableDesc}
+    const res = await onCreateIssue(newIssue)
+
+    if (res !== null) {
+      console.log(res)
+      return res
+    }
+
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+export const deleteTable = async (id: string) => {
+  try {
+
+    const _id: DeleteISSUEInput = {id}
+    await onDeleteIssue(_id)
+
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 const actions = {
+  initSnapshotTables: produce<PokerTables>((draft, action) => {
+    console.log('initSnapshotTables', action.tables)
+    draft.tables = action.tables
+    draft.tables.map(table => {
+      table.active = false
+    })
+  }),
+
   snapshotTables: produce<PokerTables>((draft, action) => {
     draft.tables = action.tables
   }),
 
-  initTables: produce<PokerBoard>((draft) => {
-    draft.tables = baseTableState
+  initTables: produce<PokerTables>((draft) => {
+    getBaseTableState(20)
+      .then((tables) => {
+        if (tables !== null && tables !== undefined) draft.tables = tables
+      })
   }),
 
   createTable: produce<PokerTables>((draft, action) => {
-    if (draft.tables.length !== 0) {
-      draft.tables.push({
-        id: "",
-        tableId: draft.tables[draft.tables.length - 1].tableId + 1,
-        name: action.tableName,
-        desc: desc,
-        order: 0,
-        active: false
-      })
-    } else {
-      draft.tables = baseTableState
-    }
+    // const newIssue: CreateISSUEInput = { name: action.tableName, desc: action.tableDesc}
+    // onCreateIssue(newIssue)
+    draft.tables.push({
+      id: action.tableData.id,
+      tableId: draft.tables.length !== 0 ? (draft.tables[draft?.tables.length - 1].tableId + 1) : 0,
+      name: action.tableData.tableName,
+      desc: action.tableData.tableDesc,
+      order: 0,
+      active: false,
+      createdAt: action.tableData.createdAt,
+      updatedAt: action.tableData.updatedAt,
+      __typename: "ISSUE"
+    })
   }),
 
   deleteTable: produce<PokerTables>((draft, action) => {
-    const index = draft.tables.findIndex(table => table.id === (action.tableID.id))
+    // if (action.id !== '') onDeleteIssue({id: action.tableData.id})
+    const index = draft.tables.findIndex(table => table.tableId === (action.tableData.tableId))
     if (index !== -1) draft.tables.splice(index, 1)
   }),
 
   activateTable: produce<PokerTables>((draft, action) => {
     draft.tables.map(table => {
-      table.active = (table.tableId === action.tableID.tableId) ?? false
+      table.active = (table.tableId === action.tableData.tableId) ?? false
     })
   }),
 }
 
-export class PokerTables extends PokerBoard {
+export class PokerTables {
   [action: string]: any
+
+  [immerable] = true
 
   tables: Table[] = []
 
-  constructor() {
-    super()
-    this[immerable] = true
-    this.board = new PokerBoard()
-    this.tables = baseTableState
-  }
-
-  get activeBoard() {
-    return this.board
+  constructor(tables: Table[]) {
+    if (tables) this.tables = tables
+    // console.log('class PokerTables constructor',this.tables)
   }
 
   get allTables() {
     return this.tables
   }
 
-  // setBoard(newBoard: PokerBoard) {
-  //   this.board = newBoard
-  // }
+  get initSnapshotTables() {
+    // console.log('initSnapshotTables',this.tables)
+    return {
+      source: 'PokerTables',
+      action: PokerTables.ACTION_INIT_SNAPSHOT,
+      tables: this.tables
+    }
+  }
 
   get snapshotTables() {
+    // console.log('snapshotTables',this.tables)
     return {
+      source: 'PokerTables',
       action: PokerTables.ACTION_SNAPSHOT,
-      tables: this.tables,
+      tables: this.tables
     }
   }
 
   get newTableName() {
     return generateTableName()
+  }
+
+  static get ACTION_INIT_SNAPSHOT() {
+    return 'initSnapshotTables'
   }
 
   static get ACTION_SNAPSHOT() {
@@ -190,7 +240,6 @@ export class PokerTables extends PokerBoard {
   }
 
   processAction(action: PokerAction) {
-    // if (action.source !== 'PokerTables') return
     if (!action || !action.action)
       throw new Error('action is undefined')
 

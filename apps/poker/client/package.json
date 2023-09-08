@@ -67,6 +67,7 @@
     "tapable": "2.2.1",
     "ts-loader": "9.4.2",
     "tsconfig-paths-webpack-plugin": "3.5.2",
+    "tslib": "^2.4.0",
     "typescript": "4.7.4",
     "webpack-cli": "5.0.1",
     "webpack-manifest-plugin": "5.0.0",
@@ -103,8 +104,8 @@
     "test:react-scripts": "DISABLE_ESLINT_PLUGIN=true react-scripts test",
     "eject:react-scripts": "react-scripts eject",
     "start": "env-cmd -f $PROJECT_CWD/env/public/.env.$FLEX_MODE concurrently \"yarn start:webpack\" \"yarn serve\"",
-    "start:webpack": "env-cmd -f $PROJECT_CWD/env/public/.env.$FLEX_MODE webpack --config webpack.config.cjs --mode $FLEX_MODE --watch",
-    "build": "env-cmd -f $PROJECT_CWD/env/public/.env.$FLEX_MODE webpack --config webpack.config.cjs --mode $FLEX_MODE",
+    "start:webpack": "env-cmd -f $PROJECT_CWD/env/public/.env.$FLEX_MODE webpack --config webpack.config.js --mode $FLEX_MODE --watch",
+    "build": "env-cmd -f $PROJECT_CWD/env/public/.env.$FLEX_MODE webpack --config webpack.config.js --mode $FLEX_MODE",
     "serve": "env-cmd -f $PROJECT_CWD/env/public/.env.$FLEX_MODE yarn serve:express",
     "serve:express": "echo \"$FLEX_SERVER_LAUNCHING $FLEX_POKER_CLIENT_HOST\n\" && node server.cjs"
   },

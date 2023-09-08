@@ -5,7 +5,9 @@
   "main": "src/index",
   "type": "module",
   "scripts": {
-    "start": "yarn nodemon dist/index.js",
+    "dev": "cross-env NODE_OPTIONS='--inspect' yarn nodemon dist/index.js",
+    "dev:ts": "cross-env NODE_OPTIONS='--inspect' yarn nodemon src/index.ts --config ./nodemon.json",
+    "start": "yarn node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jason Winnebeck <gillius@gillius.org>",
@@ -26,6 +28,7 @@
     "@types/express-serve-static-core": "4.17.34",
     "@types/node": "^18.0.3",
     "@types/ws": "8.5.5",
+    "cross-env": "7.0.3",
     "flexiness": "link:@types/flexiness",
     "tslib": "^2.4.0",
     "typescript": "4.7.4"
@@ -34,6 +37,7 @@
     "amplify": "link:../api/dist",
     "aws-amplify": "5.3.10",
     "express": "^4.17.3",
+    "json-typescript": "1.1.2",
     "nodemon": "2.0.20",
     "pointingpoker-api": "link:pointingpoker-api",
     "pointingpoker-client": "link:pointingpoker-client",

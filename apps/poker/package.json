@@ -5,10 +5,10 @@
 	"scripts": {
 		"dev": "yarn concurrently -k -n BACK,FRONT -s first \"yarn dev:server\" \"yarn start:client\"",
 		"dev:client": "cd client && yarn start",
-		"dev:server": "cd server && yarn nodemon dist/index",
+		"dev:server": "yarn workspace pointingpoker-server dev",
 		"start": "yarn concurrently -k -n BACK,FRONT -s first \"yarn start:server\" \"yarn start:client\"",
 		"start:client": "cd client && yarn start",
-		"start:server": "cd server && yarn node dist/index",
+		"start:server": "yarn workspace pointingpoker-server start",
 		"build": "yarn build:common && yarn build:client",
 		"build:common": "cd common && yarn build",
 		"build:client": "cd client && yarn build"

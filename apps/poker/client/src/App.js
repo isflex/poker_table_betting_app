@@ -1,6 +1,6 @@
 import React from 'react'
 import PokerBoardComponent from './PokerBoardComponent.tsx'
-import { PokerTablesComponent } from './PokerTablesComponent.tsx'
+import { PokerTablesComponent } from './pokerTables/index.ts'
 const { PokerBoard, PokerTables, PokerTimer } = await import('pointingpoker-common/dist/index.js')
 import JoinComponent from './JoinComponent.js'
 import DebuggingComponent from './DebuggingComponent.js'
@@ -36,10 +36,8 @@ export default class App extends React.Component {
       pendingActions: [],
       board: new PokerBoard(),
       serverBoard: new PokerBoard(),
-      // board: new PokerTables().board,
-      // serverBoard: new PokerTables().board,
-      tables: new PokerTables(),
-      serverTables: new PokerTables(),
+      tables: new PokerTables([]),
+      serverTables: new PokerTables([]),
       timers: new PokerTimer(),
       serverTimers: new PokerTimer(),
       clientId: null,
@@ -106,43 +104,56 @@ export default class App extends React.Component {
     this.client && this.client.close()
   }
 
-  completeJoin = (name, observer, tableID) => {
+  completeJoin = (name, observer, activeTable) => {
     this.client.setPokerClass('PokerBoard')
     this.client.sendAction({
       source: 'PokerBoard',
       action: PokerBoard.ACTION_COMPLETE_JOIN,
       name,
       observer,
-      tableID,
+      tableData: {
+        id: activeTable.id,
+        tableId: activeTable.tableId
+      },
       nextPlayerAction: this.state.timers.timeUTC
     })
     window.sessionStorage.setItem('name', name)
   }
 
-  createTable = () => {
+  createTable = (tableName, tableDesc) => {
     this.client.setPokerClass('PokerTables')
     this.client.sendAction({
       source: 'PokerTables',
       action: PokerTables.ACTION_CREATE_TABLE,
-      tableName: this.state.tables.newTableName
+      tableData: {
+        tableName,
+        tableDesc
+      }
     })
   }
     
-  deleteTable = (tableID) => {
+  deleteTable = (id, tableId) => {
+    console.log(id)
     this.client.setPokerClass('PokerTables')
     this.client.sendAction({
       source: 'PokerTables',
       action: PokerTables.ACTION_DELETE_TABLE,
-      tableID
+      tableData: {
+        id,
+        tableId
+      }
     })
   }
   
-  activateTable = (tableID) => {
+  activateTable = (id, tableId) => {
     this.client.setPokerClass('PokerTables')
     this.client.sendAction({
       source: 'PokerTables',
       action: PokerTables.ACTION_ACTIVATE_TABLE,
-      tableID
+      tableData: {
+        id,
+        tableId
+      }
     })
   }
 
@@ -152,7 +163,7 @@ export default class App extends React.Component {
     const joinedTables = myself?.joinedTables || []
     const isTableJoined = this.state.board.isTableJoined(myself, activeTable?.tableId)
 
-    console.log(this.state.timers.timeReadable)
+    // console.log(this.state.timers.timeReadable)
 
     return (
       <View>
@@ -162,6 +173,8 @@ export default class App extends React.Component {
             <div>
               <PokerTablesComponent
                 allTables={this.state.tables.allTables}
+                // allTables={myself?.tables?.allTables || this.state.tables.allTables}
+                // allTables={myself.tables.allTables}
                 createTable={this.createTable}
                 deleteTable={this.deleteTable}
                 activateTable={this.activateTable}
@@ -169,7 +182,6 @@ export default class App extends React.Component {
             </div>
           )}
           {
-            // !this.state.disconnected && myself && (myself.joining || (!myself.joining && !joinedTables.includes(activeTable?.id))) && (
             !this.state.disconnected && myself && (myself.joining || (!myself.joining && !isTableJoined)) && (
               <JoinComponent 
                 onSubmit={this.completeJoin}
@@ -179,7 +191,6 @@ export default class App extends React.Component {
                 isTableJoined={isTableJoined} />
           )}
           {
-            // !this.state.disconnected && myself && !myself.joining && joinedTables.includes(activeTable?.id) && (
             !this.state.disconnected && myself && !myself.joining && isTableJoined && (
               <div style={{ marginTop: '2rem' }}>
                 <Title level={TitleLevel.LEVEL3} className={classNames(styles.isInline, styles.isMarginless )}
