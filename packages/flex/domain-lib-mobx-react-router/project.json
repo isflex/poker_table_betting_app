@@ -1,5 +1,4 @@
 {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "prefix": "@flexiness",
   "sourceRoot": "packages/flex/domain-lib-mobx-react-router/src",
   "projectType": "library",

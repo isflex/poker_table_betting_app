@@ -63,10 +63,9 @@
     "outDir": "dist",
     "paths": {
       "flexiness": ["../../../packages/flex/types"],
-      "pointingpoker-api/*": ["../api/src/*"],
-      "amplify/*": ["../api/dist/*"],
-      "pointingpoker-common/*": ["./src/*"]
       // "flex-design-system-framework/all.module.scss": ["../../../packages/design-system-framework/src/modules3/default/all.module.scss"],
+      "pointingpoker-common/*": ["./src/*"],
+      "pointingpoker-api/*": ["../api/*"]
     }
   },
   "include": [

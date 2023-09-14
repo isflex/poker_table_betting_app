@@ -24,21 +24,6 @@ import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
 import AssetsPlugin from 'assets-webpack-plugin'
 import WebpackRequireFrom from 'webpack-require-from'
 
-// const webpack = require('webpack')
-// // const childProcess = require('child_process')
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
-// const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
-// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-// // const { ModuleFederationPlugin } = webpack.container
-// const { NodeAsyncHttpRuntime } = require('@telenko/node-mf')
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin')
-// const AssetsPlugin = require('assets-webpack-plugin')
-// const WebpackRequireFrom = require('webpack-require-from')
-
-/* eslint-enable @typescript-eslint/no-var-requires */
-
 const mode = process.env.NODE_ENV || 'development'
 const prod = mode === 'production'
 
@@ -54,7 +39,7 @@ const depsMonorepo = require(`${rootLocation}/package.json`).dependencies
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const deps = require('./package.json').dependencies
 
-const getConfig = (target) => ({
+const getConfig = async (target) => ({
 
   experiments: {
     // asyncWebAssembly: true,
@@ -219,6 +204,13 @@ const getConfig = (target) => ({
   // https://webpack.js.org/configuration/cache/#gitlab-cicd
   cache: {
     type: 'filesystem',
+    maxMemoryGenerations: 5,
+    // cacheDirectory: path.resolve(__dirname, '.yarn/.cache/webpack'),
+    // buildDependencies: {
+    //   config: [
+    //     path.join(`${rootLocation}/packages/flex/config/webpack/src/package.json`)
+    //   ]
+    // }
   },
 
   resolve: {
@@ -258,23 +250,56 @@ const getConfig = (target) => ({
       {
         test: /\.css$/i,
         use: [
-          ...(target === 'web' ? [
-            prod 
-              ? {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                  emit: true,
-                },
-              } : {
-                loader: require.resolve('style-loader'),
-                options: {
-                  attributes: {
-                    nonce: '---CSP_NONCE---',
-                    'data-target': 'flex-css',
-                  },
-                },
-              },
-          ] : []),
+          // ...(target === 'web' ? [
+          //   prod 
+          //     ? {
+          //       loader: MiniCssExtractPlugin.loader,
+          //       options: {
+          //         emit: true,
+          //       },
+          //     } : {
+          //       loader: require.resolve('style-loader'),
+          //       options: {
+          //         attributes: {
+          //           nonce: '---CSP_NONCE---',
+          //           'data-target': 'flex-css',
+          //         },
+          //       },
+          //     },
+          // ] : []),
+
+          // prod 
+          //   ? {
+          //     loader: MiniCssExtractPlugin.loader,
+          //     options: {
+          //       emit: true,
+          //     },
+          //   } : {
+          //     loader: require.resolve('style-loader'),
+          //     options: {
+          //       attributes: {
+          //         nonce: '---CSP_NONCE---',
+          //         'data-target': 'flex-css',
+          //       },
+          //     },
+          //   },
+
+          {
+            loader: MiniCssExtractPlugin.loader,
+              options: {
+                emit: true,
+            },
+          },
+
+          // {
+          //   loader: require.resolve('style-loader'),
+          //   options: {
+          //     attributes: {
+          //       nonce: '---CSP_NONCE---',
+          //       'data-target': 'flex-css',
+          //     },
+          //   },
+          // },
 
           {
             loader: require.resolve('css-loader'),
@@ -288,7 +313,15 @@ const getConfig = (target) => ({
       // ///////////////////////////////////////////////////////
       
       // Modular Sass loaders
-      ...require(`${rootLocation}/packages/flex/config/webpack/partial/loaders/modularSass.cjs`)(target),
+      // ...await import(`${rootLocation}/packages/flex/config/webpack/src/partial/loaders/modularSass.mjs`).then(module => {
+      //   const { modularSass } = module.default || module
+      //   return modularSass(target)
+      // }),
+      // ...await import(`flex-webpack/partial/loaders/modularSass.mjs`).then(module => {
+      //   const { modularSass } = module.default || module
+      //   return modularSass(target)
+      // }),
+      ...require(`${rootLocation}/packages/flex/config/webpack/src/partial/loaders/modularSass.cjs`)(target),
 
       // ///////////////////////////////////////////////////////
       // Load font files and images
@@ -394,18 +427,18 @@ const getConfig = (target) => ({
     }),
     ...(target === 'web'
       ? [
-        new MiniCssExtractPlugin({
-          // Options similar to the same options in webpackOptions.output
-          // both options are optional
-          filename: '[name].[contenthash].css',
-          chunkFilename: '[id].[contenthash].css',
-          linkType: 'text/css',
-          runtime: true,
-          // runtime: false, // loading mechanism in production deferred to node express server to allow csp nonce
-          attributes: {
-            'data-target': 'flex-css',
-          },
-        }),
+        // new MiniCssExtractPlugin({
+        //   // Options similar to the same options in webpackOptions.output
+        //   // both options are optional
+        //   filename: '[name].[contenthash].css',
+        //   chunkFilename: '[id].[contenthash].css',
+        //   linkType: 'text/css',
+        //   runtime: true,
+        //   // runtime: false, // loading mechanism in production deferred to node express server to allow csp nonce
+        //   attributes: {
+        //     'data-target': 'flex-css',
+        //   },
+        // }),
         new HtmlWebpackPlugin({
           template: './public/index.html',
           // favicon: "./public/favicon.ico",
@@ -434,6 +467,18 @@ const getConfig = (target) => ({
       ]
       : [new NodeAsyncHttpRuntime()]
     ),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
+      linkType: 'text/css',
+      runtime: false,
+      // runtime: false, // loading mechanism in production deferred to node express server to allow csp nonce
+      attributes: {
+        'data-target': 'flex-css',
+      },
+    }),
     new WebpackManifestPlugin({}),
     new AssetsPlugin({
       filename: 'assets.json',
@@ -453,7 +498,5 @@ const getConfig = (target) => ({
   ],
 })
 
-// module.exports = [getConfig('web'), getConfig('node')]
-// module.exports = [getConfig('web')]
-
+// export default [getConfig('web'), getConfig('node')]
 export default [getConfig('web')]

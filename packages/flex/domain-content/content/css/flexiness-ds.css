@@ -17110,7 +17110,7 @@ aside.menu > div {
 }
 @media screen and (min-width: 1024px) {
   .stepper .step + .step {
-    margin-left: 6.075em;
+    margin-left: 10.125em;
   }
 }
 .stepper .step + .step::before {
@@ -17128,8 +17128,8 @@ aside.menu > div {
 }
 @media screen and (min-width: 1024px) {
   .stepper .step + .step::before {
-    width: 6.075em;
-    margin-left: -4.05em;
+    width: 10.125em;
+    margin-left: -8.1em;
   }
 }
 .stepper .step.is-done + .step.is-done::before {
@@ -17149,10 +17149,10 @@ aside.menu > div {
 }
 .stepper .step[data-label]::after {
   position: absolute;
-  left: -3.0375em;
-  right: -3.0375em;
+  left: -5.0625em;
+  right: -5.0625em;
   color: var(--flex-grey, #b3b3b3);
-  font-size: 1.0125em;
+  font-size: 0.7425em;
   font-weight: 700;
   top: 3.375em;
   text-align: center;
@@ -18335,7 +18335,7 @@ aside.menu > div {
 }
 @font-face {
   font-family: "flexi-all";
-  src: url("http://localhost:3992/assets/fonts/flexi-all.woff2") format("woff2"), url("http://localhost:3992/assets/fonts/flexi-all.woff") format("woff");
+  src: url("https://local.flexiness.com:3992/assets/fonts/flexi-all.woff2") format("woff2"), url("https://local.flexiness.com:3992/assets/fonts/flexi-all.woff") format("woff");
   font-style: normal;
   font-weight: normal;
 }
@@ -19473,7 +19473,7 @@ aside.menu > div {
 }
 @font-face {
   font-family: "flexi-ui";
-  src: url("http://localhost:3992/assets/fonts/flexi-ui.woff2") format("woff2"), url("http://localhost:3992/assets/fonts/flexi-ui.woff") format("woff");
+  src: url("https://local.flexiness.com:3992/assets/fonts/flexi-ui.woff2") format("woff2"), url("https://local.flexiness.com:3992/assets/fonts/flexi-ui.woff") format("woff");
   font-style: normal;
   font-weight: normal;
 }
@@ -19687,7 +19687,7 @@ aside.menu > div {
 }
 @font-face {
   font-family: "flexi-picto";
-  src: url("http://localhost:3992/assets/fonts/flexi-picto.woff2") format("woff2"), url("http://localhost:3992/assets/fonts/flexi-picto.woff") format("woff");
+  src: url("https://local.flexiness.com:3992/assets/fonts/flexi-picto.woff2") format("woff2"), url("https://local.flexiness.com:3992/assets/fonts/flexi-picto.woff") format("woff");
   font-style: normal;
   font-weight: normal;
 }

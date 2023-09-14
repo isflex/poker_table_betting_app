@@ -1,5 +1,4 @@
 {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "prefix": "@flex-design-system",
   "sourceRoot": "packages/flex/design-system-react-ts/src",
   "projectType": "application",

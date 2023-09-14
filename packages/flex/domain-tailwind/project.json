@@ -1,10 +1,9 @@
 {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "prefix": "@flexiness",
   "sourceRoot": "packages/flex/domain-tailwind/src",
   "projectType": "library",
   "targets": {
-    "build": {
+    "build:lib": {
       "executor": "nx:run-commands",
       "inputs": [
         "{projectRoot}/package.json",
@@ -14,7 +13,7 @@
         "{projectRoot}/dist"
       ],
       "options": {
-        "command": "yarn workspace @flexiness/domain-tailwind build"
+        "command": "yarn workspace @flexiness/domain-tailwind 'build:lib'"
       }
     }
   },

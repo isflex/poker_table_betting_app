@@ -111,7 +111,8 @@
             "ApiId"
           ]
         },
-        "Expires": 1694427718
+        "Description": "dev-poker-gql-api-key",
+        "Expires": 1695716715
       }
     },
     "GraphQLAPINONEDS95A13CF0": {

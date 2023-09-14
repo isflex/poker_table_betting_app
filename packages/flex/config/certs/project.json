@@ -1,5 +1,4 @@
 {
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "prefix": "@flexiness",
   "sourceRoot": "packages/flex/config/certs/src",
   "projectType": "library",

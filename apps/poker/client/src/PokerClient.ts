@@ -1,6 +1,5 @@
 import { decorate, observable } from 'mobx'
 const { PokerBoard, PokerTables, createTable, deleteTable, PokerTimer } = await import('pointingpoker-common/dist/index.js')
-import { onCreateIssue, CreateISSUEInput, onDeleteIssue, DeleteISSUEInput } from 'amplify/index.js'
 // import * as WebSocket from 'ws'
 import {
   Window,
@@ -52,10 +51,11 @@ export default class PokerClient {
   constructor(url: string) {
     if (!url) {
       const parsedUrl = new URL(window.location)
-      parsedUrl.protocol = parsedUrl.protocol === 'http:' ? 'ws' : 'wss'
-      if (process.env.NODE_ENV === 'development')
-        parsedUrl.port = '8080'
+      parsedUrl.protocol = `${process.env.FLEX_PROTOCOL}` === 'http://' ? 'ws' : 'wss'
+      parsedUrl.port = `${process.env.FLEX_POKER_BACK_PORT}`
+      // console.log(parsedUrl)
       url = new URL('./ws', parsedUrl).href
+      // console.log(url)
     }
     this.ws = new WebSocket(url)
 

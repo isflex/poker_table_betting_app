@@ -5,7 +5,11 @@
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "expirationTime": 14,
+      "apiKeyExpirationDate": "2023-09-26T08:14:33.294Z",
+      "keyDescription": "dev-poker-gql-api-key"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
   }
 }

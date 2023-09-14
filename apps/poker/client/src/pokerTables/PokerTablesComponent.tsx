@@ -29,8 +29,6 @@ const {
   styles
 } = await import('flex_design_system_react_ts_styled')
 
-// import { onCreateIssue } from 'pointingpoker-api/components/index.js'
-
 const PokerTablesComponent: React.FC<PokerTablesComponentProps> = (props) => {
   const [modalShow, setModalShow] = React.useState<boolean>(false)
 

@@ -12,6 +12,7 @@
       "flex-design-system-react-ts/*": ["src/*"],
       "flex-design-system-framework/*": ["../design-system-framework/src/modules3/default/*"],
       "flex-design-system-framework/all.module.scss": ["../design-system-framework/src/modules3/default/all.module.scss"],
+      "flex-webpack/*": ["../config/webpack/src/*"]
     },
     "types": ["jest", "node"],
     "typeRoots": [

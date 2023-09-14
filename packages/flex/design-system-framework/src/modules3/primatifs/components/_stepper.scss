@@ -7,7 +7,8 @@
 $step-width: functions.size(3em);
 $step-font-size: functions.size(1.8em);
 $step-gap: $step-width;
-$step-gap-desktop: calc($step-width * 3);
+// $step-gap-desktop: calc($step-width * 3);
+$step-gap-desktop: calc($step-width * 5);
 
 .stepper {
     display: inline-flex;
@@ -112,7 +113,8 @@ $step-gap-desktop: calc($step-width * 3);
             left: -#{calc($step-gap-desktop / 2)};
             right: -#{calc($step-gap-desktop / 2)};
             color: var(--flex-grey, #{variables.$grey});
-            font-size: variables.$size-7;
+            // font-size: variables.$size-7;
+            font-size: variables.$size-8;
             font-weight: variables.$weight-semibold;
             top: functions.size(5em);
             text-align: center;

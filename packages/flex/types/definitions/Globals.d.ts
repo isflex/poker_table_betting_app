@@ -4,12 +4,12 @@
 
 import React from 'react'
 // import jQuery from 'jquery'
-// import { FlexRouterStore, MicroFrontendStore } from '@flexiness/domain-lib-mobx-react-router'
-// export { FlexRouterStore, MicroFrontendStore }
+import { FlexRouterStore, MicroFrontendStore } from '@flexiness/domain-lib-mobx-react-router'
+export { FlexRouterStore, MicroFrontendStore }
 // import { UserInterfaceStore } from '@flex-gateway-ssr/nextjs-telenko/src/stores/UIStore'
-// import { Nonce } from './Utils'
-import { FlexI18next } from './UIStore'
 // export { UserInterfaceStore }
+import { Nonce } from './Utils'
+import { FlexI18next } from './UIStore'
 // import type I18next from 'i18next'
 
 declare global {
@@ -39,12 +39,12 @@ export interface FlexGlobalThis {
 
 export interface Flexiness extends Object {
   domainApp?: {
-    // FlexComponents?: typeof import('flex_design_system_react_ts_styled'),
-    // MFStore?: MicroFrontendStore,
+    FlexComponents?: typeof import('flex_design_system_react_ts_styled'),
+    MFStore?: MicroFrontendStore,
     // UIStore?: UserInterfaceStore,
-    // router?: FlexRouterStore,
+    router?: FlexRouterStore,
     React?: typeof React,
-    // FlexCSPNonce?: Nonce
+    FlexCSPNonce?: Nonce
     FlexLanguage?: FlexI18next['language']
   }
 }

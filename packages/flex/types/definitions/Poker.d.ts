@@ -4,7 +4,7 @@ import { GraphQLQuery } from '@aws-amplify/api'
 import {
   ISSUE,
   ListISSUESQuery
-} from 'amplify/graphql/API'
+} from 'pointingpoker-api'
 
 
 interface GraphQLResult {

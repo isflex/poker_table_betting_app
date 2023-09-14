@@ -29,6 +29,7 @@
       "flexiness": ["../types"],
       "flex-design-system-framework/*": ["../design-system-framework/src/modules3/default/*"]
     },
+    "types": ["node", "react", "react-dom"],
     "typeRoots": [
       "node_modules/@types",
       "../../../node_modules/@types"

@@ -1,0 +1,29 @@
+{
+  "extends": "nx/presets/npm.json",
+  "workspaceLayout": {
+    "projectNameAndRootFormat": "derived",
+    "appsDir": "apps",
+    "libsDir": "packages"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "ZDQ0Mjg1YzQtZTMxYS00N2Y2LThhOGEtNGYxZTIyNzhlNzllfHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^rollup:lib",
+        "^build:lib",
+        "^build"
+      ]
+    }
+  },
+  "affected": {
+    "defaultBase": "main"
+  }
+}

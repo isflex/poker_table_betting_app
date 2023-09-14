@@ -483,13 +483,13 @@
 }
 @font-face {
   font-family: "Commissioner";
-  src: url("http://localhost:3992/assets/fonts/commissioner-v1.0/static/ttfs/Commissioner-Regular.ttf");
+  src: url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/static/ttfs/Commissioner-Regular.ttf");
   font-weight: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Commissioner";
-  src: url("http://localhost:3992/assets/fonts/commissioner-v1.0/static/ttfs/Commissioner-Bold.ttf");
+  src: url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/static/ttfs/Commissioner-Bold.ttf");
   font-weight: bold;
   font-display: swap;
 }
@@ -497,7 +497,7 @@
 @supports (font-variation-settings: normal) {
   @font-face {
     font-family: "Commissioner";
-    src: url("http://localhost:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype"), url("http://localhost:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype supports variations"), url("http://localhost:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype-variations");
+    src: url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype"), url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype supports variations"), url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype-variations");
     font-weight: 100 1000;
     font-stretch: 25% 151%;
     font-display: swap;
@@ -4499,12 +4499,12 @@ fieldset[disabled] .pagination-ellipsis {
   background-color: rgba(0, 0, 0, 0.6);
 }
 .section.has-pattern-light {
-  background: url("http://localhost:3992/assets/svg/pattern-light-logo.svg") no-repeat;
+  background: url("https://local.flexiness.com:3992/assets/svg/pattern-light-logo.svg") no-repeat;
   background-size: 70%;
   background-position: 180px -30px;
 }
 .section.has-mixins.pattern-dark {
-  background: url("http://localhost:3992/assets/jpg/transparent-noise.png"), url("http://localhost:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
+  background: url("https://local.flexiness.com:3992/assets/jpg/transparent-noise.png"), url("https://local.flexiness.com:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
   background-size: auto, 120%, auto;
   background-position: top left, 260px -30%, top left;
 }
@@ -4591,7 +4591,7 @@ fieldset[disabled] .pagination-ellipsis {
   }
 }
 .hero.has-mixins.pattern-dark, .hero.is-instit {
-  background: url("http://localhost:3992/assets/jpg/transparent-noise.png"), url("http://localhost:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
+  background: url("https://local.flexiness.com:3992/assets/jpg/transparent-noise.png"), url("https://local.flexiness.com:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
   background-size: auto, 105%, auto;
   background-position: top left, 50% 35%, top left;
 }
@@ -14796,7 +14796,7 @@ aside.menu > div {
   width: 100%;
   content: " ";
   position: absolute;
-  background: url("http://localhost:3992/assets/svg/progress-circle.svg");
+  background: url("https://local.flexiness.com:3992/assets/svg/progress-circle.svg");
   z-index: 100;
 }
 .radial-progress-bar.progress-0 .pie::after {
@@ -17029,7 +17029,7 @@ aside.menu > div {
 }
 @media screen and (min-width: 1024px) {
   .stepper .step + .step {
-    margin-left: 6.075em;
+    margin-left: 10.125em;
   }
 }
 .stepper .step + .step::before {
@@ -17047,8 +17047,8 @@ aside.menu > div {
 }
 @media screen and (min-width: 1024px) {
   .stepper .step + .step::before {
-    width: 6.075em;
-    margin-left: -4.05em;
+    width: 10.125em;
+    margin-left: -8.1em;
   }
 }
 .stepper .step.is-done + .step.is-done::before {
@@ -17068,10 +17068,10 @@ aside.menu > div {
 }
 .stepper .step[data-label]::after {
   position: absolute;
-  left: -3.0375em;
-  right: -3.0375em;
+  left: -5.0625em;
+  right: -5.0625em;
   color: var(--flex-grey, #b3b3b3);
-  font-size: 1.0125em;
+  font-size: 0.7425em;
   font-weight: 700;
   top: 3.375em;
   text-align: center;
@@ -18072,7 +18072,7 @@ aside.menu > div {
   padding-top: 1.6875em;
 }
 .footer {
-  background: url("http://localhost:3992/assets/jpg/transparent-noise.png"), url("http://localhost:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
+  background: url("https://local.flexiness.com:3992/assets/jpg/transparent-noise.png"), url("https://local.flexiness.com:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
   background-size: auto, 100%, auto;
   background-position: top left, 280px -240px, top left;
   display: flex;
@@ -18254,7 +18254,7 @@ aside.menu > div {
 }
 @font-face {
   font-family: "flexi-all";
-  src: url("http://localhost:3992/assets/fonts/flexi-all.woff2") format("woff2"), url("http://localhost:3992/assets/fonts/flexi-all.woff") format("woff");
+  src: url("https://local.flexiness.com:3992/assets/fonts/flexi-all.woff2") format("woff2"), url("https://local.flexiness.com:3992/assets/fonts/flexi-all.woff") format("woff");
   font-style: normal;
   font-weight: normal;
 }
@@ -19392,7 +19392,7 @@ aside.menu > div {
 }
 @font-face {
   font-family: "flexi-ui";
-  src: url("http://localhost:3992/assets/fonts/flexi-ui.woff2") format("woff2"), url("http://localhost:3992/assets/fonts/flexi-ui.woff") format("woff");
+  src: url("https://local.flexiness.com:3992/assets/fonts/flexi-ui.woff2") format("woff2"), url("https://local.flexiness.com:3992/assets/fonts/flexi-ui.woff") format("woff");
   font-style: normal;
   font-weight: normal;
 }
@@ -19606,7 +19606,7 @@ aside.menu > div {
 }
 @font-face {
   font-family: "flexi-picto";
-  src: url("http://localhost:3992/assets/fonts/flexi-picto.woff2") format("woff2"), url("http://localhost:3992/assets/fonts/flexi-picto.woff") format("woff");
+  src: url("https://local.flexiness.com:3992/assets/fonts/flexi-picto.woff2") format("woff2"), url("https://local.flexiness.com:3992/assets/fonts/flexi-picto.woff") format("woff");
   font-style: normal;
   font-weight: normal;
 }

@@ -10,11 +10,15 @@ const __dirname = path.dirname(__filename)
 import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
 import * as http from 'http'
+import * as https from 'https'
 import express from 'express'
 // const WebSocket = require('ws')
 import WebSocket from 'ws'
 import * as _JSON from 'json-typescript'
-const { PokerBoard, PokerTables, getBaseTableState, createTable, deleteTable, PokerTimer } = await import('pointingpoker-common/dist/index.js')
+const { optionsHTTPS } = require('@flexiness/certs')
+const cors = require('cors')
+const regexEscape = require('regex-escape')
+const { PokerBoard, PokerTables, getBaseTableState, PokerTimer } = await import('pointingpoker-common/dist/index.js')
 
 import {
   Table,
@@ -23,12 +27,29 @@ import {
 
 const port = 8080
 const app = express()
-const server = http.createServer(app)
+const server = `${process.env.FLEX_PROTOCOL}` === 'http://'
+  ? http.createServer(app)
+  : https.createServer(optionsHTTPS(), app)
 const wss = new WebSocket.Server({ server, path: '/ws' })
 const delay = 0
 
+const corsOptions = {
+  ...(process.env.FLEX_MODE === 'development'
+    ? { origin: '*' }
+    : { origin: [
+      new RegExp(`${regexEscape(process.env.FLEX_DOMAIN_NAME)}`),
+      new RegExp(`${regexEscape(`.${process.env.FLEX_BASE_DOMAIN}`)}$`),
+      new RegExp(`${regexEscape(process.env.FLEX_HOST_IP)}$`)
+    ] }
+  ),
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'X-Requested-With', 'Authorization'],
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 const servePath = path.join(__dirname, '../..', 'client', 'build', 'web')
 
+app.use(cors(corsOptions))
 app.use(express.static(servePath))
 app.get('/', function(req, res) {
   res.sendFile(path.join(servePath, 'index.html'))
@@ -39,9 +60,7 @@ let nextClientId = 1
 let board = new PokerBoard()
 
 const _tables: Table[] = await getBaseTableState(20) || []
-// console.log('getBaseTableState', _tables)
 let tables = new PokerTables(_tables)
-// let tables = new PokerTables([])
 
 let timers = new PokerTimer(new Date())
 
@@ -57,18 +76,14 @@ function sendToAll(obj: object) {
 async function processAction(action: PokerAction) {
   console.log(action)
   if (action.source === 'PokerBoard') {
-    board.processAction(action)
+    // @ts-expect-error
+    board = board.processAction(action)
   } else if ( action.source === 'PokerTables') {
-    if (action.action === 'createTable') {
-      await createTable(action.tableName, action.tableDesc)
-    }
-    if (action.action === 'deleteTable' && action.id !== '') {
-      await deleteTable(action.id as string)
-    }
-    tables.processAction(action)
+    // @ts-expect-error
+    tables = tables.processAction(action)
   } else if ( action.source === 'PokerTimer') {
     // @ts-expect-error
-    timers.processAction(action)
+    timers = timers.processAction(action)
   }
   sendToAll(action)
 }

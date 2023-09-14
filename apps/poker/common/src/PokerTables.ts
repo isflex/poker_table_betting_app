@@ -1,6 +1,13 @@
 import { immerable, produce } from 'immer'
 import { uniqueNamesGenerator, starWars, adjectives, animals, colors } from 'unique-names-generator'
-import { onListIssue, onCreateIssue, CreateISSUEInput, onDeleteIssue, DeleteISSUEInput } from 'amplify/index.js'
+import {
+  ISSUE,
+  CreateISSUEInput,
+  DeleteISSUEInput,
+  onListIssue,
+  onCreateIssue,
+  onDeleteIssue,
+} from 'pointingpoker-api/dist/index.js'
 
 import {
   Table,
@@ -79,8 +86,8 @@ export const getBaseTableState = async (limit: number) => {
 
     const _items = await onListIssue({ limit: limit }) || []
     if (_items !== null) {
-      const items = _items.map((item, index) => {
-        return { ...item, tableId: index, order: 9999, active: false }
+      const items: Table[] = _items.map((item: unknown, index: number) => {
+        return { ...item as ISSUE, tableId: index, order: 9999, active: false }
       })
       return items
     }

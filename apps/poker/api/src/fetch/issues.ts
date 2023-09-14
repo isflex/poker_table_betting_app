@@ -14,7 +14,7 @@ import {
   CreateISSUEInput, CreateISSUEMutation,
   UpdateISSUEInput, UpdateISSUEMutation,
   DeleteISSUEInput, DeleteISSUEMutation
-} from '../graphql/API'
+} from '../graphql/API.js'
 
 Amplify.configure(awsmobile)
 

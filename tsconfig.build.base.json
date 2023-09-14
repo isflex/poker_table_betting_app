@@ -33,9 +33,8 @@
       // "flexApp_modfed/FlexResponsive": [ "./packages//flex/domain-app/src/FlexResponsive"],
       // "flexApp_modfed/FlexUtils": ["./packages//flex/domain-app/src/FlexUtils"],
       "flex-tailwind/*": ["./packages/flex/domain-tailwind/dist/*"],
+      "flex-webpack/*": ["./packages/flex/config/webpack/src/*"],
       // "flex-languages/*": ["./packages/flex/config/languages/src/*"],
-      "pointingpoker-api/*": ["./apps/poker/api/src/*"],
-      "amplify/*": ["./apps/poker/api/dist/*"],
       "pointingpoker-common/*": ["./apps/poker/common/src/*"]
     }
   },

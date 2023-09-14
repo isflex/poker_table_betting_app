@@ -161,7 +161,7 @@
           "DynamoDBBillingMode": "PAY_PER_REQUEST",
           "DynamoDBEnableServerSideEncryption": false,
           "S3DeploymentBucket": "amplify-pokerapp-dev-113813-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/01d9fb8b59851a1ad45ed226d5fffdf69882f928",
+          "S3DeploymentRootKey": "amplify-appsync-files/542b569800efd1d8eabe44d8b640e242024226ba",
           "env": "dev"
         }
       }
