@@ -7,7 +7,7 @@ $pagination-active-color: variables.$blue;
 $pagination-active-border-color: variables.$blue;
 $pagination-border-color: variables.$transparent;
 
-// @use "~@bulvar/bulma/sass/components/pagination";
+// @use "@bulvar/bulma/sass/components/pagination";
 @use "../utilities/vendors/bulma-extensions/pagination";
 
 .pagination {

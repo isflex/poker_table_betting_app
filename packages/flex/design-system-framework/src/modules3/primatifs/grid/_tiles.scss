@@ -3,7 +3,7 @@
 @use "../utilities/animations";
 @use "../utilities/functions";
 
-// @use "~@bulvar/bulma/sass/grid/tiles";
+// @use "@bulvar/bulma/sass/grid/tiles";
 @use "../utilities/vendors/bulma-extensions/tiles";
 
 $tile-spacing: variables.$column-gap !default;

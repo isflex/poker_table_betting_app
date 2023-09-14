@@ -24,7 +24,7 @@ $section-padding-desktop-large-x: $section-padding-desktop-x;
 $overlap-section: functions.size(1.5rem) !default;
 $overlap-section-desktop: functions.size(1.5rem) !default;
 
-// @use "~@bulvar/bulma/sass/layout/section";
+// @use "@bulvar/bulma/sass/layout/section";
 @use "../utilities/vendors/bulma-extensions/section";
 
 .section {

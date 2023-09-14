@@ -3,7 +3,7 @@
 @use "../utilities/animations";
 @use "../utilities/functions";
 
-// @use "~bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip";
+// @use "bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip";
 
 .tooltip.is-tooltip-active {
     &::before {

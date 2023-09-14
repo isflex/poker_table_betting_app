@@ -17,7 +17,7 @@ $table-head-cell-border-width: 0 0 functions.size(0.1em);
 
 $subtable-fill: variables.$grey-lighter;
 
-// @use "~@bulvar/bulma/sass/elements/table";
+// @use "@bulvar/bulma/sass/elements/table";
 @use "../utilities/vendors/bulma-extensions/table";
 
 /**

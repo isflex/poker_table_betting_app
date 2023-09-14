@@ -605,13 +605,13 @@ dl.dl.is-alternate dd {
 }
 @font-face {
   font-family: "Commissioner";
-  src: url("http://localhost:3992/assets/fonts/commissioner-v1.0/static/ttfs/Commissioner-Regular.ttf");
+  src: url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/static/ttfs/Commissioner-Regular.ttf");
   font-weight: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Commissioner";
-  src: url("http://localhost:3992/assets/fonts/commissioner-v1.0/static/ttfs/Commissioner-Bold.ttf");
+  src: url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/static/ttfs/Commissioner-Bold.ttf");
   font-weight: bold;
   font-display: swap;
 }
@@ -619,7 +619,7 @@ dl.dl.is-alternate dd {
 @supports (font-variation-settings: normal) {
   @font-face {
     font-family: "Commissioner";
-    src: url("http://localhost:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype"), url("http://localhost:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype supports variations"), url("http://localhost:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype-variations");
+    src: url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype"), url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype supports variations"), url("https://local.flexiness.com:3992/assets/fonts/commissioner-v1.0/variable/Commissioner_VF_1.001.ttf") format("truetype-variations");
     font-weight: 100 1000;
     font-stretch: 25% 151%;
     font-display: swap;
@@ -4580,12 +4580,12 @@ fieldset[disabled] .pagination-ellipsis {
   background-color: rgba(0, 0, 0, 0.6);
 }
 .section.has-pattern-light {
-  background: url("http://localhost:3992/assets/svg/pattern-light-logo.svg") no-repeat;
+  background: url("https://local.flexiness.com:3992/assets/svg/pattern-light-logo.svg") no-repeat;
   background-size: 70%;
   background-position: 180px -30px;
 }
 .section.has-mixins.pattern-dark {
-  background: url("http://localhost:3992/assets/jpg/transparent-noise.png"), url("http://localhost:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
+  background: url("https://local.flexiness.com:3992/assets/jpg/transparent-noise.png"), url("https://local.flexiness.com:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
   background-size: auto, 120%, auto;
   background-position: top left, 260px -30%, top left;
 }
@@ -4672,7 +4672,7 @@ fieldset[disabled] .pagination-ellipsis {
   }
 }
 .hero.has-mixins.pattern-dark, .hero.is-instit {
-  background: url("http://localhost:3992/assets/jpg/transparent-noise.png"), url("http://localhost:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
+  background: url("https://local.flexiness.com:3992/assets/jpg/transparent-noise.png"), url("https://local.flexiness.com:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
   background-size: auto, 105%, auto;
   background-position: top left, 50% 35%, top left;
 }
@@ -14877,7 +14877,7 @@ aside.menu > div {
   width: 100%;
   content: " ";
   position: absolute;
-  background: url("http://localhost:3992/assets/svg/progress-circle.svg");
+  background: url("https://local.flexiness.com:3992/assets/svg/progress-circle.svg");
   z-index: 100;
 }
 .radial-progress-bar.progress-0 .pie::after {
@@ -18153,7 +18153,7 @@ aside.menu > div {
   padding-top: 1.6875em;
 }
 .footer {
-  background: url("http://localhost:3992/assets/jpg/transparent-noise.png"), url("http://localhost:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
+  background: url("https://local.flexiness.com:3992/assets/jpg/transparent-noise.png"), url("https://local.flexiness.com:3992/assets/svg/pattern-dark-logo.svg") no-repeat, linear-gradient(#1b3650, #109db9);
   background-size: auto, 100%, auto;
   background-position: top left, 280px -240px, top left;
   display: flex;

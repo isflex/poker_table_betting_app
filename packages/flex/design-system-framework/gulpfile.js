@@ -5,20 +5,14 @@
 
 const path = require('path')
 const gulp = require('gulp')
-// const gutil = require('gulp-util')
 const replace = require('gulp-replace')
 const rename = require('gulp-rename')
 const log = require('fancy-log')
 const { promisify } = require('util')
 const glob = promisify(require('glob'))
-// const webfontsGenerator = promisify(require('webfonts-generator'))
 const webfontsGenerator = require('@vusion/webfonts-generator')
-const screenshotTask = require('./gulp/screenshot-task')
-// const componentSizeFootprint = require('./gulp/component-size-footprint')
 const prefixCss = require('./gulp/namespace-css')
 const concat = require('gulp-concat')
-
-require('handlebars-helpers')()
 
 const paths = {
   src: {
@@ -156,19 +150,6 @@ gulp.task('webfonts', gulp.series(
   'icons-illustrations-webfonts'
 ))
 
-/**
- * This task takes pictures of all demo templates
- */
-gulp.task('docs-template-previews', () => {
-  screenshotTask({
-    dest: 'docs/templates/previews/'
-  })
-})
-
-// gulp.task('components-size-footprint', () => {
-//     componentSizeFootprint()
-// })
-
 gulp.task('namespace-css', () => {
   // version namespacée
   return gulp.src('dist/flexiness-ds.css')
@@ -177,13 +158,6 @@ gulp.task('namespace-css', () => {
     .pipe(gulp.dest('dist/'))
 })
 
-gulp.task('namespace-tri-css', () => {
-  // version namespacée
-  return gulp.src('dist/trilogy.css')
-    .pipe(prefixCss('.is-tri'))
-    .pipe(concat('trilogy-namespaced.css'))
-    .pipe(gulp.dest('dist/'))
-})
 // Helpers
 function getAbsPath(relativePath) {
   return path.join(process.cwd(), relativePath)
