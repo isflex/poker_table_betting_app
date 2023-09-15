@@ -1,0 +1,3 @@
+export declare const onCreateISSUE = "\n  subscription OnCreateISSUE($filter: ModelSubscriptionISSUEFilterInput) {\n    onCreateISSUE(filter: $filter) {\n      id\n      name\n      desc\n      createdAt\n      updatedAt\n      __typename\n    }\n  }\n";
+export declare const onUpdateISSUE = "\n  subscription OnUpdateISSUE($filter: ModelSubscriptionISSUEFilterInput) {\n    onUpdateISSUE(filter: $filter) {\n      id\n      name\n      desc\n      createdAt\n      updatedAt\n      __typename\n    }\n  }\n";
+export declare const onDeleteISSUE = "\n  subscription OnDeleteISSUE($filter: ModelSubscriptionISSUEFilterInput) {\n    onDeleteISSUE(filter: $filter) {\n      id\n      name\n      desc\n      createdAt\n      updatedAt\n      __typename\n    }\n  }\n";
