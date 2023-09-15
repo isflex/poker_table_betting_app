@@ -31,6 +31,7 @@
     "flex-design-system-react-ts": "link:./packages/flex/design-system-react-ts/src",
     "flex_design_system_react_ts_styled": "link:./packages/flex/design-system-react-ts/src/styled",
     "@flexiness/domain-lib-mobx-react-router": "workspace:./packages/flex/domain-lib-mobx-react-router",
+    "@flexiness/aws": "workspace:./packages/flex/config/aws",
     "mini-css-extract-plugin": "2.7.6"
   },
   "scripts": {

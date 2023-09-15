@@ -36,6 +36,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:apps/poker/server"\
       },\
       {\
+        "name": "@flexiness/aws",\
+        "reference": "workspace:packages/flex/config/aws"\
+      },\
+      {\
         "name": "@flexiness/certs",\
         "reference": "workspace:packages/flex/config/certs"\
       },\
@@ -89,6 +93,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "fallbackExclusionList": [\
       ["@flex-design-system/framework", ["workspace:packages/flex/design-system-framework"]],\
       ["@flex-design-system/react-ts", ["workspace:packages/flex/design-system-react-ts"]],\
+      ["@flexiness/aws", ["workspace:packages/flex/config/aws"]],\
       ["@flexiness/certs", ["workspace:packages/flex/config/certs"]],\
       ["@flexiness/domain-content", ["workspace:packages/flex/domain-content"]],\
       ["@flexiness/domain-lib-mobx-react-router", ["virtual:1142b043166b274d3f05ecb2052df77c0821d70f566e159fae4029c45e87d59349d457006206aed86e7432383247dfc266cd4c66f22ca28bb4e4274c96f2cc02#workspace:packages/flex/domain-lib-mobx-react-router", "virtual:a559251697af3cd0b2e9f1d8d9066a7ca068cce8c7a7c0b035200c068af6c60e5ac9d7d7480110b1b1cff7404785ad792f2fabf6e2ce408a5cb603416f8d2b2b#workspace:packages/flex/domain-lib-mobx-react-router", "workspace:packages/flex/domain-lib-mobx-react-router"]],\
@@ -7841,6 +7846,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT",\
           "discardFromLookup": true\
+        }]\
+      ]],\
+      ["@flexiness/aws", [\
+        ["workspace:packages/flex/config/aws", {\
+          "packageLocation": "./packages/flex/config/aws/",\
+          "packageDependencies": [\
+            ["@flexiness/aws", "workspace:packages/flex/config/aws"],\
+            ["@types/node", "npm:18.17.15"]\
+          ],\
+          "linkType": "SOFT"\
         }]\
       ]],\
       ["@flexiness/certs", [\
@@ -26632,6 +26647,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@aws-crypto/sha256-browser", "npm:5.0.0"],\
             ["@aws-crypto/sha256-js", "npm:5.0.0"],\
             ["@aws-sdk/util-utf8-browser", "npm:3.259.0"],\
+            ["@flexiness/aws", "workspace:packages/flex/config/aws"],\
             ["aws-amplify", "npm:5.3.10"]\
           ],\
           "linkType": "SOFT"\
@@ -26652,6 +26668,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@aws-crypto/sha256-browser", "npm:5.0.0"],\
             ["@aws-crypto/sha256-js", "npm:5.0.0"],\
             ["@aws-sdk/util-utf8-browser", "npm:3.259.0"],\
+            ["@flexiness/aws", "workspace:packages/flex/config/aws"],\
             ["@flexiness/certs", "workspace:packages/flex/config/certs"],\
             ["@flexiness/domain-tailwind", "link:@flexiness/domain-tailwind::locator=pointingpoker-client%40workspace%3Aapps%2Fpoker%2Fclient"],\
             ["@flexiness/eslint-config-flex", "workspace:packages/flex/config/eslint"],\

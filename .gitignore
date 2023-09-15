@@ -74,8 +74,10 @@ amplify/mock-data
 amplify/mock-api-resources
 amplify/backend/amplify-meta.json
 amplify/backend/.temp
-apps/poker/api/build/
-apps/poker/api/dist/
+apps/poker/api/build
+apps/poker/api/dist
+# apps/poker/api/build/aws-exports.*
+# apps/poker/api/dist/aws-exports.*
 node_modules/
 aws-exports.js
 awsconfiguration.json

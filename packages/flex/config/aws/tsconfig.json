@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "declaration": true,  
+    "target": "es2022",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "flexiness": ["../../types"]
+    },
+    "types": ["node"],
+    "typeRoots": [
+      "node_modules/@types",
+      "../../../../node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist/**/*",
+  ],
+  "include": [
+    "src/**/*",
+    "./types/**/*.d.ts",
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "moduleTypes": {
+      // Globs are also supported with the same behavior as tsconfig "include"
+      "amplify.api.config.ts": "mjs"
+    }
+  }
+}

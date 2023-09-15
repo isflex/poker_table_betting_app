@@ -18,5 +18,8 @@
     "dist/**/*",
     "build/**/*",
     ".eslintrc.js"
+  ],
+  "references": [
+    { "path": "../../../packages/flex/config/aws/tsconfig.build.json" }
   ]
 }

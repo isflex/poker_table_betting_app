@@ -1,5 +1,6 @@
+// import awsmobile from '../aws-exports.js'
+const { AMPLIFY_API_CONFIG } = await import('@flexiness/aws/dist/index.js')
 import { Amplify, API } from 'aws-amplify'
-import awsmobile from '../aws-exports.js'
 import { GraphQLQuery } from '@aws-amplify/api'
 const {
   getISSUE,
@@ -16,7 +17,8 @@ import {
   DeleteISSUEInput, DeleteISSUEMutation
 } from '../graphql/API.js'
 
-Amplify.configure(awsmobile)
+// Amplify.configure(awsmobile)
+Amplify.configure(AMPLIFY_API_CONFIG)
 
 export const onListIssue = async (variables: ListISSUESQueryVariables) => {
   // Fetch first 20 records

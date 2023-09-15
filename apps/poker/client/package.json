@@ -24,6 +24,7 @@
     "@aws-crypto/sha256-browser": "5.0.0",
     "@aws-crypto/sha256-js": "5.0.0",
     "@aws-sdk/util-utf8-browser": "3.259.0",
+    "@flexiness/aws": "link:@flexiness/aws",
     "@flexiness/certs": "link:@flexiness/certs",
     "@flexiness/domain-tailwind": "link:@flexiness/domain-tailwind",
     "@flexiness/eslint-config-flex": "link:@flexiness/eslint-config-flex",

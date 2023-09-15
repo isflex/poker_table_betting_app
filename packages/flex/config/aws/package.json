@@ -1,0 +1,11 @@
+{
+  "name": "@flexiness/aws",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/index",
+  "packageManager": "yarn@3.6.3",
+  "devDependencies": {
+    "@types/node": "^18.0.3"
+  }
+}
