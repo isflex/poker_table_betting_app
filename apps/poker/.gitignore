@@ -3,9 +3,6 @@ common/build/
 common/dist/
 client/build/
 client/dist/
-client/.yarn/.cache/
+client/.yarn/
 server/dist/
 .idea/
-
-# webpack
-**/.yarn/.cache/**

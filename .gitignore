@@ -5,7 +5,7 @@ env/*
 **/.docker-data
 
 # webpack
-**/.yarn/.cache/**
+**/.yarn
 
 packages/flex/config/jest/puppeteer/output.json
 packages/flex/config/jest/puppeteer/junit.xml
