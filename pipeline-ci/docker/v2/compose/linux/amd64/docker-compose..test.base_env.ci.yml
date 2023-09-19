@@ -15,7 +15,7 @@ services:
     # domainname: flexiness.com
     # hostname: flexiness
     container_name: pokerapp
-    image: registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/main:base_env
+    image: registry.gitlab.com/nooski/poker_table_betting_app/linux_amd64/main:base_env
     logging: *default-logging
     entrypoint: "bash -c"
     command:

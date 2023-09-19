@@ -50,8 +50,8 @@ WORKDIR ${FLEX_APP}
 # Set the SHELL to bash with pipefail option
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-COPY --chown=${FLEX_USER}:${FLEX_USER} --link --from=registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/main:install_deps ${FLEX_HOME}/.cache/Cypress/ ${FLEX_HOME}/.cache/Cypress/
-COPY --chown=${FLEX_USER}:${FLEX_USER} --link --from=registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/main:build-client-side ${FLEX_APP}/ ./
+COPY --chown=${FLEX_USER}:${FLEX_USER} --link --from=registry.gitlab.com/nooski/poker_table_betting_app/linux_amd64/main:install_deps ${FLEX_HOME}/.cache/Cypress/ ${FLEX_HOME}/.cache/Cypress/
+COPY --chown=${FLEX_USER}:${FLEX_USER} --link --from=registry.gitlab.com/nooski/poker_table_betting_app/linux_amd64/main:build-client-side ${FLEX_APP}/ ./
 
 COPY --chown=${FLEX_USER}:${FLEX_USER} --link ./__tests__/ ./__tests__/
 # COPY --chown=${FLEX_USER}:${FLEX_USER} --link ./packages/flex/config/exec/test-e2e-jest-puppeteer-5.mjs ./packages/flex/config/exec/test-e2e-jest-puppeteer-5.mjs

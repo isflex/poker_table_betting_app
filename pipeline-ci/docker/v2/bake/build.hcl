@@ -153,8 +153,8 @@ target "build_client_side" {
     build-libs = "target:build_libs"
     // <!-- INSERT BLOCK -->
     /* BEGIN ANSIBLE MANAGED BLOCK */
-    flex-design-system-react-ts = "target:flex_design_system_react_ts"
     flexiness-domain-content = "target:flexiness_domain_content"
+    flex-design-system-react-ts = "target:flex_design_system_react_ts"
     flexiness-domain-utils = "target:flexiness_domain_utils"
     /* END ANSIBLE MANAGED BLOCK */
   }

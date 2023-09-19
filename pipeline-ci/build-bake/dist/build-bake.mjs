@@ -414,6 +414,7 @@ async function getProjects(workerData) {
                 await editProjDockerfileTxt(newProj);
                 await removeProjDockerfileTxt(newProj);
             }).then(() => {
+                console.log(index);
                 if (projects.allSize === (index + 1)) {
                     console.log('########################################################################');
                     console.log('⚡️... Done Parsing Workspace Projects ...⚡️');

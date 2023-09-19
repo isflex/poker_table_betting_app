@@ -13,7 +13,7 @@
       "FLEX_APP": "/home/isflex/projects/pokerapp",
       "FLEX_DOMAIN_NAME": "poker.flexiness.com",
       "FLEX_BASE_DOMAIN": "flexiness.com",
-      "FLEX_IMAGE_REPOSITORY": "registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/dev-react",
+      "FLEX_IMAGE_REPOSITORY": "registry.gitlab.com/nooski/poker_table_betting_app/linux_amd64/dev-react",
       "FLEX_HOME": "/home/isflex",
       "FLEX_MODE": "production",
       "FLEX_BRANCH": "dev-react",
@@ -26,10 +26,10 @@
       "FLEX_CPU": "x64"
     },
     "tags": [
-      "registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/dev-react:flexiness_domain_content"
+      "registry.gitlab.com/nooski/poker_table_betting_app/linux_amd64/dev-react:flexiness_domain_content"
     ],
     "cache-from": [
-      "type=docker,ref=registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/dev-react:flexiness_domain_content"
+      "type=docker,ref=registry.gitlab.com/nooski/poker_table_betting_app/linux_amd64/dev-react:flexiness_domain_content"
     ],
     "output": [
       "type=docker"
