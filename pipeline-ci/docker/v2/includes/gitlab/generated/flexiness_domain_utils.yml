@@ -1,0 +1,51 @@
+.export-image-tag: &export_image_tag
+  # - export FLEX_CI_ARCH_TAG="_$(echo $FLEX_CI_ARCH | tr / _)"
+  - export FLEX_CI_ARCH_TAG=$(echo $FLEX_CI_ARCH | tr / _)
+  - export FLEX_IMAGE_REPOSITORY="$CI_REGISTRY_IMAGE/$FLEX_CI_ARCH_TAG/$CI_COMMIT_REF_SLUG"
+  - export GCR_IMAGE="$GCR_PROJECT/$FLEX_CI_ARCH_TAG/$CI_COMMIT_REF_SLUG"
+
+.export-gitlab-login: &export_gitlab_login
+  # Login to Gitlab registry
+  # - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  # - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  - echo "$CI_JOB_TOKEN" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+
+.gitlab-runner:
+  tags:  # use a custom runner that has access to a Docker daemon socket
+    - flex-docker-executor
+
+FLEXINESS_DOMAIN_UTILS:
+  stage: build
+  extends: .gitlab-runner
+  needs:
+    # - job: Report-Registry-Tags
+    #   artifacts: true
+    - job: Build-Base-Env
+      optional: true
+    - job: Build-Libs
+      optional: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+  script:
+    - |-
+      docker buildx bake \
+        -f $FLEX_BAKE_DIR/build.hcl \
+        -f $FLEX_BAKE_DIR/generated.json \
+        -f $FLEX_ENV_DIR/$FLEX_CI_ARCH/.env.hcl \
+        --progress plain \
+        flexiness_domain_utils
+  rules:
+    - when: on_success
+    # - if: $CI_COMMIT_BRANCH
+    #   changes:
+    #     # compare_to: refs/heads/main
+    #     paths:
+    #       - '/packages/flex/domain-utils/**/*'
+    #   when: on_success
+    # - when: never
+  retry:
+    max: 2
+    when: always
+  interruptible: true
+  resource_group: generated_build

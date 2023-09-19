@@ -1,0 +1,4 @@
+- hosts: localhost
+  tasks:
+    - name: Include host setup task in play
+      import_tasks: tasks/root/hosts-setup.yml

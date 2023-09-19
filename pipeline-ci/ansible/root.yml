@@ -1,0 +1,28 @@
+- hosts: localhost
+  pre_tasks:
+    - name: Update Apt
+      become: true
+      apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
+      tags:
+        - core
+  tasks:
+    - name: Set our hostname
+      hostname:
+        name: "{{ HOSTNAME }}"
+      tags: always
+
+    - name: Include apt-packages task in play
+      import_tasks: tasks/root/apt-packages-setup.yml
+    - name: Include setup datadog task in play
+      import_tasks: tasks/dd-agent/datadog-setup-ansible.yml
+      # import_tasks: tasks/dd-agent/datadog-setup-linux-manual.yml
+      # import_tasks: tasks/dd-agent/datadog-setup-linux-install-script.yml
+    - name: Include run service datadog task in play
+      import_tasks: tasks/dd-agent/datadog-service.yml
+    
+    #################### DOES NOT WORK IN DOCKER #####################
+    # - name: Include host setup task in play
+    #   import_tasks: tasks/root/hosts-setup.yml

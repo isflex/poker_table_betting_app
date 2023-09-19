@@ -1,0 +1,41 @@
+{
+  "extends": "../../../../tsconfig.build.settings.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "es2020",
+    "lib": [
+      "es2020", "DOM"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "flexiness": [
+        "../../types"
+      ],
+      "flex-gateway-ssr/*": [
+        "../../../gateway/nextjs-telenko/src/*"
+      ],
+    },
+    "types": ["node"],
+    "typeRoots": [
+      "node_modules/@types",
+      "../../../../node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist/**/*",
+  ]
+}

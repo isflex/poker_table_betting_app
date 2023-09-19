@@ -1,0 +1,51 @@
+- name: Setup Hosts
+  tags: &tags_for_hosts_tasks ['core']
+  block:
+    - name: Add Ansible inventory mappings to /etc/hosts
+      become: true
+      become_user: root
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        block: |
+          {% for host in hostvars[inventory_hostname].hosts %}
+          {{host.ip}} {{host.name}}
+          {% endfor %}
+      tags: *tags_for_hosts_tasks
+
+    # - name: Add Ansible inventory mappings to test-result.txt
+    #   ansible.builtin.blockinfile:
+    #     path: ./test-result.txt
+    #     create: yes
+    #     block: |
+    #       {% for item in hostvars[inventory_hostname].hosts | dict2items %}
+    #       {{ item.value.ip }} {{ item.key }} 
+    #       {% endfor %}
+    #   when: "'debug' in ansible_run_tags"
+
+    # - name: Debug all hosts
+    #   debug:
+    #     msg: "{{ hostvars[inventory_hostname].hosts }}"
+    #   when: "'debug' in ansible_run_tags"
+    
+    # # https://stackoverflow.com/questions/42167747/how-to-loop-over-this-dictionary-in-ansible
+    # - name: Debug hosts ip
+    #   debug:
+    #     msg: "KEY: {{ item.key }}, VALUE: {{ item.value }}"
+    #   loop: "{{ hostvars[inventory_hostname].hosts | dict2items }}"
+    #   when: "'debug' in ansible_run_tags"
+
+    #####################################################################################################
+      # FOR WHY THIS DOESN'T WORK IN DOCKER 
+      # https://github.com/William-Yeh/docker-ansible/issues/4#issuecomment-149084120
+    #####################################################################################################
+
+    # https://forums.docker.com/t/how-to-build-the-docker-image-with-customized-ip-in-etc-hosts-file/674/4
+    # If want to add value in running container. Reference 196
+    # docker exec -u 0 /bin/sh -c “echo '192.168.50.100 ’ >> /etc/hosts”
+    # If want to add entry while staring the container.
+    # docker run -it --add-host=:192.168.50.100
+
+    # https://stackoverflow.com/questions/69520753/modify-etc-hosts-in-docker-build
+    # Never mind... I didn't think the --add-host parameter would work for the build command, or if it did that the host modification would bake into the image. 
+    # Turns out it works fine for my purpose
+    #   docker build -t ... --add-host rest-service:127.0.0.1 ...

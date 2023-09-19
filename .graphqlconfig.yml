@@ -1,5 +1,5 @@
 projects:
-  pokerapp:
+  PokerApp API:
     schemaPath: apps/poker/api/src/graphql/schema.json
     includes:
       - apps/poker/api/src/graphql/includes/**/*.ts
@@ -9,8 +9,7 @@ projects:
       amplify:
         codeGenTarget: typescript
         generatedFileName: apps/poker/api/src/graphql/API.ts
-        docsFilePath: apps/poker/api/src/graphql
+        docsFilePath: apps/poker/api/src/graphql/includes
+        region: eu-west-3
+        apiId: yzbphvr6knbavfe4mbcql7gwoy
         maxDepth: 2
-extensions:
-  amplify:
-    version: 3

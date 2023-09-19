@@ -8,7 +8,7 @@ const AMPLIFY_API_CONFIG  = {
   aws_appsync_graphqlEndpoint: `${process.env.FLEX_AWS_APPSYNC_GRAPHQL_ENDPOINT}`,
   aws_appsync_region: `${process.env.FLEX_AWS_APPSYNC_REGION}`,
   aws_appsync_authenticationType: `${process.env.FLEX_AWS_APPSYNC_AUTHENTICATIONTYPE}`,
-  aws_appsync_apiKey:  `${process.env.FLEX_AWS_APPSYNC_APIKEY}`,
+  aws_appsync_apiKey: `${process.env.FLEX_AWS_APPSYNC_APIKEY}`,
 }
 
 export { AMPLIFY_API_CONFIG }

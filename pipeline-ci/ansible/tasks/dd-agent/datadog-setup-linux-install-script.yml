@@ -1,0 +1,13 @@
+- name: Setup DataDog Agent
+  become: true
+  block:
+  
+    - name: Install the datadog agent on targets
+      ansible.builtin.shell: |
+        curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script_agent7.sh
+      args:
+        executable: /bin/bash
+    
+  when: "'dd-agent' in ansible_run_tags"
+  tags:
+    - dd-agent

@@ -2,37 +2,31 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 export const onCreateISSUE = /* GraphQL */ `
-  subscription OnCreateISSUE($filter: ModelSubscriptionISSUEFilterInput) {
-    onCreateISSUE(filter: $filter) {
+  subscription OnCreateISSUE($id: ID, $name: String, $desc: String) {
+    onCreateISSUE(id: $id, name: $name, desc: $desc) {
       id
       name
       desc
-      createdAt
-      updatedAt
       __typename
     }
   }
 `;
 export const onUpdateISSUE = /* GraphQL */ `
-  subscription OnUpdateISSUE($filter: ModelSubscriptionISSUEFilterInput) {
-    onUpdateISSUE(filter: $filter) {
+  subscription OnUpdateISSUE($id: ID, $name: String, $desc: String) {
+    onUpdateISSUE(id: $id, name: $name, desc: $desc) {
       id
       name
       desc
-      createdAt
-      updatedAt
       __typename
     }
   }
 `;
 export const onDeleteISSUE = /* GraphQL */ `
-  subscription OnDeleteISSUE($filter: ModelSubscriptionISSUEFilterInput) {
-    onDeleteISSUE(filter: $filter) {
+  subscription OnDeleteISSUE($id: ID, $name: String, $desc: String) {
+    onDeleteISSUE(id: $id, name: $name, desc: $desc) {
       id
       name
       desc
-      createdAt
-      updatedAt
       __typename
     }
   }

@@ -19,7 +19,6 @@
   ],
   "scripts": {
     "flex-bake": "echo $(pwd)",
-    "flex-css": "echo $(pwd)",
     "android": "npm run uncomment && react-native run-android",
     "ios": "npm run uncomment && react-native run-ios --simulator",
     "start:native": "npm run uncomment && react-native start",

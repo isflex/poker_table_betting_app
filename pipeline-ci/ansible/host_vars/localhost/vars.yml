@@ -1,0 +1,7 @@
+---
+HOSTNAME:  127.0.0.1
+
+# https://ansible-arista-howto.readthedocs.io/en/latest/JINJA_YAML_STRUCTURES.html
+hosts:
+  - name: "ci.flexiness.com"
+    ip: 127.0.0.1

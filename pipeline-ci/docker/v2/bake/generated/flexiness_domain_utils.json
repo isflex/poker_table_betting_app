@@ -1,0 +1,40 @@
+{
+  "flexiness_domain_utils": {
+    "context": ".",
+    "contexts": {
+      "base-env": "target:base_env",
+      "install-deps": "target:install_deps",
+      "build-libs": "target:build_libs"
+    },
+    "args": {
+      "BUILDKIT_INLINE_CACHE": "1",
+      "CI": "true",
+      "FLEX_SERVICE": "pokerapp",
+      "FLEX_APP": "/home/isflex/projects/pokerapp",
+      "FLEX_DOMAIN_NAME": "poker.flexiness.com",
+      "FLEX_BASE_DOMAIN": "flexiness.com",
+      "FLEX_IMAGE_REPOSITORY": "registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/dev-react",
+      "FLEX_HOME": "/home/isflex",
+      "FLEX_MODE": "production",
+      "FLEX_BRANCH": "dev-react",
+      "FLEX_PROTOCOL": "https://",
+      "FLEX_USER": "isflex",
+      "FLEX_PROJ_DIR_GENERATED": "packages/flex/domain-utils",
+      "FLEX_DOCKER_PLATFORM": "linux/amd64",
+      "FLEX_CI_ARCH_TAG": "linux_amd64",
+      "FLEX_OS": "linux",
+      "FLEX_CPU": "x64"
+    },
+    "tags": [
+      "registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/dev-react:flexiness_domain_utils"
+    ],
+    "cache-from": [
+      "type=docker,ref=registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/dev-react:flexiness_domain_utils"
+    ],
+    "output": [
+      "type=docker"
+    ],
+    "pull": "true",
+    "dockerfile": "pipeline-ci/docker/v2/generated/flexiness_domain_utils.dockerfile"
+  }
+}

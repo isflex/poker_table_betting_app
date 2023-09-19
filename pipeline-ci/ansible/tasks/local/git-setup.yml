@@ -1,0 +1,16 @@
+- name: Git flexiness setup email
+  git_config:
+    name: user.email
+    scope: global
+    value: 'hello@flexiness.com'
+  tags:
+    - install
+    - git-flexiness
+- name: Git flexiness setup name
+  git_config:
+    name: user.name
+    scope: global
+    value: 'isflex'
+  tags:
+    - install
+    - git-flexiness

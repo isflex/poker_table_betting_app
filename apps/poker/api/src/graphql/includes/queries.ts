@@ -8,15 +8,13 @@ export const getISSUE = /* GraphQL */ `
       id
       name
       desc
-      createdAt
-      updatedAt
       __typename
     }
   }
 `;
 export const listISSUES = /* GraphQL */ `
   query ListISSUES(
-    $filter: ModelISSUEFilterInput
+    $filter: TableISSUEFilterInput
     $limit: Int
     $nextToken: String
   ) {
@@ -25,8 +23,6 @@ export const listISSUES = /* GraphQL */ `
         id
         name
         desc
-        createdAt
-        updatedAt
         __typename
       }
       nextToken

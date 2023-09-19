@@ -1,5 +1,7 @@
 // import awsmobile from '../aws-exports.js'
-const { AMPLIFY_API_CONFIG } = await import('@flexiness/aws/dist/index.js')
+const { AMPLIFY_API_CONFIG } = process.env.FLEX_MODE === 'development'
+  ? await import('./init-amplify-dev.js')
+  : await import('@flexiness/aws/dist/index.js')
 import { Amplify, API } from 'aws-amplify'
 import { GraphQLQuery } from '@aws-amplify/api'
 const {

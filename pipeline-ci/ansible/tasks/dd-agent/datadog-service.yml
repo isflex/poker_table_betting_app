@@ -1,0 +1,13 @@
+- name: Run DataDog Agent Service
+  become: true
+  become_user: dd-agent
+  become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
+  block:
+    - name: Start service datadog-agent, if not started
+      ansible.builtin.service:
+        name: datadog-agent
+        enabled: true 
+        state: started
+  when: "'dd-agent' in ansible_run_tags"
+  tags:
+    - dd-agent

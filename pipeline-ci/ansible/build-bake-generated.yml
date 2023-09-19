@@ -1,0 +1,6 @@
+- hosts: localhost
+  vars:
+    base_path: "./"
+  tasks:
+    - name: Include task in play
+      import_tasks: tasks/build-bake/generated.yml

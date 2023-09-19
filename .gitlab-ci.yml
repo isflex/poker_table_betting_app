@@ -1,0 +1,795 @@
+---
+
+stages:
+  - pre
+  - base_env
+  - install_deps
+  - install_packages
+  - build_libs
+  - build
+  - build_client_side
+  # - build_ssr
+  # - test_e2e
+  # - test_lighthouse_ci
+  - final
+  # - deploy
+
+default:
+
+  image: docker:24.0.4
+
+variables:
+  # Force-enable BuildKit in "docker build" commands (on Linux it is disabled by default)
+  DOCKER_BUILDKIT: 1
+  # Build the fully-qualified image name (including the registry server prefix), but without the ":version" suffix
+  # IMAGE_BASE_TAG: $CI_REGISTRY_IMAGE/demo-app
+  # Complement the base tag with various versions, one per image target/stage. We use the CI_COMMIT_REF_SLUG (which is
+  # basically the branch/tag name, but slugified) to ensure that the cache images are also different for each branch.
+  # This is done because the code that we compile/build/test in any specific branch might be different (from the
+  # code of other branches), and the cache images would overwrite each other (if we had not appended the
+  # "-$CI_COMMIT_REF_SLUG" suffix), causing cache misses!
+  # IMAGE_DEPS_CACHE_TAG: $IMAGE_BASE_TAG:deps-cache-$CI_COMMIT_REF_SLUG
+  # TEST_CACHE_TAG: $IMAGE_BASE_TAG:test-cache-$CI_COMMIT_REF_SLUG
+  # BUILD_CACHE_TAG: $IMAGE_BASE_TAG:build-cache-$CI_COMMIT_REF_SLUG
+
+  GIT_STRATEGY: fetch
+
+  # FLEX_CI_ARCH: linux/amd64
+  FLEX_CI_ARCH: $CI_RUNNER_EXECUTABLE_ARCH
+
+  FLEX_CI_DIR: pipeline-ci
+  FLEX_CI_VERSION: v2
+
+  FLEX_DOCKER_DIR: $FLEX_CI_DIR/docker/$FLEX_CI_VERSION
+  FLEX_ENV_DIR: $FLEX_CI_DIR/docker/$FLEX_CI_VERSION/env/ci
+  FLEX_BAKE_DIR: $FLEX_CI_DIR/docker/$FLEX_CI_VERSION/bake
+  FLEX_DOCKERFILES_DIR: $FLEX_CI_DIR/docker/$FLEX_CI_VERSION/dockerfiles
+  FLEX_COMPOSE_DIR: $FLEX_CI_DIR/docker/$FLEX_CI_VERSION/compose
+  FLEX_INCLUDES_DIR: $FLEX_CI_DIR/docker/$FLEX_CI_VERSION/includes/gitlab
+
+  FLEX_STATUS: cold
+
+  GCR_PROJECT: eu.gcr.io/flex-homepage-20221201
+  GCR_DEPLOY: "false"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#anchors
+.export-image-tag: &export_image_tag
+  # - export FLEX_CI_ARCH_TAG="_$(echo $FLEX_CI_ARCH | tr / _)"
+  - export FLEX_CI_ARCH_TAG=$(echo $FLEX_CI_ARCH | tr / _)
+  - export FLEX_IMAGE_REPOSITORY="$CI_REGISTRY_IMAGE/$FLEX_CI_ARCH_TAG/$CI_COMMIT_REF_SLUG"
+  - export GCR_IMAGE="$GCR_PROJECT/$FLEX_CI_ARCH_TAG/$CI_COMMIT_REF_SLUG"
+
+.export-gitlab-login: &export_gitlab_login
+  # Login to Gitlab registry
+  # - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  # - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  - echo "$CI_JOB_TOKEN" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+
+.export-apk-add: &export_apk_add
+  # - apk add --no-cache bash
+  - if [ $CI_JOB_STAGE == "pre" ]; then apk add --no-cache curl bash jq; fi
+  - if [ $CI_JOB_STAGE == "final" ]; then apk add --no-cache bash jq; fi
+  - if [ $CI_JOB_STAGE == "test_lighthouse_ci" ]; then apk add --no-cache bash jq; fi
+  - if [ $CI_JOB_STAGE == "deploy" ]; then apk add --no-cache bash jq; fi
+
+.export-debug: &export_debug
+  - echo "FLEX_CI_VERSION - $FLEX_CI_VERSION"
+  - echo "FLEX_STATUS - $FLEX_STATUS"
+  - echo "FLEX_DOMAIN_NAME - $FLEX_DOMAIN_NAME"
+  - echo "FLEX_CI_ARCH_TAG - $FLEX_CI_ARCH_TAG"
+  - echo "FLEX_IMAGE_REPOSITORY - $FLEX_IMAGE_REPOSITORY"
+  - echo "CI_SERVER_URL - $CI_SERVER_URL"
+  - echo "CI_SERVER_HOST - $CI_SERVER_HOST"
+  - echo "CI_RUNNER_DESCRIPTION - $CI_RUNNER_DESCRIPTION"
+  - docker info
+  - echo "CI_PROJECT_ID - $CI_PROJECT_ID"
+  - echo "CI_PROJECT_DIR - $CI_PROJECT_DIR"
+  - echo "CI_BUILDS_DIR - $CI_BUILDS_DIR"
+  - echo "CI_COMMIT_SHA - $CI_COMMIT_SHA"
+  - echo "CI_COMMIT_SHORT_SHA - $CI_COMMIT_SHORT_SHA"
+  - echo "CI_COMMIT_REF_SLUG - $CI_COMMIT_REF_SLUG"
+  - echo "CI_COMMIT_BRANCH - $CI_COMMIT_BRANCH"
+  - echo "CI_REGISTRY - $CI_REGISTRY"
+  - echo "CI_REGISTRY_IMAGE - $CI_REGISTRY_IMAGE"
+  - echo "CI_PROJECT_URL - $CI_PROJECT_URL"
+  - echo "DD_API_KEY - $DD_API_KEY"
+  - echo "DD_SITE - $DD_SITE"
+  # - printenv
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+.gitlab-runner:
+  tags:  # use a custom runner that has access to a Docker daemon socket
+    - flex-docker-executor
+
+.gloud-deploy:
+  before_script:
+    # Login to Google Cloud Registry
+    # https://colinwilson.uk/2020/07/10/configure-gitlab-ci-with-google-container-registry/
+    - base64 -d $FLEX_GOOGLE_CLOUD_ACCOUNT | docker login -u _json_key --password-stdin https://eu.gcr.io
+    # https://github.com/JanMikes/gitlab-ci-push-to-gcr
+    # - echo "$FLEX_GOOGLE_CLOUD_ACCOUNT" | docker login -u _json_key --password-stdin https://eu.gcr.io
+  script:
+    - docker pull $FLEX_IMAGE_REPOSITORY:final
+    - docker tag $FLEX_IMAGE_REPOSITORY:final $GCR_IMAGE:latest
+    - docker push $GCR_IMAGE
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# Include GCloud SDK:
+#   stage: build
+#   trigger:
+#     include:
+#     - remote: https://gitlab.com/gitlab-org/incubation-engineering/five-minute-production/library/-/raw/main/gcp/cloud-run.gitlab-ci.yml
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+.snippets_bake:
+  root:
+    test:
+      script: |
+        docker buildx bake \
+          --set $CI_JOB_STAGE.tags="$FLEX_IMAGE_REPOSITORY:$CI_JOB_STAGE" \
+          --set $CI_JOB_STAGE.cache-from="type=registry,ref=$FLEX_IMAGE_REPOSITORY:$CI_JOB_STAGE" \
+          --set $CI_JOB_STAGE.args.CI_COMMIT_SHA="$CI_COMMIT_SHA" \
+          --set $CI_JOB_STAGE.args.CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" \
+          --set $CI_JOB_STAGE.args.CI_PROJECT_URL="$CI_PROJECT_URL" \
+          --set $CI_JOB_STAGE.args.DD_API_KEY="$DD_API_KEY" \
+          --set $CI_JOB_STAGE.args.DD_SITE="$DD_SITE" \
+          -f $FLEX_BAKE_DIR/build.hcl \
+          -f $FLEX_BAKE_DIR/generated.json \
+          -f $FLEX_ENV_DIR/$FLEX_CI_ARCH/.env.hcl \
+          --print \
+          $CI_JOB_STAGE
+    build: 
+      script: |
+        docker buildx bake \
+          --set $CI_JOB_STAGE.tags="$FLEX_IMAGE_REPOSITORY:$CI_JOB_STAGE" \
+          --set $CI_JOB_STAGE.cache-from="type=registry,ref=$FLEX_IMAGE_REPOSITORY:$CI_JOB_STAGE" \
+          --set $CI_JOB_STAGE.args.CI_COMMIT_SHA="$CI_COMMIT_SHA" \
+          --set $CI_JOB_STAGE.args.CI_COMMIT_SHORT_SHA="$CI_COMMIT_SHORT_SHA" \
+          --set $CI_JOB_STAGE.args.CI_PROJECT_URL="$CI_PROJECT_URL" \
+          --set $CI_JOB_STAGE.args.DD_API_KEY="$DD_API_KEY" \
+          --set $CI_JOB_STAGE.args.DD_SITE="$DD_SITE" \
+          -f $FLEX_BAKE_DIR/build.hcl \
+          -f $FLEX_BAKE_DIR/generated.json \
+          -f $FLEX_ENV_DIR/$FLEX_CI_ARCH/.env.hcl \
+          --progress plain \
+          $CI_JOB_STAGE
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+.stage-image-exists:
+  script:
+    - echo "CI_JOB_STAGE - $CI_JOB_STAGE" 
+    # docker will return 0 on success or 1 on failure.
+    - img_manifest=$(docker manifest inspect $FLEX_IMAGE_REPOSITORY:$CI_JOB_STAGE > /dev/null ; echo $?)
+    # - echo $img_manifest
+    - has_image=$([[ $img_manifest -eq 1 ]] && echo "false" || echo "true")
+    - echo "$CI_JOB_STAGE has image - $has_image"
+    - |-
+      if [[ $has_image == "true" ]]; then
+        echo "FLEX_STATUS_$CI_JOB_STAGE=warm" >> "$CI_COMMIT_BRANCH_$CI_JOB_STAGE.env"
+      else 
+        echo "FLEX_STATUS_$CI_JOB_STAGE=cold" >> "$CI_COMMIT_BRANCH_$CI_JOB_STAGE.env"
+      fi
+    - echo $(tail "$CI_COMMIT_BRANCH_$CI_JOB_STAGE.env")
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+.registry-image-tags:
+  script:
+    - |-
+      tags_json=$(curl --header "PRIVATE-TOKEN: $FLEX_TOKEN_API_READ" \
+        "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/registry/repositories/3902424/tags")
+      tags=$(echo $tags_json | jq -r '.[] | .name')
+      for tag in $tags
+      do
+        echo -e "FLEX_STATUS_2_$tag=true" >> "$CI_COMMIT_BRANCH_REGISTRY_TAGS.env"
+      done
+    - echo $(tail "$CI_COMMIT_BRANCH_REGISTRY_TAGS.env")
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+####_Ansible_Nest_Generated_####
+## BEGIN ANSIBLE MANAGED BLOCK - NEST ##
+.post-generated-jobs:
+  needs:
+  - job: FLEX_DESIGN_SYSTEM_REACT_TS
+    optional: true
+  - job: FLEXINESS_DOMAIN_CONTENT
+    optional: true
+  - job: FLEXINESS_DOMAIN_UTILS
+    optional: true
+## END ANSIBLE MANAGED BLOCK - NEST ##
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# https://gitlab.com/gitlab-org/gitlab/-/issues/220758
+
+####_Ansible_Trigger_Generated_####
+## BEGIN ANSIBLE MANAGED BLOCK - TRIGGER ##
+.trigger-generated-jobs:
+  include:
+  - local: $FLEX_INCLUDES_DIR/generated/flex_design_system_react_ts.yml
+  - local: $FLEX_INCLUDES_DIR/generated/flexiness_domain_content.yml
+  - local: $FLEX_INCLUDES_DIR/generated/flexiness_domain_utils.yml
+## END ANSIBLE MANAGED BLOCK - TRIGGER ##
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Load-Env:
+  stage: pre
+  needs: []
+  script:
+    - echo "Loading .env from $FLEX_ENV_DIR/$FLEX_CI_ARCH/.env"
+  artifacts:
+    reports:
+      dotenv: $FLEX_ENV_DIR/$FLEX_CI_ARCH/.env
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# Report-Registry-Tags:
+#   stage: pre
+#   needs: []
+#   before_script:
+#     - *export_apk_add
+#   script:
+#     - !reference [.registry-image-tags, script]
+#   artifacts:
+#     reports:
+#       dotenv: "$CI_COMMIT_BRANCH_REGISTRY_TAGS.env"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Report-Base-Env:
+  stage: base_env
+  extends: .gitlab-runner
+  needs: []
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    - *export_debug
+  script:
+    - !reference [.stage-image-exists, script]
+  artifacts:
+    reports:
+      dotenv: "$CI_COMMIT_BRANCH_$CI_JOB_STAGE.env"
+
+Build-Base-Env:
+  stage: base_env
+  extends: .gitlab-runner
+  needs:
+    - job: Report-Base-Env
+      artifacts: true
+    # - job: Report-Registry-Tags
+    #   artifacts: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    - echo "FLEX_STATUS_base_env should be $FLEX_STATUS_base_env"
+  script:
+    - !reference [.snippets_bake, root, build, script]
+  rules:
+    - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "warm"
+      changes:
+        # compare_to: refs/heads/main
+        paths:
+          - pipeline-ci/ansible/**/*
+          - $FLEX_DOCKERFILES_DIR/0_base_env.dockerfile
+      when: always
+    - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "cold"
+      when: always
+
+Run-Test-Base-Env:
+  stage: base_env
+  extends: .gitlab-runner
+  needs:
+    - job: Load-Env
+      artifacts: true
+    - job: Build-Base-Env
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+  script: |
+    docker network create nginx-proxy || true
+    docker compose -f $FLEX_COMPOSE_DIR/$FLEX_CI_ARCH/docker-compose.test.base_env.ci.yml up -d
+    docker logs -t -f homepage
+    docker compose -f $FLEX_COMPOSE_DIR/$FLEX_CI_ARCH/docker-compose.test.base_env.ci.yml down
+    docker network rm nginx-proxy
+  variables:
+    GIT_STRATEGY: none
+  retry:
+    max: 2
+    when: always
+  interruptible: true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Report-Install-Dependencies:
+  stage: install_deps
+  extends: .gitlab-runner
+  needs: []
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    # - *export_debug
+  script:
+    - !reference [.stage-image-exists, script]
+  artifacts:
+    reports:
+      dotenv: "$CI_COMMIT_BRANCH_$CI_JOB_STAGE.env"
+
+Install-Dependencies:
+  stage: install_deps
+  extends: .gitlab-runner
+  needs:
+    - job: Report-Install-Dependencies
+      artifacts: true
+    # - job: Report-Registry-Tags
+    #   artifacts: true
+    - job: Build-Base-Env
+      optional: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    - echo "FLEX_STATUS_install_deps should be $FLEX_STATUS_install_deps"
+  script:
+    - !reference [.snippets_bake, root, build, script]
+  rules:
+    - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "warm"
+      changes:
+        # compare_to: refs/heads/main
+        paths:
+          - $FLEX_DOCKERFILES_DIR/1_install_deps.dockerfile
+          - yarn.lock
+          - /env/**/*
+      when: always
+    - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "cold"
+      when: always
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Install-Packages:
+  stage: install_packages
+  extends: .gitlab-runner
+  needs:
+    - job: Build-Base-Env
+      optional: true
+    - job: Install-Dependencies
+      optional: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    # - *export_debug
+  script:
+    - !reference [.snippets_bake, root, build, script]
+  rules:
+    - when: always
+    # - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "warm"
+    #   changes:
+    #     # compare_to: refs/heads/main
+    #     paths:
+    #       - $FLEX_DOCKERFILES_DIR/2_install_packages.dockerfile
+    #       - /packages/**/*
+    #       - /bin/**/*
+    #   when: always
+    # - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "cold"
+    #   when: always
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Build-Libs:
+  stage: build_libs
+  extends: .gitlab-runner
+  needs:
+    # - job: Report-Registry-Tags
+    #   artifacts: true
+    - job: Build-Base-Env
+      optional: true
+    - job: Install-Packages
+      optional: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+  script:
+    - !reference [.snippets_bake, root, build, script]
+  rules:
+    - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "warm"
+      changes:
+        # compare_to: refs/heads/main
+        paths:
+          - $FLEX_DOCKERFILES_DIR/3_build_libs.dockerfile
+          # # # # # # # # # # # # # # # # # # # # #
+          # build:rollup
+          # # # # # # # # # # # # # # # # # # # # #
+          - '/packages/flex/domain-lib*/**/*'
+          # # # # # # # # # # # # # # # # # # # # #
+          # build:lib
+          # # # # # # # # # # # # # # # # # # # # #
+          # - '/packages/flex/design-system-*/**/*'
+          - '/packages/flex/design-system-framework/**/*'
+          - '/packages/flex/design-system-react/**/*'
+          - '/packages/flytel/trilogy-react/**/*'
+      when: always
+    - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "cold"
+      when: always
+  interruptible: true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# Trigger-Build-Generated:
+#   stage: build
+#   needs:
+#     # - job: Report-Registry-Tags
+#     #   artifacts: true
+#     - job: Build-Base-Env
+#       optional: true
+#     - job: Build-Libs
+#       optional: true
+#   trigger:
+#     # include: 
+#     #   - !reference [.trigger-generated-jobs, include]
+#     # include:
+#     #   - local: pipeline-ci/docker/v2/includes/gitlab/generated/flex_design_system_react_ts.yml
+#     include:
+#       - local: $FLEX_INCLUDES_DIR/generated/flex_design_system_react_ts.yml
+#     forward:
+#       yaml_variables: true
+#       pipeline_variables: true
+#     strategy: depend
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Build-Client-Side:
+  stage: build_client_side
+  extends: .gitlab-runner
+  needs:
+    # - job: Report-Registry-Tags
+    #   artifacts: true
+    - job: Build-Base-Env
+      optional: true
+    - job: Build-Libs
+      optional: true
+    - !reference [.post-generated-jobs, needs]
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+  script:
+    - !reference [.snippets_bake, root, build, script]
+  rules:
+    - when: on_success
+    # - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "warm"
+    #   changes:
+    #     # compare_to: refs/heads/main
+    #     paths:
+    #       - $FLEX_DOCKERFILES_DIR/4_build_client_side.dockerfile
+    #       # # # # # # # # # # # # # # # # # # # # #
+    #       # flytel
+    #       # # # # # # # # # # # # # # # # # # # # #
+    #       - '/packages/flex/flytel/**/*'
+    #       # # # # # # # # # # # # # # # # # # # # #
+    #       # flexiness
+    #       # # # # # # # # # # # # # # # # # # # # #
+    #       - '/packages/flex/mf-*/**/*'
+    #       - '/packages/flex/domain-app/**/*'
+    #       - '/packages/flex/domain-content/**/*'
+    #       - '/packages/flex/design-system-react-ts/**/*'
+    #   when: always
+    # - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "cold"
+    #   when: always
+  interruptible: true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Build-SSR:
+  stage: build_ssr
+  extends: .gitlab-runner
+  needs:
+    - job: Load-Env
+      artifacts: true
+    # - job: Report-Registry-Tags
+    #   artifacts: true
+    - job: Build-Base-Env
+      optional: true
+    - job: Build-Client-Side
+      optional: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    # - *export_debug
+  script:
+    # - !reference [.snippets_bake, root, build, script]
+    # # Cannot use bake hcl syntax because --add-host option required
+    # - |-
+    #   docker buildx build --pull --push -t $FLEX_IMAGE_REPOSITORY:build_ssr \
+    #     --add-host $FLEX_DOMAIN_NAME:127.0.0.1 \
+    #     --target build-ssr \
+    #     --file $FLEX_DOCKERFILES_DIR/5_build_ssr.dockerfile \
+    #     --cache-from type=registry,ref=$FLEX_IMAGE_REPOSITORY:build_ssr \
+    #     --build-context base-env=$FLEX_IMAGE_REPOSITORY:base_env \
+    #     --build-context build-client-side=$FLEX_IMAGE_REPOSITORY:build_client_side \
+    #     --build-arg BUILDKIT_INLINE_CACHE=1 \
+    #     --build-arg CI=$FLEX_CI \
+    #     --build-arg FLEX_HOME=$FLEX_HOME \
+    #     --build-arg FLEX_APP=$FLEX_APP \
+    #     --build-arg FLEX_PROTOCOL=$FLEX_PROTOCOL \
+    #     --build-arg FLEX_DOMAIN_NAME=$FLEX_DOMAIN_NAME \
+    #     --build-arg FLEX_MODE=$FLEX_MODE \
+    #     --build-arg FLEX_IMAGE_REPOSITORY=$FLEX_IMAGE_REPOSITORY \
+    #     "."
+    - |-
+      docker buildx build --pull --push -t $FLEX_IMAGE_REPOSITORY:build_ssr \
+        --add-host $FLEX_DOMAIN_NAME:127.0.0.1 \
+        --target build-ssr \
+        --file $FLEX_DOCKERFILES_DIR/5b_build_ssr.dockerfile \
+        --cache-from type=registry,ref=$FLEX_IMAGE_REPOSITORY:build_ssr \
+        --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --build-arg CI=$FLEX_CI \
+        --build-arg FLEX_HOME=$FLEX_HOME \
+        --build-arg FLEX_APP=$FLEX_APP \
+        --build-arg FLEX_PROTOCOL=$FLEX_PROTOCOL \
+        --build-arg FLEX_DOMAIN_NAME=$FLEX_DOMAIN_NAME \
+        --build-arg FLEX_MODE=$FLEX_MODE \
+        --build-arg FLEX_IMAGE_REPOSITORY=$FLEX_IMAGE_REPOSITORY \
+        --build-arg FLEX_OS=$FLEX_OS \
+        --build-arg FLEX_CPU=$FLEX_CPU \
+        --build-arg GIT_COMMIT_SHA=CI_COMMIT_SHORT_SHA \
+        --build-arg DD_GIT_REPOSITORY_URL=$CI_PROJECT_URL \
+        --build-arg DD_GIT_COMMIT_SHA=$CI_COMMIT_SHA \
+        --build-arg DD_GIT_BRANCH=$FLEX_BRANCH \
+        "."
+  rules:
+    - when: on_success
+    # - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "warm"
+    #   changes:
+    #     # compare_to: refs/heads/main
+    #     paths:
+    #       - $FLEX_DOCKERFILES_DIR/5_build_ssr.dockerfile
+    #       - $FLEX_DOCKERFILES_DIR/5b_build_ssr.dockerfile
+    #       # # # # # # # # # # # # # # # # # # # # #
+    #       # flexiness
+    #       # # # # # # # # # # # # # # # # # # # # #
+    #       - '/packages/flex/design-system-react-ts/**/*'
+    #       # # # # # # # # # # # # # # # # # # # # #
+    #       # gateway
+    #       # # # # # # # # # # # # # # # # # # # # #
+    #       - '/packages/gateway/nextjs-telenko/**/*'
+    #   when: always
+    # - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "cold"
+    #   when: always
+  interruptible: true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Build-Test-End-2-End:
+  stage: test_e2e
+  extends: .gitlab-runner
+  needs:
+    - job: Load-Env
+      artifacts: true
+    - job: Build-Base-Env
+      optional: true
+    - job: Build-SSR
+      optional: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+  script:
+    # - !reference [.snippets_bake, root, build, script]
+    - |-
+      docker buildx build --pull --push -t $FLEX_IMAGE_REPOSITORY:test_e2e \
+        --add-host $FLEX_DOMAIN_NAME:127.0.0.1 \
+        --add-host lighthouse.$FLEX_BASE_DOMAIN:127.0.0.1 \
+        --target test_e2e \
+        --file $FLEX_DOCKERFILES_DIR/6b_test_e2e.dockerfile \
+        --cache-from type=registry,ref=$FLEX_IMAGE_REPOSITORY:test_e2e \
+        --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --build-arg CI=$FLEX_CI \
+        --build-arg FLEX_HOME=$FLEX_HOME \
+        --build-arg FLEX_APP=$FLEX_APP \
+        --build-arg FLEX_PROTOCOL=$FLEX_PROTOCOL \
+        --build-arg FLEX_DOMAIN_NAME=$FLEX_DOMAIN_NAME \
+        --build-arg FLEX_MODE=$FLEX_MODE \
+        --build-arg FLEX_IMAGE_REPOSITORY=$FLEX_IMAGE_REPOSITORY \
+        --build-arg FLEX_OS=$FLEX_OS \
+        --build-arg FLEX_CPU=$FLEX_CPU \
+        --build-arg GIT_COMMIT_SHA=CI_COMMIT_SHORT_SHA \
+        --build-arg DD_GIT_REPOSITORY_URL=$CI_PROJECT_URL \
+        --build-arg DD_GIT_COMMIT_SHA=$CI_COMMIT_SHA \
+        --build-arg DD_GIT_BRANCH=$FLEX_BRANCH \
+        "."
+  rules:
+    - when: on_success
+  #   - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "warm"
+  #     changes:
+  #       # compare_to: refs/heads/main
+  #       paths:
+  #         - $FLEX_DOCKERFILES_DIR/6_test_e2e.dockerfile
+  #         - $FLEX_DOCKERFILES_DIR/6b_test_e2e.dockerfile
+  #         - yarn.lock
+  #         - /env/**/*
+  #         - /packages/**/*
+  #         - /bin/**/*
+  #     when: on_success
+  #   - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "cold"
+  #     when: on_success
+  interruptible: true
+
+Run-Test-End-2-End:
+  stage: test_e2e
+  extends: .gitlab-runner
+  needs:
+    - job: Load-Env
+      artifacts: true
+    - job: Build-Test-End-2-End
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+  # script: |
+  #   export MONGO_DATA_PATH="$CI_BUILDS_DIR/$CI_PROJECT_PATH/shared/.docker-data/mongo"
+  #   mkdir -p ${MONGO_DATA_PATH}
+  # script: |
+  #   docker compose -f docker-compose.amd64.run.test.e2e.ci.yml up -d
+  #   docker logs -t -f homepage
+  #   until [ "`docker cp homepage:/home/isflex/projects/homepage/packages/flex/config/jest/puppeteer/output.json test-e2e-output.json`"=="true" ]; do sleep 0.1; done;
+  #   until [ "`docker cp homepage:/home/isflex/projects/homepage/packages/flex/config/jest/puppeteer/junit.xml test-e2e-junit.xml`"=="true" ]; do sleep 0.1; done;
+  #   docker compose -f docker-compose.amd64.run.test.e2e.ci.yml down
+  script: |
+    docker compose -f docker-compose.amd64.run.test.e2e.ci.yml up -d
+    docker logs -t -f homepage
+    until [ "`docker cp homepage:/home/isflex/projects/homepage/packages/flex/config/cypress/report.json test-e2e-report.json`"=="true" ]; do sleep 0.1; done;
+    until [ "`docker cp homepage:/home/isflex/projects/homepage/packages/flex/config/cypress/junit.xml test-e2e-junit.xml`"=="true" ]; do sleep 0.1; done;
+    docker compose -f docker-compose.amd64.run.test.e2e.ci.yml down
+  variables:
+    GIT_STRATEGY: none
+  artifacts:
+    # paths:
+    #   - test-e2e-output.json
+    #   - test-e2e-junit.xml
+    paths:
+      - test-e2e-report.json
+      - test-e2e-junit.xml
+    reports:
+      junit: test-e2e-junit.xml
+    expire_in: 1 days
+  rules:
+    - when: on_success
+  retry:
+    max: 2
+    when: always
+  interruptible: true
+
+Run-Test-Lighthouse:
+  stage: test_lighthouse_ci
+  extends: .gitlab-runner
+  needs:
+    - job: Load-Env
+      artifacts: true
+    - job: Build-Test-End-2-End
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    - *export_apk_add
+  script: 
+    - failures=$(cat test-e2e-report.json | jq '.stats.failures')
+    - if [[ $failures -ne 0 ]]; then exit; fi
+    - |-
+      docker network create nginx-proxy || true
+      docker compose -f docker-compose.amd64.run.test.lighthouse.ci.yml up -d
+      docker logs -t -f homepage
+      until [ "`docker cp homepage:/home/isflex/projects/homepage/packages/flex/config/lighthouse-ci/.lighthouseci/links.json lighthouseci-report-links.xml`"=="true" ]; do sleep 0.1; done;
+      docker compose -f docker-compose.amd64.run.test.lighthouse.ci.yml down
+      docker network rm nginx-proxy
+  variables:
+    GIT_STRATEGY: none
+  artifacts:
+    paths:
+      - lighthouseci-report-links.xml
+    reports:
+      junit: lighthouseci-report-links.xml
+    expire_in: 1 days
+  rules:
+    - when: on_success
+  retry:
+    max: 2
+    when: always
+  interruptible: true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Final:
+  stage: final
+  extends: .gitlab-runner
+  needs:
+    - job: Load-Env
+      artifacts: true
+    - job: Run-Test-End-2-End
+      artifacts: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    - *export_apk_add
+  script:
+    # - echo $(jq '.success' test-e2e-output.json)
+    # - if [[ jq '.success' test-e2e-output.json != 'true' ]]; then exit; fi
+    ##############################################################################
+    - failures=$(cat test-e2e-report.json | jq '.stats.failures')
+    - if [[ $failures -ne 0 ]]; then exit; fi
+    ##############################################################################
+    # - !reference [.snippets_bake, root, build, script]
+    - |-
+      docker buildx build --pull --push -t $FLEX_IMAGE_REPOSITORY:final \
+        --add-host $FLEX_DOMAIN_NAME:127.0.0.1 \
+        --target final \
+        --file $FLEX_DOCKERFILES_DIR/7b_final.dockerfile \
+        --cache-from type=registry,ref=$FLEX_IMAGE_REPOSITORY:final \
+        --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --build-arg CI=false \
+        --build-arg FLEX_HOME=$FLEX_HOME \
+        --build-arg FLEX_APP=$FLEX_APP \
+        --build-arg FLEX_PROTOCOL=$FLEX_PROTOCOL \
+        --build-arg FLEX_DOMAIN_NAME=$FLEX_DOMAIN_NAME \
+        --build-arg FLEX_MODE=$FLEX_MODE \
+        --build-arg FLEX_IMAGE_REPOSITORY=$FLEX_IMAGE_REPOSITORY \
+        --build-arg GIT_COMMIT_SHA=CI_COMMIT_SHORT_SHA \
+        "."
+  variables:
+    GIT_STRATEGY: none
+  rules:
+    - when: on_success
+    # - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "warm"
+    #   changes:
+    #     # compare_to: refs/heads/main
+    #     paths:
+    #       - $FLEX_DOCKERFILES_DIR/7_final.dockerfile
+    #       - $FLEX_DOCKERFILES_DIR/7b_final.dockerfile
+    #       - yarn.lock
+    #       - /env/**/*
+    #       - /packages/**/*
+    #       - /bin/**/*
+    #   when: on_success
+    # - if: $CI_COMMIT_BRANCH && $FLEX_STATUS == "cold"
+    #   when: on_success
+  interruptible: true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+Deploy-Google-Cloud-Registry:
+  stage: deploy
+  needs:
+    - job: Final
+    - job: Run-Test-End-2-End
+      artifacts: true
+  before_script:
+    - *export_gitlab_login
+    - *export_image_tag
+    - *export_apk_add
+    - !reference [.gloud-deploy, before_script]
+  script:
+    # - if [[ jq '.success' test-e2e-output.json != 'true' ]]; then exit; fi
+    - failures=$(cat test-e2e-report.json | jq '.stats.failures')
+    - if [[ $failures -ne 0 ]]; then exit; fi
+    - !reference [.gloud-deploy, script]
+  environment:
+    name: main
+  variables:
+    GIT_STRATEGY: none
+  rules:
+    - if: $GCR_DEPLOY == "true"
+      when: on_success
+  interruptible: true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# REPLACED BY JOB : Trigger-Build-Generated
+include:
+  # /!\ No variables at compile time of includes
+  # - local: $FLEX_INCLUDES_DIR/generated/*.yml
+  - local: pipeline-ci/docker/v2/includes/gitlab/generated/*.yml
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# END
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 

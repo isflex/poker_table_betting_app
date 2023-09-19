@@ -3,57 +3,8 @@
 //  This file was automatically generated and should not be edited.
 
 export type CreateISSUEInput = {
-  id?: string | null,
   name: string,
   desc?: string | null,
-};
-
-export type ModelISSUEConditionInput = {
-  name?: ModelStringInput | null,
-  desc?: ModelStringInput | null,
-  and?: Array< ModelISSUEConditionInput | null > | null,
-  or?: Array< ModelISSUEConditionInput | null > | null,
-  not?: ModelISSUEConditionInput | null,
-};
-
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
-
-export type ModelSizeInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
 };
 
 export type ISSUE = {
@@ -61,8 +12,6 @@ export type ISSUE = {
   id: string,
   name: string,
   desc?: string | null,
-  createdAt: string,
-  updatedAt: string,
 };
 
 export type UpdateISSUEInput = {
@@ -75,16 +24,13 @@ export type DeleteISSUEInput = {
   id: string,
 };
 
-export type ModelISSUEFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  desc?: ModelStringInput | null,
-  and?: Array< ModelISSUEFilterInput | null > | null,
-  or?: Array< ModelISSUEFilterInput | null > | null,
-  not?: ModelISSUEFilterInput | null,
+export type TableISSUEFilterInput = {
+  id?: TableIDFilterInput | null,
+  name?: TableStringFilterInput | null,
+  desc?: TableStringFilterInput | null,
 };
 
-export type ModelIDInput = {
+export type TableIDFilterInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -95,58 +41,29 @@ export type ModelIDInput = {
   notContains?: string | null,
   between?: Array< string | null > | null,
   beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
 };
 
-export type ModelISSUEConnection = {
-  __typename: "ModelISSUEConnection",
-  items:  Array<ISSUE | null >,
+export type TableStringFilterInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export type ISSUEConnection = {
+  __typename: "ISSUEConnection",
+  items?:  Array<ISSUE | null > | null,
   nextToken?: string | null,
-};
-
-export type ModelSubscriptionISSUEFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  name?: ModelSubscriptionStringInput | null,
-  desc?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionISSUEFilterInput | null > | null,
-  or?: Array< ModelSubscriptionISSUEFilterInput | null > | null,
-};
-
-export type ModelSubscriptionIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  in?: Array< string | null > | null,
-  notIn?: Array< string | null > | null,
-};
-
-export type ModelSubscriptionStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  in?: Array< string | null > | null,
-  notIn?: Array< string | null > | null,
 };
 
 export type CreateISSUEMutationVariables = {
   input: CreateISSUEInput,
-  condition?: ModelISSUEConditionInput | null,
 };
 
 export type CreateISSUEMutation = {
@@ -155,14 +72,11 @@ export type CreateISSUEMutation = {
     id: string,
     name: string,
     desc?: string | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type UpdateISSUEMutationVariables = {
   input: UpdateISSUEInput,
-  condition?: ModelISSUEConditionInput | null,
 };
 
 export type UpdateISSUEMutation = {
@@ -171,14 +85,11 @@ export type UpdateISSUEMutation = {
     id: string,
     name: string,
     desc?: string | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type DeleteISSUEMutationVariables = {
   input: DeleteISSUEInput,
-  condition?: ModelISSUEConditionInput | null,
 };
 
 export type DeleteISSUEMutation = {
@@ -187,8 +98,6 @@ export type DeleteISSUEMutation = {
     id: string,
     name: string,
     desc?: string | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -202,34 +111,32 @@ export type GetISSUEQuery = {
     id: string,
     name: string,
     desc?: string | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type ListISSUESQueryVariables = {
-  filter?: ModelISSUEFilterInput | null,
+  filter?: TableISSUEFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
 export type ListISSUESQuery = {
   listISSUES?:  {
-    __typename: "ModelISSUEConnection",
-    items:  Array< {
+    __typename: "ISSUEConnection",
+    items?:  Array< {
       __typename: "ISSUE",
       id: string,
       name: string,
       desc?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
+    } | null > | null,
     nextToken?: string | null,
   } | null,
 };
 
 export type OnCreateISSUESubscriptionVariables = {
-  filter?: ModelSubscriptionISSUEFilterInput | null,
+  id?: string | null,
+  name?: string | null,
+  desc?: string | null,
 };
 
 export type OnCreateISSUESubscription = {
@@ -238,13 +145,13 @@ export type OnCreateISSUESubscription = {
     id: string,
     name: string,
     desc?: string | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type OnUpdateISSUESubscriptionVariables = {
-  filter?: ModelSubscriptionISSUEFilterInput | null,
+  id?: string | null,
+  name?: string | null,
+  desc?: string | null,
 };
 
 export type OnUpdateISSUESubscription = {
@@ -253,13 +160,13 @@ export type OnUpdateISSUESubscription = {
     id: string,
     name: string,
     desc?: string | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type OnDeleteISSUESubscriptionVariables = {
-  filter?: ModelSubscriptionISSUEFilterInput | null,
+  id?: string | null,
+  name?: string | null,
+  desc?: string | null,
 };
 
 export type OnDeleteISSUESubscription = {
@@ -268,7 +175,5 @@ export type OnDeleteISSUESubscription = {
     id: string,
     name: string,
     desc?: string | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };

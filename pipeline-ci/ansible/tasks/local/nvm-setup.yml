@@ -1,0 +1,104 @@
+# https://github.com/nvm-sh/nvm
+# https://gist.github.com/komuw/b3b5d24977d4df7bd549
+- name: Setup NVM
+  become: true
+  become_user: "{{ lookup('env', 'FLEX_USER') }}"
+  become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
+  tags: &tags_for_node_tasks ['install', 'node']
+  block:
+    - name: Install nvm
+      ansible.builtin.shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+      args:
+        executable: /bin/bash
+        chdir: '$HOME'
+        creates: '$HOME/.nvm/nvm.sh'
+      tags: *tags_for_node_tasks
+
+    - name: Create nvm default-packages file
+      copy:
+        content: ''
+        dest: ~/.nvm/default-packages
+        force: no
+      tags: *tags_for_node_tasks
+
+    - name: Setup nvm default-packages
+      ansible.builtin.lineinfile:
+        path: ~/.nvm/default-packages
+        line: '{{ item }}'
+        state: present
+      loop:
+        - 'rimraf'
+        - 'yarn'
+      tags: *tags_for_node_tasks
+
+    - name: Setup .profile for nvm path
+      ansible.builtin.lineinfile:
+        path: ~/.profile
+        line: '{{ item }}'
+        state: present
+      loop:
+        - source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
+        - export NODE_OPTIONS="--max-old-space-size=8192"
+      tags: *tags_for_node_tasks
+
+    - name: Setup .bashrc for nvm path
+      ansible.builtin.lineinfile:
+        path: ~/.bashrc
+        line: '{{ item }}'
+        state: present
+      loop:
+        - 'export NVM_DIR="$HOME/.nvm"'
+        - '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm'
+        - '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion'
+        - export NODE_OPTIONS="--max-old-space-size=8192"
+      tags: *tags_for_node_tasks
+
+    - name: Install node
+      # ansible.builtin.shell: |
+      #   nvm install {{item}}
+      # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+      # https://stackoverflow.com/questions/35988567/ansible-doesnt-load-profile
+      # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+      # ansible.builtin.shell: |
+      #   . /home/isflex/.profile;nvm install {{item}}
+      ansible.builtin.shell: |
+        source ~/.profile && nvm install {{item}}
+      args:
+        executable: /bin/bash
+        chdir: '$HOME'
+        creates: '$HOME/.nvm/versions/node/v{{item}}'
+      loop:
+        - 18.15.0
+      tags: *tags_for_node_tasks
+
+    - name: Configure npm
+      ansible.builtin.shell: |
+        source ~/.profile && npm config set {{item.key}} {{item.value}}
+      args:
+        executable: /bin/bash
+      loop:
+        - { key: 'script-shell', value: '/bin/bash' }
+        # - { key: 'python', value: '/usr/bin/python3' }
+        # - { key: '@module-federation:registry', value: 'https://r.privjs.com' }
+        # - {
+        #     key: '//r.privjs.com/:_authToken',
+        #     value: 'JWT_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVVVJRCI6ImM3MjBlZDA5LTlmNmMtNDM3NS04ODQxLWYwMjNmNjQ3Yzk1NSIsInVzZXJuYW1lIjoiZmxleGluZXNzIiwiaWF0IjoxNjQwODE1Njc5fQ.a1N8d7zzE67Y2xDUkTw0APT20DotQ4CL7bBwn-MvVdY',
+        #   }
+      tags: *tags_for_node_tasks
+
+    - name: Configure yarn
+      ansible.builtin.shell: |
+        source ~/.profile && yarn config set {{item.key}} {{item.value}}
+      args:
+        executable: /bin/bash
+      loop:
+        - { key: 'script-shell', value: '/bin/bash' }
+        # - { key: 'python', value: '/usr/bin/python3' }
+        # - { key: '@module-federation:registry', value: 'https://r.privjs.com' }
+        # - {
+        #     key: '//r.privjs.com/:_authToken',
+        #     value: 'JWT_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVVVJRCI6ImM3MjBlZDA5LTlmNmMtNDM3NS04ODQxLWYwMjNmNjQ3Yzk1NSIsInVzZXJuYW1lIjoiZmxleGluZXNzIiwiaWF0IjoxNjQwODE1Njc5fQ.a1N8d7zzE67Y2xDUkTw0APT20DotQ4CL7bBwn-MvVdY',
+        #   }
+      tags: *tags_for_node_tasks
+

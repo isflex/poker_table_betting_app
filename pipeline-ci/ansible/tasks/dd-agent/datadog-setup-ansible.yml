@@ -1,0 +1,69 @@
+- name: Setup DataDog Agent
+  become: true
+  block:
+  
+    - name: Install the datadog agent on targets
+      include_role:
+        name: datadog.datadog
+      vars: 
+        datadog_api_key: "{{ lookup('env', 'DD_API_KEY') }}"
+        datadog_site: "{{ lookup('env', 'DD_SITE') }}"
+        datadog_additional_groups: "{{ lookup('env', 'FLEX_USER') }}"
+        datadog_config:
+          # hostname: "{{ inventory_hostname }}"
+          hostname: "{{ lookup('env', 'DD_HOSTNAME') }}"
+          log_level: "{{ lookup('env', 'DD_LOG_LEVEL') }}"
+          apm_config:
+            enabled: true
+          # logs_enabled: "{{ lookup('env', 'DD_LOGS_INJECTION') }}"
+          logs_enabled: true
+        system_probe_config:
+          process_config:
+            enabled: true
+          # vector:
+          #   logs:
+          #     enabled: true
+          #     url: "http://<OPW_HOST>:8282"
+          #   metrics:
+          #     enabled: true
+          #     url: "http://<OPW_HOST>:8282"
+        datadog_checks:
+          process:
+            init_config:
+            instances:
+              - name: ssh
+                search_string: ['ssh', 'sshd']
+              - name: syslog
+                search_string: ['rsyslog']
+                cpu_check_interval: 0.2
+                exact_match: true
+                ignore_denied_access: true
+          # tomcat:
+          #   logs:
+          #     - type: file
+          #       path: "{{ lookup('env', 'FLEX_HOME') }}/datadog/homepage/tomcatlogs/logs/*.log"
+          #       service: homepage
+          #       source: tomcat
+
+    # # https://github.com/ansible/ansible/issues/70864
+    # - name: Give {{ lookup('env', 'FLEX_USER') }} (non sudo user) a sudo privilege to run services.
+    #   template:
+    #     src: isflex-root-privileges-for-dd-agent-services.j2
+    #     dest: /etc/sudoers.d/{{ lookup('env', 'FLEX_USER') }}
+    #     validate: "visudo -cf %s"
+    #     mode: 0440
+    #     owner: root
+    #     group: root
+
+    # # https://docs.ansible.com/ansible/latest/collections/community/general/sudoers_module.html
+    - name: Allow the {{ lookup('env', 'FLEX_USER') }} user to run any commands as dd-agent with sudo -u dd-agent
+      community.general.sudoers:
+        name: "{{ lookup('env', 'FLEX_USER') }}-do-as-dd-agent"
+        state: present
+        user: "{{ lookup('env', 'FLEX_USER') }}"
+        runas: dd-agent
+        commands: ALL
+
+  when: "'dd-agent' in ansible_run_tags"
+  tags:
+    - dd-agent

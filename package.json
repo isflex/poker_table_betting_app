@@ -9,7 +9,8 @@
   "private": true,
   "workspaces": [
     "apps/**/*",
-    "packages/**/*"
+    "packages/**/*",
+    "pipeline-ci/**/*"
   ],
   "resolutions": {
     "pointingpoker-api": "workspace:./apps/poker/api",
@@ -17,6 +18,7 @@
     "pointingpoker-common": "workspace:./apps/poker/common",
     "pointingpoker-server": "workspace:./apps/poker/server",
     "pointingpoker-parent": "workspace:./apps/poker",
+    "@flexiness/build-bake": "workspace:./pipeline-ci/build-bake",
     "@flexiness/domain-utils": "workspace:./packages/flex/domain-utils",
     "@flexiness/tailwind": "workspace:./packages/flex/domain-tailwind",
     "flex-tailwind": "link:./packages/flex/domain-tailwind/dist",
@@ -44,7 +46,11 @@
     "build": "yarn compile && yarn build:packages && yarn workspace pointingpoker-client build",
     "build:packages": "yarn nx run-many --target=build --projects=\"packages/**/*\" --nx-bail=true",
     "start": "yarn concurrently -k -n ASSETS,POKER -s first \"yarn assets:start\" \"yarn workspace pointingpoker-parent start\"",
-    "assets:start": "yarn concurrently -k -n CONTENT -s first \"yarn workspace @flexiness/domain-content start\""
+    "assets:start": "yarn concurrently -k -n CONTENT -s first \"yarn workspace @flexiness/domain-content start\"",
+    "kill:all:ports": "yarn kill-port --port 3000,3001,3991,3992,4001,4006,7007,8080,27017",
+    "build:bake": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE node ./pipeline-ci/build-bake/dist",
+    "build:bake:ts": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE ts-node --esm ./pipeline-ci/build-bake/src",
+    "build:bake:tsc": "tsc -p ./pipeline-ci/build-bake/tsconfig.json --watch --preserveWatchOutput"
   },
   "devDependencies": {
     "@aws-amplify/api": "5.4.4",
@@ -108,6 +114,7 @@
     "style-loader": "3.3.1",
     "tapable": "2.2.1",
     "ts-loader": "9.4.2",
+    "ts-node": "10.9.1",
     "tsconfig-paths": "4.0.0",
     "tsconfig-paths-webpack-plugin": "4.1.0",
     "tslib": "^2.4.0",
@@ -121,6 +128,7 @@
     "aws-amplify": "5.3.10",
     "cors": "2.8.5",
     "dotenv-cli": "7.3.0",
+    "envsub": "4.1.0",
     "express": "4.18.2",
     "nocache": "3.0.4",
     "regex-escape": "3.4.10",

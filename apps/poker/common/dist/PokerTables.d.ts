@@ -8,8 +8,6 @@ export declare const createTable: (tableName: string, tableDesc: string) => Prom
     id: string;
     name: string;
     desc?: string | null | undefined;
-    createdAt: string;
-    updatedAt: string;
 } | undefined>;
 export declare const deleteTable: (id: string) => Promise<void>;
 export declare class PokerTables {

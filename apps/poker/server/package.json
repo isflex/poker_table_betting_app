@@ -5,12 +5,12 @@
   "main": "src/index",
   "type": "module",
   "scripts": {
-    "dev": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE cross-env NODE_OPTIONS='--inspect' yarn nodemon src/index.js",
-    "dev:ts": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE cross-env NODE_OPTIONS='--inspect' yarn nodemon src/_index.ts --config ./nodemon.json",
+    "dev": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE cross-env NODE_OPTIONS='--inspect' yarn nodemon dist/index.js",
+    "dev:ts": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE cross-env NODE_OPTIONS='--inspect' yarn nodemon dist/_index.ts --config ./nodemon.json",
     "bypass:verify:ssl": "echo $($PROJECT_CWD/bin/run-bypass-verify-ssl.sh)",
     "test:bypass:verify:ssl": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=$(yarn bypass:verify:ssl) printenv",
     "start:https:debug": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE -v NODE_TLS_REJECT_UNAUTHORIZED=$(yarn bypass:verify:ssl) -v NODE_OPTIONS='--inspect' yarn nodemon src/index.js",
-    "start": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE yarn node src/index.js",
+    "start": "dotenv -e $PROJECT_CWD/env/public/.env.$FLEX_MODE yarn node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jason Winnebeck <gillius@gillius.org>",

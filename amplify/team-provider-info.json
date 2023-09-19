@@ -1,20 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-pokerapp-dev-113813-authRole",
-      "UnauthRoleArn": "arn:aws:iam::658302359958:role/amplify-pokerapp-dev-113813-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::658302359958:role/amplify-pokerapp-dev-113813-authRole",
+      "AuthRoleName": "amplify-pokerapp-dev-112016-authRole",
+      "UnauthRoleArn": "arn:aws:iam::658302359958:role/amplify-pokerapp-dev-112016-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::658302359958:role/amplify-pokerapp-dev-112016-authRole",
       "Region": "eu-west-3",
-      "DeploymentBucketName": "amplify-pokerapp-dev-113813-deployment",
-      "UnauthRoleName": "amplify-pokerapp-dev-113813-unauthRole",
-      "StackName": "amplify-pokerapp-dev-113813",
-      "StackId": "arn:aws:cloudformation:eu-west-3:658302359958:stack/amplify-pokerapp-dev-113813/c4b53140-4b06-11ee-8f11-0a98f75d73f2",
-      "AmplifyAppId": "d1v9bh7nhs6y6r"
-    },
-    "categories": {
-      "api": {
-        "pokerapp": {}
-      }
+      "DeploymentBucketName": "amplify-pokerapp-dev-112016-deployment",
+      "UnauthRoleName": "amplify-pokerapp-dev-112016-unauthRole",
+      "StackName": "amplify-pokerapp-dev-112016",
+      "StackId": "arn:aws:cloudformation:eu-west-3:658302359958:stack/amplify-pokerapp-dev-112016/bebfa860-56cd-11ee-b64a-0e2b6d48846a",
+      "AmplifyAppId": "d1z7vcfmxh9we2"
     }
   }
 }

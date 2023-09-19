@@ -1,8 +1,8 @@
 node_modules/
 common/build/
-# common/dist/
+common/dist/
 client/build/
-# client/dist/
+client/dist/
 client/.yarn/
-# server/dist/
+server/dist/
 .idea/

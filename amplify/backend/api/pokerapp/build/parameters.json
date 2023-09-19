@@ -1,7 +1,0 @@
-{
-    "AppSyncApiName": "pokerapp",
-    "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": false,
-    "S3DeploymentBucket": "amplify-pokerapp-dev-113813-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/542b569800efd1d8eabe44d8b640e242024226ba"
-}

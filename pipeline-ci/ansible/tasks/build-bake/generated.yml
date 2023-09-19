@@ -1,0 +1,98 @@
+- name: Add targets to build_client_side in .hcl and .dockerfile and .gitlab-ci
+  vars:
+    input: "{{ lookup('file','{{ base_path }}/pipeline-ci/docker/v2/bake/generated.json') | from_json }}" 
+  block:
+  
+  - name: Save the Json data to a Variable as a Fact
+    set_fact:
+      targets: "{{ input.group.default.targets }}"
+
+  - name: Transform Variable Fact Uppercase
+    set_fact:
+      target_list: "{{ targets | map('upper') | list }}"
+  
+  # # https://www.itix.fr/blog/ansible-add-prefix-suffix-to-list/
+  # # https://medium.com/opsops/how-to-prepend-every-string-in-a-list-with-a-prefix-in-ansible-a6c2bb987046
+  # - name: Transform Variable Fact Prefix
+  #   vars:
+  #     prefix: "SOMETHING_"
+  #   set_fact:
+  #     target_list_prfixed: "{{ [prefix] | product(target_list) | map('join') | list }}"
+
+  - name: Create and Add items to dictionary targets_dict
+    # # https://www.middlewareinventory.com/blog/ansible-dict/
+    # set_fact: 
+    #   targets_dict: "{{ targets_dict | default([]) + [{ 'Name' : item.Name, 'Email' : item.Email, 'Location' : item.Location }] }}"
+    # with_items:
+    #   - { 'Name': 'Sarav' , 'Email': 'sarav@gritfy.com', 'Location': 'Chennai'}
+    #   - { 'Name': 'Richa' , 'Email': 'richa@gritfy.com', 'Location': 'Chennai'}
+    #   - { 'Name': 'Hanu' , 'Email': 'hanu@gritfy.com', 'Location': 'Hyderabad'}
+    set_fact: 
+      targets_dict: "{{ targets_dict | default([]) + [{ 'job' : item, 'optional' : true }] }}"
+    with_items: "{{ target_list }}"
+
+  - name: Create and Add items to dictionary trigger_dict
+    set_fact: 
+      trigger_dict: "{{ trigger_dict | default([]) + [{ 'local' : '$FLEX_INCLUDES_DIR/generated/' ~ item ~ '.yml' }] }}"
+    with_items: "{{ targets }}"
+
+  - name: Insert Needs Generated Jobs snippet for Build-Client-Side Job | .gitlab.ci
+    vars:
+      schema:
+        .post-generated-jobs:
+          needs: "{{ targets_dict }}"
+    blockinfile:
+      path: '{{ base_path }}/.gitlab-ci.yml'
+      marker: '## {mark} ANSIBLE MANAGED BLOCK - NEST ##'
+      insertafter: '####_Ansible_Nest_Generated_####'
+      block: |
+        {{ schema | to_nice_yaml(indent=2) }}
+
+  - name: Insert Trigger Generated Jobs snippet for build stage | .gitlab.ci
+    vars:
+      schema:
+        .trigger-generated-jobs:
+          include: "{{ trigger_dict }}"
+    blockinfile:
+      path: '{{ base_path }}/.gitlab-ci.yml'
+      marker: '## {mark} ANSIBLE MANAGED BLOCK - TRIGGER ##'
+      insertafter: '####_Ansible_Trigger_Generated_####'
+      block: |
+        {{ schema | to_nice_yaml(indent=2) }}
+
+  - name: Insert targets into build_client_side contexts | build.hcl
+    blockinfile:
+      path: '{{ base_path }}/pipeline-ci/docker/v2/bake/build.hcl'
+      marker: "    /* {mark} ANSIBLE MANAGED BLOCK */"
+      insertafter: "\/\/ <!-- INSERT BLOCK -->"
+      block: |
+        {% for item in targets %}
+            {{ item | replace("_", "-") }} = "target:{{ item | replace("-", "_") }}"
+        {% endfor %}
+
+  # This would be great but due to the inconsistency in determining which directories are actually
+  # used for exporting code, this can lead to errors 
+  #   - When we compile code using tsc we typically export to a /dist dir
+  #   - When we bundle code with webpack we usually target a /build dir
+  #   - If the project is conceived as a shared library we might export with rollup or parcel
+  #     to /dist (esm), /lib (cjs), /module (mjs)
+  #   - With complexe projects that have their own workspaces such as (@flytel/a360-v3), the actual
+  #     exported modules may be all over the place and impossible to delimit to only one type of folder
+
+  # The solution is to manually configure precisely which directories need to be copied over in later
+  # stages of the docker build by using the ONBUILD instruction within the project dockerfile itself.
+
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #  
+  # Only use if all projects strictly adhere to the rule of exporting to the same folder name
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  # - name: Insert COPY instruction into dockerfile | 4_build_client_side.dockerfile
+  #   blockinfile:
+  #     path: '{{ base_path }}/pipeline-ci/docker/v2/dockerfiles/4_build_client_side.dockerfile'
+  #     marker: "## {mark} ANSIBLE MANAGED BLOCK ##"
+  #     insertafter: "###### Generated ######"
+  #     block: |
+  #       {% for item in targets %}
+  #       {% set flex_proj_dir_generated = input.target[item].args.FLEX_PROJ_DIR_GENERATED %}
+  #       COPY --chown=${FLEX_USER}:${FLEX_USER} --link --from={{ item }} ${FLEX_APP}/{{ flex_proj_dir_generated }}/build/ ./{{ flex_proj_dir_generated }}/build/
+  #       {% endfor %}

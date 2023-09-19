@@ -1,0 +1,12 @@
+- hosts: localhost
+  # vars:
+  #   source_key: "./.ssh/id_rsa"
+  #   dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+  tasks:
+    # # # # # # # # #  Order is important !! # # # # # # # # # #
+    # - name: Include ssh task in play
+    #   import_tasks: tasks/local/ssh.yml
+    # - name: Include git task in play
+    #   import_tasks: tasks/local/git-setup.yml
+    - name: Include nvm task in play
+      import_tasks: tasks/local/nvm-setup.yml

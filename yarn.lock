@@ -4449,6 +4449,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@flexiness/build-bake@workspace:pipeline-ci/build-bake":
+  version: 0.0.0-use.local
+  resolution: "@flexiness/build-bake@workspace:pipeline-ci/build-bake"
+  dependencies:
+    "@types/node": ^18.0.3
+    dotenv: 16.0.3
+    dotenv-expand: 9.0.0
+    envsub: 4.1.0
+    flexiness: "link:@types/flexiness"
+    mobx: ^6.6.1
+    nodemon: 2.0.20
+    shell-exec: 1.1.2
+    ts-node: 10.9.1
+    tsconfig-paths: 4.0.0
+    typescript: 4.7.4
+  languageName: unknown
+  linkType: soft
+
 "@flexiness/certs@workspace:./packages/flex/config/certs, @flexiness/certs@workspace:packages/flex/config/certs":
   version: 0.0.0-use.local
   resolution: "@flexiness/certs@workspace:packages/flex/config/certs"
@@ -4735,6 +4753,7 @@ __metadata:
     crypto-browserify: 3.12.0
     css-loader: 6.7.1
     dotenv-cli: 7.3.0
+    envsub: 4.1.0
     eslint: 8.19.0
     eslint-config-airbnb: 19.0.4
     eslint-config-prettier: 8.5.0
@@ -4772,6 +4791,7 @@ __metadata:
     style-loader: 3.3.1
     tapable: 2.2.1
     ts-loader: 9.4.2
+    ts-node: 10.9.1
     tsconfig-paths: 4.0.0
     tsconfig-paths-webpack-plugin: 4.1.0
     tslib: ^2.4.0
@@ -11079,6 +11099,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:16.0.3":
+  version: 16.0.3
+  resolution: "dotenv@npm:16.0.3"
+  checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
+  languageName: node
+  linkType: hard
+
 "dotenv@npm:^16.3.0, dotenv@npm:~16.3.1":
   version: 16.3.1
   resolution: "dotenv@npm:16.3.1"
@@ -13129,6 +13156,12 @@ __metadata:
 "flexiness@link:@types/flexiness::locator=%40flex-design-system%2Freact-ts%40workspace%3Apackages%2Fflex%2Fdesign-system-react-ts":
   version: 0.0.0-use.local
   resolution: "flexiness@link:@types/flexiness::locator=%40flex-design-system%2Freact-ts%40workspace%3Apackages%2Fflex%2Fdesign-system-react-ts"
+  languageName: node
+  linkType: soft
+
+"flexiness@link:@types/flexiness::locator=%40flexiness%2Fbuild-bake%40workspace%3Apipeline-ci%2Fbuild-bake":
+  version: 0.0.0-use.local
+  resolution: "flexiness@link:@types/flexiness::locator=%40flexiness%2Fbuild-bake%40workspace%3Apipeline-ci%2Fbuild-bake"
   languageName: node
   linkType: soft
 
@@ -22872,6 +22905,13 @@ __metadata:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 1a2bcae50de99034fcd92ad4212d8e01eedf52c7ec7830eedcf886622804fe36884278f2be8be0ea5fde3fd1c23911643a4e0f726c8685b61871c8908af01222
+  languageName: node
+  linkType: hard
+
+"shell-exec@npm:1.1.2":
+  version: 1.1.2
+  resolution: "shell-exec@npm:1.1.2"
+  checksum: bc6b68c219657e07f42d364035b39798a0c7ef344fe0d5dae84395de70a7c3bbd01512dac2fd6e8425b7b0695f0067d28e8035e2331905011722dd23285e1be0
   languageName: node
   linkType: hard
 

@@ -1,0 +1,68 @@
+- name: Setup DataDog Agent
+  become: true
+  block:
+
+    - name: Install dd-agent required apt-packages
+      apt:
+        update_cache: yes
+        name: [
+          "apt-transport-https",
+          "curl",
+          'gnupg'
+        ]
+    
+    - name: Install the datadog agent on targets
+      ansible.builtin.shell: |
+        sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/datadog-archive-keyring.gpg] https://apt.datadoghq.com/ stable 7' > /etc/apt/sources.list.d/datadog.list"
+        sudo touch /usr/share/keyrings/datadog-archive-keyring.gpg
+        sudo chmod a+r /usr/share/keyrings/datadog-archive-keyring.gpg
+        curl https://keys.datadoghq.com/DATADOG_APT_KEY_CURRENT.public | sudo gpg --no-default-keyring --keyring /usr/share/keyrings/datadog-archive-keyring.gpg --import --batch
+        curl https://keys.datadoghq.com/DATADOG_APT_KEY_C0962C7D.public | sudo gpg --no-default-keyring --keyring /usr/share/keyrings/datadog-archive-keyring.gpg --import --batch
+        curl https://keys.datadoghq.com/DATADOG_APT_KEY_F14F620E.public | sudo gpg --no-default-keyring --keyring /usr/share/keyrings/datadog-archive-keyring.gpg --import --batch
+        curl https://keys.datadoghq.com/DATADOG_APT_KEY_382E94DE.public | sudo gpg --no-default-keyring --keyring /usr/share/keyrings/datadog-archive-keyring.gpg --import --batch
+      args:
+        executable: /bin/bash
+
+    - name: Install dd-agent packages
+      apt:
+        update_cache: yes
+        name: [
+          "datadog-agent",
+          "datadog-signing-keys"
+        ]
+
+    - name: Configure the datadog agent on targets
+      vars:
+        datadog_api_key: "{{ lookup('env', 'DD_API_KEY') }}"
+        datadog_site: "{{ lookup('env', 'DD_SITE') }}"
+        datadog_hostname: "{{ lookup('env', 'DD_HOSTNAME') }}"
+      ansible.builtin.shell: |
+        sudo sh -c "sed 's/api_key:.*/api_key: {{ datadog_api_key }}/' /etc/datadog-agent/datadog.yaml.example > /etc/datadog-agent/datadog.yaml"
+        sudo sh -c "sed -i 's/# site:.*/site: {{ datadog_site }}/' /etc/datadog-agent/datadog.yaml"
+        sudo sh -c "sed -i 's/# hostname:.*/hostname: {{ datadog_hostname }}/' /etc/datadog-agent/datadog.yaml"
+        sudo sh -c "chown dd-agent:dd-agent /etc/datadog-agent/datadog.yaml && chmod 640 /etc/datadog-agent/datadog.yaml"
+      args:
+        executable: /bin/bash
+
+    # # https://github.com/ansible/ansible/issues/70864
+    # - name: Give {{ lookup('env', 'FLEX_USER') }} (non sudo user) a sudo privilege to run services.
+    #   template:
+    #     src: isflex-root-privileges-for-dd-agent-services.j2
+    #     dest: /etc/sudoers.d/{{ lookup('env', 'FLEX_USER') }}
+    #     validate: "visudo -cf %s"
+    #     mode: 0440
+    #     owner: root
+    #     group: root
+
+    # # https://docs.ansible.com/ansible/latest/collections/community/general/sudoers_module.html
+    - name: Allow the {{ lookup('env', 'FLEX_USER') }} user to run any commands as dd-agent with sudo -u dd-agent
+      community.general.sudoers:
+        name: "{{ lookup('env', 'FLEX_USER') }}-do-as-dd-agent"
+        state: present
+        user: "{{ lookup('env', 'FLEX_USER') }}"
+        runas: dd-agent
+        commands: ALL
+      
+  when: "'dd-agent' in ansible_run_tags"
+  tags:
+    - dd-agent

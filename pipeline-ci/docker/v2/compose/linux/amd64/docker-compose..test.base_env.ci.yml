@@ -1,0 +1,128 @@
+version: '3.8'
+
+x-logging: &default-logging
+  options:
+    max-size: '12m'
+    max-file: '5'
+  driver: json-file
+
+services:
+  pokerapp:
+    # user: root
+    # user: 1000:1000
+    platform: ${FLEX_CI_ARCH}
+    hostname: pokerapp
+    # domainname: flexiness.com
+    # hostname: flexiness
+    container_name: pokerapp
+    image: registry.gitlab.com/isflex/poker_table_betting_app/linux_amd64/main:base_env
+    logging: *default-logging
+    entrypoint: "bash -c"
+    command:
+      - |-
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # echo "//                             WHOAMI" && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # whoami && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # echo "//                             PWD" && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # pwd && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # echo "//                             Groups" && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # getent group && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # echo "//                             Mongo" && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # echo $(mongodb --version) && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        echo "//                             DataDog" && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        # # # # # # # # # # # # # # # # # # # User root # # # # # # # # # # # # # # # # # # #
+        # ls -l /var/log/datadog/ && \
+        # ls -al /opt/datadog-agent/run && \
+        # cat /etc/datadog-agent/datadog.yaml && \
+        # # /etc/init.d/datadog-agent restart && \
+        # service datadog-agent restart && \
+        # datadog-agent status && \
+        # # # # # # # # # # # # # # # # # # # User isflex # # # # # # # # # # # # # # # # # #
+        sudo -u dd-agent cat /etc/datadog-agent/datadog.yaml && \
+        # sudo -u dd-agent /usr/sbin/service datadog-agent restart && \
+        # sudo -u dd-agent /usr/sbin/service datadog-agent status && \
+        sudo -u dd-agent service datadog-agent restart && \
+        sudo -u dd-agent datadog-agent status && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # echo "//                            Apt List" && \
+        # echo "/////////////////////////////////////////////////////////////////////////" && \
+        # apt list --installed && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        echo "//                            printenv" && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        printenv && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        echo "//                              Mkcert" && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        echo "/home/isflex/certs/${FLEX_DOMAIN_NAME}/mkcert" && \
+        ls -al /home/isflex/certs/${FLEX_DOMAIN_NAME}/mkcert && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        echo "//                              Hosts" && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        cat /etc/hosts && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        echo "//                              Ports" && \
+        echo "/////////////////////////////////////////////////////////////////////////" && \
+        netstat -tulpn | grep LISTEN
+    environment:
+      - FLEX_MODE=production
+      - FLEX_DOMAIN_NAME=${FLEX_DOMAIN_NAME}
+      - FLEX_PROTOCOL=${FLEX_PROTOCOL}
+      - PUPPETEER_DOWNLOAD_PATH=/usr/bin/google-chrome-stable
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+      - CI=${FLEX_CI}
+    expose:
+      - "3000"
+    ports:
+      - "127.0.0.1:3001:3001"
+      - "127.0.0.1:3991:3991"
+      - "127.0.0.1:3992:3992"
+      - "127.0.0.1:4001:4001"
+      - "127.0.0.1:4006:4006"
+      - "127.0.0.1:7007:7007"
+      - "127.0.0.1:8080:8080"
+    stdin_open: true
+    tty: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - type: volume
+        source: data-certs
+        target: /home/isflex/certs/ci.flexiness.com/mkcert
+    extra_hosts:
+      - "${FLEX_DOMAIN_NAME}:0.0.0.0"
+      - "lighthouse.${FLEX_BASE_DOMAIN}:0.0.0.0"
+
+  nginx:
+    hostname: nginx
+    container_name: nginx-service
+    image: nginx:1.23.0-alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./pipeline-ci/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./pipeline-ci/nginx/nginx_default_ci_ssl.conf:/etc/nginx/conf.d/default.conf
+      - ./pipeline-ci/nginx/proxy.conf:/etc/nginx/proxy.conf
+      - data-certs:/etc/ssl:ro
+    extra_hosts:
+      - "${FLEX_DOMAIN_NAME}:0.0.0.0"
+      
+networks:
+  default:
+    external: true
+    name: nginx-proxy
+
+volumes:
+  data-certs:
